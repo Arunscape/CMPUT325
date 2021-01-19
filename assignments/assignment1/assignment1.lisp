@@ -17,8 +17,8 @@
 (defun flatten (X)
   (cond
     ((not X) nil)
-    ((atom (car X)) (list (car X) (flatten (cdr X))))
-    (t (append (flatten (car X)) (flatten (cdr X))))))
+    ((atom (car X)) (cons (car X) (flatten (cdr X))))
+    (t (cons (flatten (car X)) (flatten (cdr X))))))
   
 
 ;(defun flatten-helper (X flat)
