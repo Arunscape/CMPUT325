@@ -12,3 +12,22 @@
     ((not Y) nil)
     ((equal X (car Y)) t)
     (t (xmember X (cdr Y)))))
+
+
+(defun flatten (X)
+  (flatten-helper X ()))
+
+;(defun flatten-helper (X flat)
+;  (cond
+;    ((not X) flat)
+;    ((atom (car X)) (flatten-helper (cdr X)))
+;    ((not flat) (flatten-helper (cdr X) (car X)))
+;    (t (flatten-helper (cdr X) (cons flat (car X))))))
+
+(defun flatten-helper (X flat)
+  (cond
+    ((not X) flat)                                          ; if x is nil, we are done flattening
+    ((atom (car X)) (if flat
+                        (flatten-helper (cdr X) (append flat (car X)))
+                        (flatten-helper (cdr X) (list (car X)))))            ; if x is an atom, append it to the list
+    (t (append (flatten (car X)) (flatten (cdr X))))))

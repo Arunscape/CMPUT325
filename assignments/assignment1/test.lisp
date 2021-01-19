@@ -16,3 +16,6 @@
 (test-case 1.7(xmember '(nil) '(1 2 3 (nil))) T)
 (test-case 1.8(xmember '(nil) '(nil)) NIL)
 
+(test-case 2.1(flatten '(a (b c) d)) '(a b c d))
+(test-case 2.2(flatten '((((a))))) '(a))
+(test-case 2.3(flatten '(a (b c) (d ((e)) f))) '(a b c d e f))
