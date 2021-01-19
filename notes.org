@@ -1,0 +1,111 @@
+
+
+* Procedural programming allows you to change state.
+<2021-01-12 Tue>
+
+They have side effects: "Who changed my variable?!"
+We end up designing patterns to avoid this like: encapsulating access with
+getters and setters in OOP
+
+* Logic programming (Prolog)
+It's a declarative style of programming. Specify the logic, and the program
+figures out the solution steps. In procedural programming, we tell the computer
+the specific step by step instructions and the programmer specifies control
+flow in detail.
+
+
+* Fun Language
+<2021-01-14 Thu>
+
+    - A program is a collection of function definitions
+    - functions are defined over lists and atoms
+    - we do computation by function application
+    - math like syntax
+
+      \(f(x,y) = x * x + y\)
+      - the symbol '=' is read as *defined as*
+      - \(f(x,y)\) is the *lefthand side*
+      - the function definition is on the *righthand side*
+      - this function definition means that the 2 sides are equal
+      - \(\forall x \forall y : f(x,y) = x * x + y\)
+    - function :: mapping from domain to co-domain
+    - <<<function definition>>> :: what the function does
+    - <<<function application>>> :: evaluate function for specific arguments
+    - Atoms :: primitive, inseparable including integers and real numbers
+      + a
+      + if73
+      + helloWorld
+      + -15
+      + 3.1415
+    - Lists :: defined inductively
+      + () is a list, called an empty list
+      + if \(x_1, ... x_n\) are lists or atoms, then it is also a list
+      + nothing else is a list
+      + examples
+        - (a (b) c (d))
+        - (a ((b) c (d) ((((e))))))
+        - ((((()(((())))))))
+      + *first* (a.k.a. car)
+        - returns the first element of a list
+        - error if first is called with an empty list, or an argument that is not a list
+      + *rest* (a.k.a. cdr)
+        - returns everything except the first element
+        - if there's only one element, the empty list is returned
+      + for brevity, we can omit some parentheses and define a function like *ffrr*, which does first(first(rest(rest(list))))
+      + *cons* for constructing a list
+        - cons(a, ()) -> (a)
+        - cons(a, cons(s))
+
+
+    pseudocode for getting the last item in a list
+#+begin_example Fun
+; input must be a list with length >= 1
+last (L)
+= if null(r(L)) then car(L)
+  else last(cdr(L)); if rest of L is nil then it is a list with length 1
+#+end_example
+
+#+begin_example Fun
+; append((1 2 3), (a,b)) -> ( 1 2 3 a b )
+append(L1, L2) =
+  if null(L1 then L2)
+  else cons(f(L1), append(r(L1), L2))
+#+end_example
+#+begin_example Fun
+; this is less efficient
+append2(L1, L2) =
+  if null(L1 then L2)
+  else append2(rmlast(L1), const(last(L1) L2))
+
+removeLast(L1) =
+ if null(r(L)) then ()
+else cons(f(L), removeLast(r(L)))
+#+end_example
+
+#+begin_example
+reverse(L) =
+if null(L) then L
+ese append(reverse(r(L), cons(f(L), ())))
+#+end_example
+
+* Binary tree
+#+begin_example fun
+insert(Tr, Int) =
+if isEmpty(Tr)
+then consTree(consNilTr(), Int, consNilTr())
+else if Int = nodeValue(Tr) ... Int already in T
+then Tr
+else if Int < nodeValue(Tr)
+then consTree(insert(leftTree(Tr), Int),
+nodeValue(Tr),
+rightTree(Tr))
+else consTree(leftTree(Tr),
+nodeValue(Tr),
+insert(rightTree(Tr), Int))
+#+end_example fun
+
+
+* Introduction to Lisp: A Sample Run
+#+begin_src lisp
+(+ 1 2)
+#+end_src
