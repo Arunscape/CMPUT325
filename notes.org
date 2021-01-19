@@ -107,5 +107,7 @@ insert(rightTree(Tr), Int))
 
 * Introduction to Lisp: A Sample Run
 #+begin_src lisp
-(+ 1 2)
 #+end_src
+
+#+RESULTS:
+: ADD
