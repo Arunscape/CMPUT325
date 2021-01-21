@@ -27,3 +27,13 @@
     ((not X) nil)
     ((xmember (car X) (cdr X)) (remove-duplicates (cdr X)))
     (t (cons (car X) (remove-duplicates (cdr X))))))
+
+;QUESTION 4
+(defun mix (L1 L2)
+  (if
+   (not L2) L1
+   (cons (car L1) (mix L2 (cdr L1)))))
+    
+    
+
+; for question 6 you probably want an accumulator

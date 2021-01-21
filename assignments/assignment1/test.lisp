@@ -21,3 +21,9 @@
 (test-case 2.3(flatten '(a (b c) (d ((e)) f))) '(a b c d e f))
 
 (test-case 3.1 (remove-duplicate '(a b c a d b)) '(c a d b))
+
+(test-case 4.1 (mix '(a b c) '(d e f)) '(a d b e c f))
+(test-case 4.2 (mix '(1 2 3) '(a)) '(1 a 2 3))
+(test-case 4.3 (mix '((a) (b c)) '(d e f g h)) '((a) d (b c) e f g h))
+(test-case 4.4 (mix '(1 2 3) nil) '(1 2 3))
+(test-case 4.5 (mix '(1 2 3) '(nil)) '(1 nil 2 3))
