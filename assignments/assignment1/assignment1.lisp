@@ -29,11 +29,20 @@
     (t (cons (car X) (remove-duplicates (cdr X))))))
 
 ;QUESTION 4
+; it seems to work without checking if l1 is null todo, trace execution and find out why
 (defun mix (L1 L2)
-  (if
-   (not L2) L1
-   (cons (car L1) (mix L2 (cdr L1)))))
+  (cond
+    ((not L2) L1)
+;    ((not L1) L2)
+    (t (cons (car L1) (mix L2 (cdr L1))))))
     
     
+;QUESTION 5
+(defun allsubsets (L)
+  (gen-subsets (list nil) L))
 
+(defun gen-subsets (acc L)
+  (if (not L) acc
+      (append (gen-subsets  ((list (car L)) cdr L)))))
+  
 ; for question 6 you probably want an accumulator

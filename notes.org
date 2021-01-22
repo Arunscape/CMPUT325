@@ -105,8 +105,10 @@ insert(rightTree(Tr), Int))
 #+end_example fun
 
 
-* Introduction to Lisp: A Sample Run
+* Cartesian product
 #+begin_src lisp
+
+;(cart '(1 2) '(a b c))
 #+end_src
 
 #+RESULTS:

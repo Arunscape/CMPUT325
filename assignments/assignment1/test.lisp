@@ -27,3 +27,4 @@
 (test-case 4.3 (mix '((a) (b c)) '(d e f g h)) '((a) d (b c) e f g h))
 (test-case 4.4 (mix '(1 2 3) nil) '(1 2 3))
 (test-case 4.5 (mix '(1 2 3) '(nil)) '(1 nil 2 3))
+(test-case 4.6 (mix '(1 3 5) '(2 4 6 7 8 9)) '(1 2 3 4 5 6 7 8 9))
