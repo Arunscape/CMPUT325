@@ -33,3 +33,14 @@
 (test-case 5.2 (allsubsets '(a)) '((a) nil))
 (test-case 5.3 (allsubsets '(a b)) '((a b) (b) (a)  nil))
 (test-case 5.4 (allsubsets '(a b c)) '((a b c) (b c) (a c) (c) (a b) (b) (a) () ))
+
+
+(test-case 6.11 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada))) (SHOPIFY AIRCANADA))
+(test-case 6.12 (reached 'google '( (google shopify) (shopify amazon) (amazon google) ) ) (SHOPIFY AMAZON))
+(test-case 6.13 (reached 'google '( (google shopify) (shopify amazon) (amazon indigo)  )) (SHOPIFY AMAZON INDIGO))
+(test-case 6.14 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))  (SHOPIFY AIRCANADA DELTA))
+
+(test-case 6.21 (rank '(google shopify aircanada amazon) '((google shopify) (google aircanada) (amazon aircanada))) ((AIRCANADA 2) (SHOPIFY 1) (GOOGLE 0) (AMAZON 0)))
+(test-case 6.22 (rank '(google shopify amazon) '((google shopify) (shopify amazon) (amazon google))) ((GOOGLE 1) (SHOPIFY 1) (AMAZON 1)))
+(test-case 6.23 (rank '(google shopify amazon indigo) '((google shopify) (shopify amazon) (amazon indigo))) ((SHOPIFY 1) (AMAZON 1) (INDIGO 1) (GOOGLE 0)))
+(test-case 6.24 (rank '(google shopify aircanada amazon delta) '((google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google))) ((AIRCANADA 2) (SHOPIFY 1) (DELTA 1) (GOOGLE 0) (AMAZON 0)))
