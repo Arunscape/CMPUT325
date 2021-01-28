@@ -28,3 +28,8 @@
 (test-case 4.4 (mix '(1 2 3) nil) '(1 2 3))
 (test-case 4.5 (mix '(1 2 3) '(nil)) '(1 nil 2 3))
 (test-case 4.6 (mix '(1 3 5) '(2 4 6 7 8 9)) '(1 2 3 4 5 6 7 8 9))
+
+(test-case 5.1 (allsubsets nil) '(nil))
+(test-case 5.2 (allsubsets '(a)) '((a) nil))
+(test-case 5.3 (allsubsets '(a b)) '((a b) (b) (a)  nil))
+(test-case 5.4 (allsubsets '(a b c)) '((a b c) (b c) (a c) (c) (a b) (b) (a) () ))
