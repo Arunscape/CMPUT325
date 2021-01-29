@@ -41,7 +41,6 @@
 (defun allsubsets (L)
   (if (not L) (list nil)
     (gen-subsets (car L) (allsubsets (cdr L)))))
-
 ;; wikipedia notation https://en.wikipedia.org/wiki/Power_set#Recursive_definition
 ;; union of a power set of T and a power set of T whose each element is expanded with e
 ;; For a non-empty set S (assignment calls it L)
@@ -50,10 +49,31 @@
 ;; then the power set of S is a union of a power set of T and
 ;; a power set of T whose each element is expanded with e
 (defun gen-subsets (e Tcomplement)
-  (if
-      (not tcomplement) nil
+  (if (not Tcomplement) nil
     (cons
      (cons e (car Tcomplement))
      (cons (car Tcomplement) (gen-subsets e (cdr Tcomplement))))))
 
+;; Question 6
+;; x is a web page L is a list of pairs representing linkage
+;; returns list of all web pages that can be reached from x
+(defun reached (x L)
+  (get-links x L))
 
+(defun b-if-x-is-a-else-nil (x P)
+  (if (equal x (car P))
+      (cdr P)
+      nil))
+
+(defun get-links (x L)
+  (if (null L ) nil
+      (cons (b-if-x-is-a-else-nil x (car L)) (get-links x (cdr L)))))
+
+(reached 'google '( (google shopify) (google aircanada) (amazon aircanada)))
+(reached 'google '( (google shopify) (shopify amazon) (amazon google) ) )
+
+(defun xmapcar1 (f L)
+  (if (null L) nil
+    (cons (funcall f (car L))(xmapcar1 f (cdr L)))))
+
+(defun)
