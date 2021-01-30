@@ -58,16 +58,25 @@
 ;; x is a web page L is a list of pairs representing linkage
 ;; returns list of all web pages that can be reached from x
 (defun reached (x L)
-  (get-links x L))
+  (get-links x L nil))
+
+
+(defun filter-x-has-link (x L)
+  (if (null L) nil
+      (if (equal x (caar L))
+          (cons (car L) (filter-x-has-link x (cdr L)))
+          (filter-x-has-link x (cdr L)))))
+
+
+
 
 (defun b-if-x-is-a-else-nil (x P)
   (if (equal x (car P))
       (cdr P)
       nil))
 
-(defun get-links (x L)
-  (if (null L ) nil
-      (cons (b-if-x-is-a-else-nil x (car L)) (get-links x (cdr L)))))
+(filter-x-has-link 'google '( (google shopify) (google aircanada) (amazon aircanada)))
+(filter-x-has-link 'google '( (godogle shopify) (gdoogle aircanada) (amazon aircanada)))
 
 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada)))
 (reached 'google '( (google shopify) (shopify amazon) (amazon google) ) )
