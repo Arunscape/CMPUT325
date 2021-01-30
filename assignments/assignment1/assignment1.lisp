@@ -58,7 +58,17 @@
 ;; x is a web page L is a list of pairs representing linkage
 ;; returns list of all web pages that can be reached from x
 (defun reached (x L)
-  (get-links x L nil))
+  (find-links x L L nil))
+
+
+(defun find-links (x L original acc)
+  (cond
+    ((null L)
+     acc)
+    ((equal x (caar L))
+     (find-links (cadar L) original original (cons (cadar L) acc))) ; found a match, add to acc
+    (t
+     (find-links x (cdr L) original acc)))) ; continue iteration
 
 
 (defun filter-x-has-link (x L)
@@ -67,19 +77,19 @@
           (cons (car L) (filter-x-has-link x (cdr L)))
           (filter-x-has-link x (cdr L)))))
 
+(defun get-reaches (x L acc)
+  (let ((filtered (filter-x-has-link x L)))))
 
 
-
-(defun b-if-x-is-a-else-nil (x P)
-  (if (equal x (car P))
-      (cdr P)
-      nil))
-
+(filter-x-has-link 'google '( (shopify aircanada) (google shopify)))
 (filter-x-has-link 'google '( (google shopify) (google aircanada) (amazon aircanada)))
-(filter-x-has-link 'google '( (godogle shopify) (gdoogle aircanada) (amazon aircanada)))
+(filter-x-has-link 'google '( (google shopify) (shopify amazon) (amazon google)))
 
 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada)))
-(reached 'google '( (google shopify) (shopify amazon) (amazon google) ) )
+(reached 'google '( (google shopify) (shopify amazon) (amazon google)))
+
+;; backwards reached
+(reached 'google '( ( (shopify aircanada) (google shopify))))
 
 (defun xmapcar1 (f L)
   (if (null L) nil
