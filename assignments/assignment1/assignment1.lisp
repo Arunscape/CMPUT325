@@ -60,13 +60,14 @@
 (defun reached (x L)
   (find-links x L L nil))
 
-
 (defun find-links (x L original acc)
   (cond
     ((null L)
      acc)
-    ((equal x (caar L))
-     (find-links (cadar L) original original (cons (cadar L) acc))) ; found a match, add to acc
+    ((and
+      (equal x (caar L))
+      (not (xmember x acc)))
+     (find-links (cadar L) original original (cons (cons (cadar L) acc) (find-links x (cdr L) original nil)))) ; found a match, add to acc
     (t
      (find-links x (cdr L) original acc)))) ; continue iteration
 
