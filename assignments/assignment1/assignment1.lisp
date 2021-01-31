@@ -57,40 +57,33 @@
 ;; Question 6
 ;; x is a web page L is a list of pairs representing linkage
 ;; returns list of all web pages that can be reached from x
+
 (defun reached (x L)
-  (find-links x L L nil))
+  (remove-duplicate
+   (remove-x x
+            (find-links x L L nil))))
 
-(defun find-links (x L original acc)
+(defun find-links (x L original visited)
   (cond
-    ((null L)
-     acc) ; done iteration, ran out of items
-    ((equal x (cadar L))
-     (find-links x (cdr L) original acc)) ; if x=b skip
-    ((equal x (caar L))
-     (find-links (cadar L) original original nil)) ; also search stuff that came before
-    (t
-     (find-links x (cdr L) original acc)))) ; continue iteration
+    ((null L) (list x)) ; done iteration, ran out of items
+    ((xmember x visited) nil)
+    ((eq x (caar L)) (append (find-links (cadar L) original original (cons x visited))
+                             (find-links x (cdr L) original visited)))
+    (t (find-links x (cdr L) original visited))))
 
-
-(defun filter-x-has-link (x L)
+(defun remove-x (x L)
   (if (null L) nil
-      (if (equal x (caar L))
-          (cons (car L) (filter-x-has-link x (cdr L)))
-          (filter-x-has-link x (cdr L)))))
-
-(defun get-reaches (x L acc)
-  (let ((filtered (filter-x-has-link x L)))))
+      (if (eq x (car L))
+          (remove-x x (cdr L))
+          (cons (car L) (remove-x x (cdr L))))))
 
 
-(filter-x-has-link 'google '( (shopify aircanada) (google shopify)))
-(filter-x-has-link 'google '( (google shopify) (google aircanada) (amazon aircanada)))
-(filter-x-has-link 'google '( (google shopify) (shopify amazon) (amazon google)))
-
+(reached 'a '((a b) (c d)))
 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada)))
 (reached 'google '( (google shopify) (shopify amazon) (amazon google)))
 (reached 'google '( (google shopify) (shopify amazon) (amazon indigo)))
-(reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))
-(reached 'a '((a b) (b c) (c a) (b a)))
+(reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google)))
+(reached 'a '((a b) (b c) (c a) (b a) (c d) (c d)))
 
 ;; backwards reached
 (reached 'google '((shopify aircanada) (google shopify)))

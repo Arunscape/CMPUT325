@@ -36,9 +36,14 @@
 
 
 (test-case 6.11 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada))) '(SHOPIFY AIRCANADA))
-(test-case 6.12 (reached 'google '( (google shopify) (shopify amazon) (amazon google) ) ) '(SHOPIFY AMAZON))
-(test-case 6.13 (reached 'google '( (google shopify) (shopify amazon) (amazon indigo)  )) '(SHOPIFY AMAZON INDIGO))
-(test-case 6.14 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))  '(SHOPIFY AIRCANADA DELTA))
+(test-case 6.12 (reached 'google '( (google shopify) (shopify amazon) (amazon google) ) ) '(amazon shopify))
+(test-case 6.13 (reached 'google '( (google shopify) (shopify amazon) (amazon indigo)  )) '(INDIGO amazon shopify))
+(test-case 6.14 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))  '(SHOPIFY delta AIRCANADA))
+(test-case 6.14 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))  '(SHOPIFY delta AIRCANADA))
+;;backwards reached
+(test-case 6.15 (reached 'google '((shopify aircanada) (google shopify))) '(aircanada shopify))
+;; cycle
+(test-case 6.16 (reached 'a '((a b) (b a) (a c))) '(b c))
 
 (test-case 6.21 (rank '(google shopify aircanada amazon) '((google shopify) (google aircanada) (amazon aircanada))) '((AIRCANADA 2) (SHOPIFY 1) (GOOGLE 0) (AMAZON 0)))
 (test-case 6.22 (rank '(google shopify amazon) '((google shopify) (shopify amazon) (amazon google))) '((GOOGLE 1) (SHOPIFY 1) (AMAZON 1)))
