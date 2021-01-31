@@ -1,7 +1,7 @@
-(load "assignment1.lisp")
 
 (defun reached (x L)
   (find-links x L L nil))
+
 
 
 (defun find-links (x L original acc)
@@ -14,7 +14,6 @@
      (find-links (cadar L) original original (cons (cons (cadar L) acc) (find-links x (cdr L) original nil)))) ; found a match, add to acc
     (t
      (find-links x (cdr L) original acc)))) ; continue iteration
-
 
 (defun test-case (ID Test Result)
   (if (equal Test Result)

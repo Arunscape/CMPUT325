@@ -10,37 +10,37 @@
 ;;else return xmember(x, r(y))
 (defun xmember (X Y)
   (cond
-   ((not Y) nil)
-   ((equal X (car Y)) t)
-   (t (xmember X (cdr Y)))))
+    ((not Y) nil)
+    ((equal X (car Y)) t)
+    (t (xmember X (cdr Y)))))
 
 
 ;; QUESTION 2
 (defun flatten (X)
   (cond
-   ((not X) nil)
-   ((atom (car X)) (cons (car X) (flatten (cdr X))))
-   (t (append (flatten (car X)) (flatten (cdr X))))))
+    ((not X) nil)
+    ((atom (car X)) (cons (car X) (flatten (cdr X))))
+    (t (append (flatten (car X)) (flatten (cdr X))))))
 
 ;; QUESTION 3
 (defun remove-duplicate (X)
   (cond
-   ((not X) nil)
-   ((xmember (car X) (cdr X)) (remove-duplicates (cdr X)))
-   (t (cons (car X) (remove-duplicates (cdr X))))))
+    ((not X) nil)
+    ((xmember (car X) (cdr X)) (remove-duplicates (cdr X)))
+    (t (cons (car X) (remove-duplicates (cdr X))))))
 
 ;; QUESTION 4
 ;; it seems to work without checking if l1 is null todo, trace execution and find out why
 (defun mix (L1 L2)
   (cond
-   ((not L2) L1)
+    ((not L2) L1)
                                         ;  ((not L1) L2)
-   (t (cons (car L1) (mix L2 (cdr L1))))))
+    (t (cons (car L1) (mix L2 (cdr L1))))))
 
 ;; QUESTION 5
 (defun allsubsets (L)
   (if (not L) (list nil)
-    (gen-subsets (car L) (allsubsets (cdr L)))))
+      (gen-subsets (car L) (allsubsets (cdr L)))))
 ;; wikipedia notation https://en.wikipedia.org/wiki/Power_set#Recursive_definition
 ;; union of a power set of T and a power set of T whose each element is expanded with e
 ;; For a non-empty set S (assignment calls it L)
@@ -50,9 +50,9 @@
 ;; a power set of T whose each element is expanded with e
 (defun gen-subsets (e Tcomplement)
   (if (not Tcomplement) nil
-    (cons
-     (cons e (car Tcomplement))
-     (cons (car Tcomplement) (gen-subsets e (cdr Tcomplement))))))
+      (cons
+       (cons e (car Tcomplement))
+       (cons (car Tcomplement) (gen-subsets e (cdr Tcomplement))))))
 
 ;; Question 6
 ;; x is a web page L is a list of pairs representing linkage
@@ -63,11 +63,11 @@
 (defun find-links (x L original acc)
   (cond
     ((null L)
-     acc)
-    ((and
-      (equal x (caar L))
-      (not (xmember x acc)))
-     (find-links (cadar L) original original (cons (cons (cadar L) acc) (find-links x (cdr L) original nil)))) ; found a match, add to acc
+     acc) ; done iteration, ran out of items
+    ((equal x (cadar L))
+     (find-links x (cdr L) original acc)) ; if x=b skip
+    ((equal x (caar L))
+     (find-links (cadar L) original original nil)) ; also search stuff that came before
     (t
      (find-links x (cdr L) original acc)))) ; continue iteration
 
@@ -88,12 +88,14 @@
 
 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada)))
 (reached 'google '( (google shopify) (shopify amazon) (amazon google)))
+(reached 'google '( (google shopify) (shopify amazon) (amazon indigo)))
+(reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))
+(reached 'a '((a b) (b c) (c a) (b a)))
 
 ;; backwards reached
-(reached 'google '( ( (shopify aircanada) (google shopify))))
+(reached 'google '((shopify aircanada) (google shopify)))
+(reached 'google '((shopify aircanada) (google shopify)))
 
 (defun xmapcar1 (f L)
   (if (null L) nil
-    (cons (funcall f (car L))(xmapcar1 f (cdr L)))))
-
-(defun)
+      (cons (funcall f (car L))(xmapcar1 f (cdr L)))))
