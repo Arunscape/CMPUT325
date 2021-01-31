@@ -61,34 +61,18 @@
 (defun reached (x L)
   (remove-duplicate
    (remove-x x
-            (find-links x L L nil))))
-
-(defun find-links (x L original visited)
-  (cond
-    ((null L) (list x)) ; done iteration, ran out of items
-    ((xmember x visited) nil)
-    ((eq x (caar L)) (append (find-links (cadar L) original original (cons x visited))
-                             (find-links x (cdr L) original visited)))
-    (t (find-links x (cdr L) original visited))))
+             (find-links x L L nil))))
 
 (defun remove-x (x L)
   (if (null L) nil
-      (if (eq x (car L))
-          (remove-x x (cdr L))
-          (cons (car L) (remove-x x (cdr L))))))
+    (if (eq x (car L))
+        (remove-x x (cdr L))
+      (cons (car L) (remove-x x (cdr L))))))
 
-
-(reached 'a '((a b) (c d)))
-(reached 'google '( (google shopify) (google aircanada) (amazon aircanada)))
-(reached 'google '( (google shopify) (shopify amazon) (amazon google)))
-(reached 'google '( (google shopify) (shopify amazon) (amazon indigo)))
-(reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google)))
-(reached 'a '((a b) (b c) (c a) (b a) (c d) (c d)))
-
-;; backwards reached
-(reached 'google '((shopify aircanada) (google shopify)))
-(reached 'google '((shopify aircanada) (google shopify)))
-
-(defun xmapcar1 (f L)
-  (if (null L) nil
-      (cons (funcall f (car L))(xmapcar1 f (cdr L)))))
+(defun find-links (x L original visited)
+  (cond
+   ((null L) (list x)) ; done iteration, ran out of items
+   ((xmember x visited) nil)
+   ((eq x (caar L)) (append (find-links (cadar L) original original (cons x visited))
+                            (find-links x (cdr L) original visited)))
+   (t (find-links x (cdr L) original visited))))
