@@ -47,12 +47,15 @@
 
 
 (defun test-rank (S L)
-  (mySort (get-rank S L)))
+  (mapcar (lambda (x) (list (car x) (cdr x)))
+          (mySort (get-rank S L))))
 
 (test-case 6.21 (test-rank '(google shopify aircanada amazon) '((google shopify) (google aircanada) (amazon aircanada))) '((AIRCANADA 2) (SHOPIFY 1) (GOOGLE 0) (AMAZON 0)))
 (test-case 6.22 (test-rank '(google shopify amazon) '((google shopify) (shopify amazon) (amazon google))) '((GOOGLE 1) (SHOPIFY 1) (AMAZON 1)))
 (test-case 6.23 (test-rank '(google shopify amazon indigo) '((google shopify) (shopify amazon) (amazon indigo))) '((SHOPIFY 1) (AMAZON 1) (INDIGO 1) (GOOGLE 0)))
 (test-case 6.24 (test-rank '(google shopify aircanada amazon delta) '((google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google))) '((AIRCANADA 2) (SHOPIFY 1) (DELTA 1) (GOOGLE 0) (AMAZON 0)))
+;; multiple references don't count and references to self don't count
+(test-case 6.25 (test-rank '(google shopify aircanada amazon delta) '((google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (aircanada aircanada) (aircanada delta) (google google))) '((AIRCANADA 2) (SHOPIFY 1) (DELTA 1) (GOOGLE 0) (AMAZON 0)))
 
 (test-case 6.221 (rank '(google shopify aircanada amazon) '((google shopify) (google aircanada) (amazon aircanada))) '(AIRCANADA SHOPIFY GOOGLE AMAZON))
 (test-case 6.222 (rank '(google shopify amazon) '((google shopify) (shopify amazon) (amazon google))) '(GOOGLE SHOPIFY AMAZON))
