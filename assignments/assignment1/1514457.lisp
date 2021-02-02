@@ -284,7 +284,7 @@
 ;; since get-rank returns a list of dotted pairs instead of a list of pairs
 ;; (defun test-rank (S L)
 ;;   (mapcar (lambda (x) (list (car x) (cdr x)))
-;;           (mySort (get-rank S L)))
+;;           (mySort (get-rank S L))))
 (defun get-rank (S L)
   (if (null S) nil
       (cons
@@ -331,4 +331,4 @@
 ;; (defun test-case (ID Test Result)
 ;;   (if (equal Test Result)
 ;;       (format t "Test ~S OK~%" ID)
-;;       (format t "FAIL: Test ~S expected ~S got ~S~%" ID Result Test))
+;;       (format t "FAIL: Test ~S expected ~S got ~S~%" ID Result Test)))
