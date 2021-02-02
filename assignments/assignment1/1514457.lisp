@@ -164,7 +164,7 @@
              (find-links x L L nil))))
 
 ;; What does this function do?
-;; given x, and a list L, it will remove occurences of x in L
+;; given x, and a list L, it will remove occurrences of x in L
 ;;
 ;; How does the function work?
 ;; it checks each item in the list, and if x is equal to that item, we ignore it
@@ -293,7 +293,7 @@
 
 ;; What does this function do?
 ;; given x, and a list of pairs L,
-;; this counds how many references there are to x in L
+;; this counts how many references there are to x in L
 ;;
 ;; How does the function work?
 ;; sources keeps track of the sources which have linked to x
