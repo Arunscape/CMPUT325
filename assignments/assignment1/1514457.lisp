@@ -172,9 +172,9 @@
 ;; otherwise, we include the item, and remove duplicates from the rest of the list
 (defun remove-x (x L)
   (cond
-    ((null L) nil)
-    ((eq x (car L)) (remove-x x (cdr L)))
-    (t (cons (car L) (remove-x x (cdr L))))))
+   ((null L) nil)
+   ((eq x (car L)) (remove-x x (cdr L)))
+   (t (cons (car L) (remove-x x (cdr L))))))
 
 ;; What does this function do?
 ;; it finds all of the places that can be reached
@@ -248,7 +248,7 @@
 ;; example: ((1 2) (3 4) (5 6)) becomes (1 3 5)
 (defun map-get-cars (L)
   (if (null L) nil
-      (cons (caar L) (map-get-cars (cdr L)))))
+    (cons (caar L) (map-get-cars (cdr L)))))
 
 ;; Custom sort function, this function was given to us on eclass
 (defun mySort (L)
@@ -287,9 +287,9 @@
 ;;           (mySort (get-rank S L))))
 (defun get-rank (S L)
   (if (null S) nil
-      (cons
-       (cons (car S) (count-references (car S) L nil))
-       (get-rank (cdr S) L))))
+    (cons
+     (cons (car S) (count-references (car S) L nil))
+     (get-rank (cdr S) L))))
 
 ;; What does this function do?
 ;; given x, and a list of pairs L,
@@ -309,13 +309,13 @@
 ;; until it is exhausted
 (defun count-references (x L sources)
   (cond
-    ((null L) (len sources))
-    ((and
-      (equal x (cadar L))
-      (not (xmember (caar L) sources))
-      (not (eq x (caar L))))
-     (count-references x (cdr L) (cons (caar L) sources)))
-    (t (count-references x (cdr L) sources))))
+   ((null L) (len sources))
+   ((and
+     (equal x (cadar L))
+     (not (xmember (caar L) sources))
+     (not (eq x (caar L))))
+    (count-references x (cdr L) (cons (caar L) sources)))
+   (t (count-references x (cdr L) sources))))
 
 ;; should be self explanatory, but in case it's not:
 ;; this gives the length of a list by going over each element in it and adding one

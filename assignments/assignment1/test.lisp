@@ -1,4 +1,4 @@
-(load "assignment1.lisp")
+(load "1514457.lisp")
 
 (defun test-case (ID Test Result)
   (if (equal Test Result)
