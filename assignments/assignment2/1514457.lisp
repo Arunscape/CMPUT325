@@ -5,8 +5,7 @@
     ((atom E) E)   ;this includes the case where E is nil or a number
     (t
      (let ((f (car E))
-           (arg (cdr E))
-           (function-names (mapcar (lambda (x) (car x)) P)))
+           (arg (cdr E)))
        (cond
        ;;; handle built-in functions
          ((eq f 'first)  (car (fl-interp (car arg) P)))
@@ -27,8 +26,9 @@
          ((eq f 'and) (fl-and E P arg))
          ((eq f 'or) (fl-or E P arg))
          ((eq f 'if) (fl-if E P arg))
+         ;; TODO user defined function
+         ((get-usrfunc f arg P ) (print 'todo))
          (t E))))))
-       ;; TODO user defined function
 
                 ;;;.....
 
@@ -49,9 +49,9 @@
 (defun fl-and (E P arg)
   (if (not (fl-interp (car arg) P))
       nil
-    (if (fl-interp (cadr arg) P)
-        t
-      nil)))
+      (if (fl-interp (cadr arg) P)
+          t
+          nil)))
 
 ;; or is special.
 ;; exception to applicative order reduction
@@ -59,9 +59,11 @@
 (defun fl-or (E P arg)
   (if (fl-interp (car arg) P)
       t
-    (if (fl-interp (cadr arg) P)
-        t
-      nil)))
+      (if (fl-interp (cadr arg) P)
+          t
+          nil)))
+
+
 
 ;; if is special
 ;; exception to applicative order reduction
@@ -69,12 +71,80 @@
 (defun fl-if (E P arg)
   (if (fl-interp (car arg) P)
       (fl-interp (cadr arg) P)
-    (fl-interp (caddr arg) P)))
+      (fl-interp (caddr arg) P)))
 
+(assert (equal (xfilter (lambda (x) (eq (mod x 2) 0)) '(1 2 3 4 5 6 7 8 9)) '(2 4 6 8)))
+(defun xfilter (test L)
+  (cond
+    ((null L) nil)
+    ((funcall test (car L)) (cons (car L) (xfilter test (cdr L))))
+    (t (xfilter test (cdr L)))))
+
+;; if the function exists, I only care about the first declaration
+;;(defun usrfunc-exists (f numargs P)
+;;  (eq (len (car (xfilter (lambda (fun) (and (equal (car fun) f) (eq (len (cadr fun))numargs))))))))
+
+(assert (equal (get-usrfunc 'append '((1 2) (3 4)) '(
+                                                     (reverse (X) = (if (null X)
+                                                                        nil
+                                                                        (append (reverse (rest X))
+                                                                                (cons (first X) nil))))
+                                                     (append (X Y) = (if (null X)
+                                                                         Y
+                                                                         (cons (first X) (append (rest X) Y))))
+                                                     )) '(append (X Y) = (if (null X)
+                                                     Y
+                                                     (cons (first X) (append (rest X) Y))))))
+(assert (equal (get-usrfunc 'doesntexist '((1 2) (3 4)) '(
+                                                          (reverse (X) = (if (null X)
+                                                                             nil
+                                                                             (append (reverse (rest X))
+                                                                                     (cons (first X) nil))))
+                                                          (append (X Y) = (if (null X)
+                                                                              Y
+                                                                              (cons (first X) (append (rest X) Y))))
+                                                          )) nil))
+(defun get-usrfunc (f args P)
+  (car (xfilter (lambda (fun) (and (equal f (car fun)) (eq (len (cadr fun)) (len args)))) P)))
+
+;; should be self explanatory, but in case it's not:
+;; this gives the length of a list by going over each element in it and adding one
+;; when the list is empty, we return 0 and add the rest of the ones together
+(defun len (L)
+  (if (null L) 0
+      (+ 1 (len (cdr L)))))
+
+;; What does this function do?
+;; it returns T if X is a member of Y. If not, it returns NIL
+;;
+;; How does the function work?
+;; it goes through each element of Y and tests if X is equal to Y
+;; if so, it returns true
+;; if not, it checks the next element until there are no more to check
+;; if none of the elements in Y are equal to X, NIL is returned
+;;
+;; this also tests for lists being members of lists
+;; both X and Y may be NIL, or lists containing NIL
+;;
+;; Test cases (the test-case function is in a comment at the end of this file)
+(assert (equal (xmember '1 '(1)) 't))
+(assert (equal (xmember '1 '( (1) 2 3))NIL))
+(assert (equal (xmember '(1) '((1) 2 3)) T))
+(assert (equal (xmember nil nil) NIL))
+(assert (equal (xmember nil '(nil)) T))
+(assert (equal (xmember nil '((nil))) NIL))
+(assert (equal (xmember '(nil) '(1 2 3 (nil))) T))
+(assert (equal (xmember '(nil) '(nil)) NIL))
+(defun xmember (X Y)
+  (cond
+    ((not Y) nil)
+    ((equal X (car Y)) t)
+    (t (xmember X (cdr Y)))))
 
 (fl-interp '(+ 1 2) nil)
 (fl-interp '(first (1 2)) nil)
 (fl-interp '(rest (8 5 16)) nil)
+(fl-interp '(cadr (5 1 2 7)) '((cadr(x) = (first (rest x)))))
 ;; test cases
 
 (assert (equal (fl-interp '(+ 10 5) nil) 15)) ; > 15
