@@ -27,10 +27,11 @@
          ((eq f 'or) (fl-or E P arg))
          ((eq f 'if) (fl-if E P arg))
          ;; TODO user defined function
-         ((get-usrfunc f arg P )
+         ((get-usrfunc f arg P)
           (let ((matchingfunc (get-usrfunc f arg P)))
             (fl-interp
-             (replace-args (cadr matchingfunc) arg (cadddr matchingfunc)) P)))
+             (replace-args (cadr matchingfunc) (mapcar (lambda (x) (fl-interp x P)) arg) (cadddr matchingfunc) P) P))
+          )
          (t E))))))
 
                 ;;;.....
@@ -144,18 +145,19 @@
     ((equal X (car Y)) t)
     (t (xmember X (cdr Y)))))
 
-(defun replace-arg (arg val p)
-  (mapcar (lambda (x) (cond
-                        ((equal x arg) val)
-                        ((not (atom x)) (replace-arg arg val x))
-                        (t x)))
-          p))
+(defun replace-arg (arg val p PP)
+  (if (atom p) p
+      (mapcar (lambda (x) (cond
+                            ((equal x arg) val)
+                            ((not (atom x)) (replace-arg arg val x PP))
+                            (t x)))
+              p)))
 
 
-(defun replace-args (args vals p)
+(defun replace-args (args vals p PP)
   (cond
     ((null args) p)
-    (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p)))))
+    (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p PP) PP))))
 
 (fl-interp '(+ 1 2) nil)
 (fl-interp '(first (1 2)) nil)
@@ -211,15 +213,59 @@
 (set 'P
      '(
        (reverse (X) = (if (null X)
-                        nil
-                        (append (reverse (rest X))
-                                (cons (first X) nil))))
+                          nil
+                          (append (reverse (rest X))
+                                  (cons (first X) nil))))
        (append (X Y) = (if (null X)
-                         Y
-                         (cons (first X) (append (rest X) Y))))
-      )
-)
+                           Y
+                           (cons (first X) (append (rest X) Y))))))
 
-; then invoke
+     
+
+                                        ; then invoke
 
 (fl-interp E P)
+
+;; warning: won't terminate with applicative order
+(fl-interp '(h (g 5))
+           '(  (g (X) = (g (g X)))
+             (h (X) = 1)))
+
+(fl-interp '(f (g 2) (g 1)) '(
+
+                              (f (X Y) =  (+ X Y))
+                              (g (X) =   (+ 1 X))))
+
+
+;; warning: won't terminate with applicative order
+(fl-interp '(f 0 (g 1)) '(
+                          (g (X) = (+ X (g (+ X 1))))
+                          (f (X Y) = (if (eq X 0) 0 Y))))
+
+;; simple user defined function
+(assert (equal (fl-interp '(count (1 2 3)) '(
+
+                                             (count (L) =   (if  (null L)
+                                                                 0
+                                                                 (+ 1 (count (rest L)))))
+                                             3))))
+;; call function which uses another function
+(assert (equal (fl-interp '(reverse (1 2 3)) '(
+                                               (reverse (X) =  (if (null X)
+                                                                   nil
+                                                                   (append (reverse (rest X))
+                                                                           (cons (first X) nil))))
+
+                                               (append (X Y) = (if (null X)
+                                                                   Y
+                                                                   (cons (first X) (append (rest X) Y))))
+                                               )) '(3 2 1)))
+
+;; higher order function
+(assert (equal (fl-interp '(mapcar plus1 (1 2 3)) ' (
+                                                     (mapcar (F L) = (if (null L)
+                                                                         nil
+                                                                         (cons (F (first L)) (mapcar F (rest L)))))
+
+                                                     (plus1 (X) = (+ X 1))
+                                                     )) '(2 3 4)))
