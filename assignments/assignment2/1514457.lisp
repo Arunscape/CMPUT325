@@ -27,7 +27,10 @@
          ((eq f 'or) (fl-or E P arg))
          ((eq f 'if) (fl-if E P arg))
          ;; TODO user defined function
-         ((get-usrfunc f arg P ) (print 'todo))
+         ((get-usrfunc f arg P )
+          (let ((matchingfunc (get-usrfunc f arg P)))
+            (fl-interp
+             (replace-args (cadr matchingfunc) arg (cadddr matchingfunc)) P)))
          (t E))))))
 
                 ;;;.....
@@ -141,10 +144,24 @@
     ((equal X (car Y)) t)
     (t (xmember X (cdr Y)))))
 
+(defun replace-arg (arg val p)
+  (mapcar (lambda (x) (cond
+                        ((equal x arg) val)
+                        ((not (atom x)) (replace-arg arg val x))
+                        (t x)))
+          p))
+
+
+(defun replace-args (args vals p)
+  (cond
+    ((null args) p)
+    (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p)))))
+
 (fl-interp '(+ 1 2) nil)
 (fl-interp '(first (1 2)) nil)
 (fl-interp '(rest (8 5 16)) nil)
 (fl-interp '(cadr (5 1 2 7)) '((cadr(x) = (first (rest x)))))
+(fl-interp '(divide 24 4) '((divide (x y) = (div x y 0)) (div (x y z) = (if (> (* y z) x) (- z 1) (div x y (+ z 1)))))); > 6
 ;; test cases
 
 (assert (equal (fl-interp '(+ 10 5) nil) 15)) ; > 15
