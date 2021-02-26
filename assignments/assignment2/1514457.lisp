@@ -206,3 +206,20 @@
 (assert (equal (fl-interp '(power 4 2) '((power (x y) = (if (= y 1) x (power (* x x) (- y 1)))))) '16)) ; > '16
 (assert (equal (fl-interp '(factorial 4) '((factorial (x) = (if (= x 1) 1 (* x (factorial (- x 1))))))) 24)) ; > 24
 (assert (equal (fl-interp '(divide 24 4) '((divide (x y) = (div x y 0)) (div (x y z) = (if (> (* y z) x) (- z 1) (div x y (+ z 1)))))) 6)) ; > 6
+
+(set 'E '(append (reverse (1 2 3)) 69))
+(set 'P
+     '(
+       (reverse (X) = (if (null X)
+                        nil
+                        (append (reverse (rest X))
+                                (cons (first X) nil))))
+       (append (X Y) = (if (null X)
+                         Y
+                         (cons (first X) (append (rest X) Y))))
+      )
+)
+
+; then invoke
+
+(fl-interp E P)
