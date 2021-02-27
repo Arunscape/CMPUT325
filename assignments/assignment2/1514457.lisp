@@ -79,41 +79,41 @@
 (assert (equal (fl-interp '(f 1 2 (f 3 4)) '((f (x y) = (- x y))(f (x y z) = (+ x (+ y z))))) 2))
 
 ;; warning: won't terminate since we're doing applicative order
-;;(fl-interp '(h (g 5)) '(  (g (X) = (g (g X))) (h (X) = 1)))
+(fl-interp '(h (g 5)) '(  (g (X) = (g (g X))) (h (X) = 1)))
 ;; warning: won't terminate since we're doing applicative order
-;;(fl-interp '(f 0 (g 1)) '((g (X) = (+ X (g (+ X 1))))(f (X Y) = (if (eq X 0) 0 Y))))
+(fl-interp '(f 0 (g 1)) '((g (X) = (+ X (g (+ X 1))))(f (X Y) = (if (eq X 0) 0 Y))))
 
 (defun fl-interp (E P)
   (cond
-   ((atom E) E)   ;this includes the case where E is nil or a number
-   (t
-    (let ((f (car E))
-          (arg (cdr E)))
-      (cond
+    ((atom E) E)   ;this includes the case where E is nil or a number
+    (t
+     (let ((f (car E))
+           (arg (cdr E)))
+       (cond
        ;;; handle built-in functions
-       ((eq f 'first)  (car (fl-interp (car arg) P)))
-       ((eq f 'rest)   (cdr (fl-interp (car arg) P)))
-       ((eq f 'cons)   (cons (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
-       ((eq f 'equal)  (if (equal (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
-       ((eq f 'number) (if (numberp (fl-interp (car arg) P)) t nil))
-       ((eq f 'eq)  (if (eq (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil)) ; same
-       ((eq f 'atom) (if (atom (fl-interp (car arg) P)) t nil))
-       ((eq f 'null) (if (null (fl-interp (car arg) P)) t nil))
-       ((eq f '+) (+ (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
-       ((eq f '-) (- (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
-       ((eq f '*) (* (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
-       ((eq f '>)  (if (> (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
-       ((eq f '<) (if (< (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
-       ((eq f '=) (if (= (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
-       ((eq f 'not) (if (fl-interp (car arg) P) nil t))
-       ((eq f 'and) (fl-and P arg))
-       ((eq f 'or) (fl-or P arg))
-       ((eq f 'if) (fl-if P arg))
-       ((get-usrfunc f arg P)
-        (let ((matchingfunc (get-usrfunc f arg P)))
-          (fl-interp (replace-args (cadr matchingfunc) (mapcar (lambda (x) (fl-interp x P)) arg) (cadddr matchingfunc))P)))
+         ((eq f 'first)  (car (fl-interp (car arg) P)))
+         ((eq f 'rest)   (cdr (fl-interp (car arg) P)))
+         ((eq f 'cons)   (cons (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
+         ((eq f 'equal)  (if (equal (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
+         ((eq f 'number) (if (numberp (fl-interp (car arg) P)) t nil))
+         ((eq f 'eq)  (if (eq (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil)) ; same
+         ((eq f 'atom) (if (atom (fl-interp (car arg) P)) t nil))
+         ((eq f 'null) (if (null (fl-interp (car arg) P)) t nil))
+         ((eq f '+) (+ (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
+         ((eq f '-) (- (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
+         ((eq f '*) (* (fl-interp (car arg) P) (fl-interp (cadr arg) P)))
+         ((eq f '>)  (if (> (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
+         ((eq f '<) (if (< (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
+         ((eq f '=) (if (= (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
+         ((eq f 'not) (if (fl-interp (car arg) P) nil t))
+         ((eq f 'and) (fl-and P arg))
+         ((eq f 'or) (fl-or P arg))
+         ((eq f 'if) (fl-if P arg))
+         ((get-usrfunc f arg P)
+          (let ((matchingfunc (get-usrfunc f arg P)))
+            (fl-interp (replace-args (cadr matchingfunc) (mapcar (lambda (x) (fl-interp x P)) arg) (cadddr matchingfunc))P)))
 
-       (t E))))))
+         (t E))))))
 
 ;; What does this function do?
 ;; and is an exception to the applicative order reduction we are doing
@@ -121,9 +121,9 @@
 (defun fl-and (P arg)
   (if (not (fl-interp (car arg) P))
       nil
-    (if (fl-interp (cadr arg) P)
-        t
-      nil)))
+      (if (fl-interp (cadr arg) P)
+          t
+          nil)))
 
 ;; What does this function do?
 ;; or is an exception to the applicative order reduction we are doing
@@ -131,9 +131,9 @@
 (defun fl-or (P arg)
   (if (fl-interp (car arg) P)
       t
-    (if (fl-interp (cadr arg) P)
-        t
-      nil)))
+      (if (fl-interp (cadr arg) P)
+          t
+          nil)))
 
 ;; What does this function do?
 ;; if is an exception to the applicative order reduction we are doing
@@ -141,7 +141,7 @@
 (defun fl-if (P arg)
   (if (fl-interp (car arg) P)
       (fl-interp (cadr arg) P)
-    (fl-interp (caddr arg) P)))
+      (fl-interp (caddr arg) P)))
 
 ;; What does this function do?
 ;; it filters items in a list that match a criteria defined by a user defined function
@@ -155,9 +155,9 @@
 ;;(assert (equal (xfilter (lambda (x) (eq (mod x 2) 0)) '(1 2 3 4 5 6 7 8 9)) '(2 4 6 8)))
 (defun xfilter (test L)
   (cond
-   ((null L) nil)
-   ((funcall test (car L)) (cons (car L) (xfilter test (cdr L))))
-   (t (xfilter test (cdr L)))))
+    ((null L) nil)
+    ((funcall test (car L)) (cons (car L) (xfilter test (cdr L))))
+    (t (xfilter test (cdr L)))))
 
 ;; What does this function do?
 ;; it gets the first user defined function that has the same name and arity in the program
@@ -171,13 +171,15 @@
 ;; Test cases
 (assert (equal (get-usrfunc 'f '(1 2 3 4) '((g (x) = (+ 1 x)) (f (w x y z) = (+ w (+ x (+ y z)))))) '(f (w x y z) = (+ w (+ x (+ y z))))))
 (assert (equal (get-usrfunc 'doesntexist '(1 2 3 4) '((g (x) = (+ 1 x)) (f (w x y z) = (+ w (+ x (+ y z)))))) nil))
+(defun get-usrfunc (f args P)
+  (car (xfilter (lambda (fun) (and (equal f (car fun)) (eq (len (cadr fun)) (len args)))) P)))
 
 ;; should be self explanatory, but in case it's not:
 ;; this gives the length of a list by going over each element in it and adding one
 ;; when the list is empty, we return 0 and add the rest of the ones together
 (defun len (L)
   (if (null L) 0
-    (+ 1 (len (cdr L)))))
+      (+ 1 (len (cdr L)))))
 
 ;; What does this function do?
 ;; it returns T if X is a member of Y. If not, it returns NIL
@@ -202,9 +204,9 @@
 (assert (equal (xmember '(nil) '(nil)) NIL))
 (defun xmember (X Y)
   (cond
-   ((not Y) nil)
-   ((equal X (car Y)) t)
-   (t (xmember X (cdr Y)))))
+    ((not Y) nil)
+    ((equal X (car Y)) t)
+    (t (xmember X (cdr Y)))))
 
 
 ;; What does this function do?
@@ -214,11 +216,11 @@
 ;; it maps each element in the program body to either itself, or replaced with the value given if the argument matches
 (defun replace-arg (arg val p)
   (if (atom p) p
-    (mapcar (lambda (x) (cond
-                         ((equal x arg) val)
-                         ((not (atom x)) (replace-arg arg val x))
-                         (t x)))
-            p)))
+      (mapcar (lambda (x) (cond
+                            ((equal x arg) val)
+                            ((not (atom x)) (replace-arg arg val x))
+                            (t x)))
+              p)))
 
 
 ;; What does this function do?
@@ -229,5 +231,5 @@
 ;; every instance of that argument with its corresponding value
 (defun replace-args (args vals p)
   (cond
-   ((null args) p)
-   (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p)))))
+    ((null args) p)
+    (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p)))))
