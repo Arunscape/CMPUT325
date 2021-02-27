@@ -139,9 +139,9 @@
          ((eq f '<) (if (< (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
          ((eq f '=) (if (= (fl-interp (car arg) P) (fl-interp (cadr arg) P)) t nil))
          ((eq f 'not) (if (fl-interp (car arg) P) nil t))
-         ((eq f 'and) (fl-and E P arg))
-         ((eq f 'or) (fl-or E P arg))
-         ((eq f 'if) (fl-if E P arg))
+         ((eq f 'and) (fl-and P arg))
+         ((eq f 'or) (fl-or P arg))
+         ((eq f 'if) (fl-if P arg))
          ((get-usrfunc f arg P)
           (let ((matchingfunc (get-usrfunc f arg P)))
             (fl-interp (replace-args (cadr matchingfunc) (mapcar (lambda (x) (fl-interp x P)) arg) (cadddr matchingfunc) P) P)))
@@ -151,7 +151,7 @@
 ;; What does this function do?
 ;; and is an exception to the applicative order reduction we are doing
 ;; we need to evaluate the first argument first, then according to the result stop or continue with the second argument
-(defun fl-and (E P arg)
+(defun fl-and (P arg)
   (if (not (fl-interp (car arg) P))
       nil
       (if (fl-interp (cadr arg) P)
@@ -161,7 +161,7 @@
 ;; What does this function do?
 ;; or is an exception to the applicative order reduction we are doing
 ;; we need to evaluate the first argument first, then according to the result stop or continue with the second argument
-(defun fl-or (E P arg)
+(defun fl-or (P arg)
   (if (fl-interp (car arg) P)
       t
       (if (fl-interp (cadr arg) P)
@@ -171,7 +171,7 @@
 ;; What does this function do?
 ;; if is an exception to the applicative order reduction we are doing
 ;; we need to evaluate the first argument first, then according to the result stop or continue with the second argument
-(defun fl-if (E P arg)
+(defun fl-if (P arg)
   (if (fl-interp (car arg) P)
       (fl-interp (cadr arg) P)
       (fl-interp (caddr arg) P)))
