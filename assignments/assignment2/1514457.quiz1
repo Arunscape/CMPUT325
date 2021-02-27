@@ -1,0 +1,30 @@
+#+title: CMPUT 325 Assignment 2 Quiz
+#+author: Arun Woosaree
+
+* 1
+(Lxy | xx(yy)) (Lx | xy) (Lx | x)
+
+** Normal order reductions
+-> (Lx | xy)(Lx | xy) ((Lx | x)(Lx | x))
+-> (Lx | xy)y ((Lx | x)(Lx | x))
+-> yy ((Lx | x)(Lx | x))
+-> yy ((Lx | x))
+removing extra parenthesis
+   yy (Lx | x)
+
+** Applicative order reductions
+-> (Lxy | xx(yy)) (Lx | x)y
+-> (Lxy | xx(yy)) y
+rename to prevent name collision
+   (Lax | aa(xx)) y
+-> yy ((Lx | x)(Lx | x))
+-> yy ((Lx | x))
+removing extra parenthesis
+   yy (Lx | x)
+
+* 2
+IMP = (Lxy | (Lx | ))
+
+#+begin_src lisp
+(lambda (x y) (or (not x) y))
+#+end_src
