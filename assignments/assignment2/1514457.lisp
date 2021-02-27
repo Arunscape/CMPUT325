@@ -1,3 +1,9 @@
+;; Name: Arun Woosaree
+;; Student Number: 1514457
+;; Course: CMPUT 325
+;; Section: B1
+;; Assignment 2
+
 ;; What does this function do?
 ;; The main part of the fl-interpreter
 ;; It interprets programs written in the fl language defined in the assignment specification
@@ -259,11 +265,11 @@
 ;;
 ;; How does the function work?
 ;; it maps each element in the program body to either itself, or replaced with the value given if the argument matches
-(defun replace-arg (arg val p PP)
+(defun replace-arg (arg val p)
   (if (atom p) p
       (mapcar (lambda (x) (cond
                             ((equal x arg) val)
-                            ((not (atom x)) (replace-arg arg val x PP))
+                            ((not (atom x)) (replace-arg arg val x))
                             (t x)))
               p)))
 
@@ -274,7 +280,7 @@
 ;; How does the function work?
 ;; it goes over each argument and its corresponding value, and uses the replace-arg function to replace
 ;; every instance of that argument with its corresponding value
-(defun replace-args (args vals p PP)
+(defun replace-args (args vals p)
   (cond
     ((null args) p)
-    (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p PP) PP))))
+    (t (replace-args (cdr args) (cdr vals) (replace-arg (car args) (car vals) p)))))
