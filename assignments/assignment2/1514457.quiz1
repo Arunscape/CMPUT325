@@ -13,18 +13,72 @@ removing extra parenthesis
    yy (Lx | x)
 
 ** Applicative order reductions
--> (Lxy | xx(yy)) (Lx | x)y
--> (Lxy | xx(yy)) y
+convert to unary
+   (Lx | (Ly | xx (yy))) (Lx | xy) (Lx | x)
+-> (Ly | (Lx | xy)(Lx | xy) (yy)) (Lx | x)
 rename to prevent name collision
-   (Lax | aa(xx)) y
--> yy ((Lx | x)(Lx | x))
+   (La | (Lx | xy)(Lx | xy) (aa)) (Lx | x)
+-> (La| (Lx | xy)y (aa)) (Lx | x)
+-> (La | yy(aa)) (Lx | x)
+-> yy ((Lx | x) (Lx | x))
 -> yy ((Lx | x))
 removing extra parenthesis
    yy (Lx | x)
 
 * 2
-IMP = (Lxy | (Lx | ))
-
+This is how I'd do it in lisp: (including this because it's part of my thought process to arrive to the answer...)
 #+begin_src lisp
 (lambda (x y) (or (not x) y))
 #+end_src
+
+(Lxy (OR (NOT x) y))
+substitute OR
+(Lxy (Lxy | xTy) (NOT x) y )
+-> (Lxy (NOT x)Ty)
+substitute NOT
+(Lxy ((Lx | xFT)x)Ty)
+-> (Lxy (xFT)Ty)
+removing extra parenthesis
+IMP = (Lxy | xFTTy)
+substitute T and F
+(Lxy (x (Lxy | y) (Lxy | x))(Lxy | x)y)
+
+Answer for 2a)
+IMP = (Lxy | xFTTy)
+IMP = (Lxy (x (Lxy | y) (Lxy | x))(Lxy | x)y)
+
+2b)
+
+IMP T F = (Lxy | xFTTy) T F
+-> TFTTF
+Substitute T
+(Lxy | x)FTTF
+-> FTF
+Substitute F
+(Lxy | y)TF
+-> F
+=(Lxy | y)
+
+IMP F T = (Lxy | xFTTy) F T
+-> FFTTT
+Substitute F
+(Lxy | y)FTTT
+->TTT
+Substitute T
+(Lxy | x)TT
+-> T
+=(Lxy | x)
+
+* 3
+The lambda expression returns 9
+The last context is
+{ x -> 4, y -> 5, z -> 10 }
+
+Here's how I got that:
+
+[(((lambda (x y) (lambda (z) (if (> x y) (+ x z) (+ x y)))) 4 5) 10), {}]
+[((lambda (z) (if (> 4 5) (+ 4 z) (+ 4 5))) 10), {x->4 y->5}]
+[(if (> 4 5) (+ 4 10) (+ 4 5)), {x->4, y->5, z->10}]
+[(if F (+ 4 10) (+ 4 5)), {x->4, y->5, z->10}]
+[ (+ 4 5), {x->4, y->5, z->10}]
+9

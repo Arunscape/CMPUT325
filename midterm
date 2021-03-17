@@ -1,0 +1,31 @@
+X  Y        OP  X Y
+--------------------
+T  T           T
+T  F           F
+F  T           F
+F  F           T
+--------------------
+
+(Lxy | (OR (AND x y) (AND (NOT x) (NOT y))))
+
+The table says, ifxis true then the truth value of OP ofxandyisy; otherwise it is thenegation ofy.  Thus,
+OP= (λxy|xy(NOTy))
+
+    AND := λp.λq.p q p
+    OR := λp.λq.p p q
+    NOT := λp.p FALSE TRUE
+
+eval
+(((lambda (x y) (lambda (z) (if (> x y) (+ x z) (+ x y)))) 4 5) 10)
+  --------------------------------------------------------
+in CT0
+                                       eval 10 in CT0
+function part                          eval (4 5) in CT0 -> 4 5
+
+we get a closure C
+
+eval (lambda (z) (..)) in {x -> 4 y -> 5} U CT0
+
+returns a closure
+
+eval (if (> x y) (+ x z) (+ x y)) in {z->10 x->4 y->5} U CT0
