@@ -84,12 +84,42 @@ filter([_ | R], OP, N, Output) :- % at this point, the number does not satisfy t
 
 
 :- begin_tests(question4).
+test(countone) :-
+  countOne(a, [a,b,c,a,e,f,a,h], 3).
 test(countall) :-
   countAll([a,b,e,c,c,b],N),
   N = [[a,1],[e,1],[b,2],[c,2]].
+
+test(incrementcount) :-
+  incrementCount(x, [], [[x,1]]).
+test(incrementcount2) :-
+  incrementCount(x, [[x,1]], [[x,2]]).
+test(incrementCount3) :-
+  incrementCount(x, [[a,1], [b,2]], [[a,1], [b,2], [x,1]]).
+test(incrementcount4) :-
+  incrementCount(x, [[a,1], [x,1], [b,2]], [[a,1], [x,2], [b,2]]).
 :- end_tests(question4).
 
-countAll([], []).
+countOne(_, [], 0).
+countOne(X, [X | Rest], Output) :-
+  countOne(X, Rest, OutputRest),
+  Output is 1 + OutputRest.
+countOne(X, [Y | Rest], Output) :-
+  X \== Y,
+  countOne(X, Rest, Output).
+
+incrementCount(X, [], [[X,1]]).
+incrementCount(X, [[X, CountX] | R], [[X, CountXPlusOne] | R]) :-
+  CountXPlusOne is CountX + 1.
+incrementCount(Y, [[X, CountX] | R], [[X, CountX] | T]) :-
+  X \= Y,
+  incrementCount(Y, R, T).
+
+
+
+
+
+
 
 :- begin_tests(question5).
 test(sub) :-
