@@ -154,6 +154,26 @@ test(sub) :-
   L= [2,[2,d],[e,2]].
 :- end_tests(question5).
 
+xatom(A) :- atom(A).
+xatom(A) :- number(A).
+% assume xi is an atom
+% ei is any expression
+% S is in the form [ [xi, ei], ...]
+% L1 is L with the substitutions
+sub([], _, []).
+sub([Xi | R], [[Xi, Ei] | S], [Ei | Output]) :- % substitute atom
+  sub(R, [[Xi, Ei] | S], Output).
+sub([Xi | R], S, [Xi | Output]) :- % is an atom but doesn't match
+  xatom(Xi),
+  sub(R, S, Output).
+sub([L | R], S, [Output | ROutput]) :- % not an atom
+  sub(L, S, Output),
+  sub(R, S, ROutput).
+
+  
+  
+
+
 :- begin_tests(question7).
 test(convert1) :-
   convert([e,e,a,e,b,e],R),
