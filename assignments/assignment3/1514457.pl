@@ -94,11 +94,33 @@ test(incrementcount) :-
   incrementCount(x, [], [[x,1]]).
 test(incrementcount2) :-
   incrementCount(x, [[x,1]], [[x,2]]).
-test(incrementCount3) :-
+test(incrementcount3) :-
   incrementCount(x, [[a,1], [b,2]], [[a,1], [b,2], [x,1]]).
 test(incrementcount4) :-
   incrementCount(x, [[a,1], [x,1], [b,2]], [[a,1], [x,2], [b,2]]).
+test(bubble_sort) :-
+  bubble_sort([1,2,3,4], [1,2,3,4]).
+test(bubble_sort) :-
+  bubble_sort([7,3,6,4,5,1,2], [1,2,3,4,5,6,7]).
 :- end_tests(question4).
+
+% https://kti.mff.cuni.cz/~bartak/prolog/sorting.html
+% Bubble sort is a really  simple sorting algorithm.
+% In fact, it was one of the first ones I learned 
+% I figure since the lists are small, this won't actually be too bad
+is_sorted([]).
+is_sorted([_]).
+is_sorted([A, B | R]) :-
+  A =< B,
+  is_sorted([B | R]).
+
+bubble_sort(L, L) :- is_sorted(L).
+bubble_sort(L, Output) :-
+  xappend(X, [A,B | Y], L),
+  A > B,
+  xappend(X, [B,A | Y], R),
+  bubble_sort(R, Output).
+
 
 countOne(_, [], 0).
 countOne(X, [X | Rest], Output) :-
@@ -115,7 +137,10 @@ incrementCount(Y, [[X, CountX] | R], [[X, CountX] | T]) :-
   X \= Y,
   incrementCount(Y, R, T).
 
-
+countAll([], []).
+countAll([F | R], Output) :-
+  countAll(R, IntermediateOutput),
+  incrementCount(F, IntermediateOutput, Output).
 
 
 
