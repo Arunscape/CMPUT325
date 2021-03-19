@@ -99,9 +99,10 @@ test(incrementcount3) :-
 test(incrementcount4) :-
   incrementCount(x, [[a,1], [x,1], [b,2]], [[a,1], [x,2], [b,2]]).
 test(bubble_sort) :-
-  bubble_sort([1,2,3,4], [1,2,3,4]).
+  bubble_sort([[a,1], [b,2], [c,3], [d,4]], [[a,1], [b,2], [c,3], [d,4]]).
 test(bubble_sort) :-
-  bubble_sort([7,3,6,4,5,1,2], [1,2,3,4,5,6,7]).
+  bubble_sort([[b,2], [d,4], [c,3], [a,1]], Result),
+  is_sorted(Result).
 :- end_tests(question4).
 
 % https://kti.mff.cuni.cz/~bartak/prolog/sorting.html
@@ -109,16 +110,16 @@ test(bubble_sort) :-
 % In fact, it was one of the first ones I learned 
 % I figure since the lists are small, this won't actually be too bad
 is_sorted([]).
-is_sorted([_]).
-is_sorted([A, B | R]) :-
-  A =< B,
-  is_sorted([B | R]).
+is_sorted([[_,_]]).
+is_sorted([[_, Acount], [B,Bcount] | R]) :-
+  Acount =< Bcount,
+  is_sorted([[B, Bcount] | R]).
 
 bubble_sort(L, L) :- is_sorted(L).
 bubble_sort(L, Output) :-
-  xappend(X, [A,B | Y], L),
-  A > B,
-  xappend(X, [B,A | Y], R),
+  xappend(X, [[A, Acount],[B, Bcount] | Y], L),
+  Acount > Bcount,
+  xappend(X, [[B, Bcount], [A, Acount] | Y], R),
   bubble_sort(R, Output).
 
 
@@ -138,9 +139,10 @@ incrementCount(Y, [[X, CountX] | R], [[X, CountX] | T]) :-
   incrementCount(Y, R, T).
 
 countAll([], []).
-countAll([F | R], Output) :-
+countAll([F | R], SortedOutput) :-
   countAll(R, IntermediateOutput),
-  incrementCount(F, IntermediateOutput, Output).
+  incrementCount(F, IntermediateOutput, Output),
+  bubble_sort(Output, SortedOutput).
 
 
 
