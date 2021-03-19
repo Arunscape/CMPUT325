@@ -1,5 +1,10 @@
 % Question 1
 
+:- begin_tests(question1).
+test(setIntersect) :-
+  setIntersect([a,b,c,d,e,g],[b,a,c,e,f,q],S),
+  S = [a,b,c,e].
+:- end_tests(question1).
 % credit: from example in eclass
 xmember(A,[A|_]).
 xmember(A,[B|L]) :- 
@@ -20,6 +25,14 @@ setIntersect([_ | R], S2, A) :-
 
 
 % Question 2
+:- begin_tests(question2).
+test(swap1) :-
+  swap([a,1,b,2], W),
+  W = [1,a,2,b].
+test(swap2) :-
+  swap([a,1,b], W),
+  W = [1,a,b].
+:- end_tests(question2).
 swap([], []).
 swap([A], [A]).
 swap([A, B | R1], [B, A | R2]) :- % if A and B
@@ -28,37 +41,36 @@ swap([A, B | R1], [B, A | R2]) :- % if A and B
 
 %question 3
 % credit: eclass notes
-append([],L,L).
-append([A|L],L1,[A|L2]) :- append(L,L1,L2).
-flatten([],[]).
-flatten([A|L],[A|L1]) :-
-     xatom(A), flatten(L,L1).
-flatten([A|L],R) :-
-     flatten(A,A1), flatten(L,L1), append(A1,L1,R).
+xappend([],L,L).
+xappend([A|L],L1,[A|L2]) :- xappend(L,L1,L2).
 
-xatom(A) :- atom(A).
-xatom(A) :- number(A).
 
-isListxatom([]).
-isListxatom([H | T]) :-
-  xatom(H),
-  isListxatom(T).
+:- begin_tests(question3).
+test(greater) :-
+  doOP(3, greaterThan, 1).
+test(equal) :-
+  doOP(42, equal, 42).
+test(less) :-
+  doOP(3, lessThan, 5).
+:- end_tests(question3).
+doOP(X, greaterThan, Y) :- X > Y.
+doOP(X, lessThan, Y) :- X < Y.
+doOP(X, equal, Y) :- X =:= Y.
 
 
 filter([], _, _, []).
-filter(L, OP, N, Output) :-
-  \+ isListxatom(L) , flatten_and_filter(L, OP, N, Output).
-filter([F | R], greaterThan, N, [F | Output]) :-
-  F > N, filter(R, greaterThan, N, Output).
-filter([F | R], greaterThan, N, Output) :-
-  F =< N, filter(R, greaterThan, N, Output).
-filter([F | R], equal, N, [F | Output]) :-
-  F == N, filter(R, equal, N, Output).
-filter([F | R], equal, N, Output) :-
-  F \== N, filter(R, equal, N, Output).
-filter([F | R], lessThan, N, [F | Output]) :-
-  F < N, filter(R, lessThan, N, Output).
-filter([F | R], lessThan, N, Output) :-
-  F >= N, filter(R, lessThan, N, Output).
-flatten_and_filter(L, OP, N, Output) :-
-  flatten(L, L1), filter(L1, OP, N, Output).
+filter([F | R], OP, N, [F | Output]) :- % if a number and it matches condition, include in output
+  number(F),
+  doOP(F, OP, N),
+  filter(R, OP, N, Output).
+
+filter([F | R], OP, N, Output) :- % if not a number, its a nested list. Filter that and whatever comes next and combine it
+  \+ number(F),
+  filter(F, OP, N, Out1),
+  filter(R, OP, N, Out2),
+  xappend(Out1, Out2, Output).
+
+filter([_ | R], OP, N, Output) :- % at this point, the number does not satisfy the condition, so yeet it
+  filter(R, OP, N, Output).
+
+
