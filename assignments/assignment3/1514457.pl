@@ -52,6 +52,15 @@ test(equal) :-
   doOP(42, equal, 42).
 test(less) :-
   doOP(3, lessThan, 5).
+test(filtergreater) :-
+  filter([3,4,[5,2],[1,7,3]],greaterThan,3,W),
+  W = [4,5,7].
+test(filterequal) :-
+  filter([3,4,[5,2],[1,7,3]],equal,3,W),
+  W = [3,3].
+test(filterless) :-
+  filter([3,4,[5,2],[1,7,3]],lessThan,3,W),
+  W = [2,1].
 :- end_tests(question3).
 doOP(X, greaterThan, Y) :- X > Y.
 doOP(X, lessThan, Y) :- X < Y.
@@ -74,3 +83,37 @@ filter([_ | R], OP, N, Output) :- % at this point, the number does not satisfy t
   filter(R, OP, N, Output).
 
 
+:- begin_tests(question4).
+test(countall) :-
+  countAll([a,b,e,c,c,b],N),
+  N = [[a,1],[e,1],[b,2],[c,2]].
+:- end_tests(question4).
+
+countAll([], []).
+
+:- begin_tests(question5).
+test(sub) :-
+  sub([a,[a,d],[e,a]],[[a,2]],L),
+  L= [2,[2,d],[e,2]].
+:- end_tests(question5).
+
+:- begin_tests(question7).
+test(convert1) :-
+  convert([e,e,a,e,b,e],R),
+  R = [c,c].
+test(convert2) :-
+  convert([e,e,a,e,b,e],R),
+  R = [q,c,c].
+test(convert3) :-
+  convert([e,a,e,e],R),
+  R = [c].
+test(convert4) :-
+  convert([e,q,a,e,b,q,e,a,e],R),
+  R = [q,a,e,b,q,c].
+test(convert5) :-
+  convert([a,q,e,l,q,r,e,q,b,e],R),
+  R = [c,q,e,l,q,c,q,c].
+test(convert6) :-
+  convert([q,e,q,b,q,e,l,q,a,e],R),
+  R = [q,e,q,c,q,e,l,q,c].
+:- end_tests(question7).
