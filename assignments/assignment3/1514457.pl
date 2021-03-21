@@ -87,9 +87,10 @@ filter([_ | R], OP, N, Output) :- % at this point, the number does not satisfy t
 test(countone) :-
   countOne(a, [a,b,c,a,e,f,a,h], 3).
 test(countall) :-
-  countAll([a,b,e,c,c,b],N),
+  countAll([a,b,e,c,c,b],N),(
   N = [[a,1],[e,1],[b,2],[c,2]];
-  N = [[e,1],[a,1],[b,2],[c,2]]. % other permutations are possible
+  N = [[e,1],[a,1],[b,2],[c,2]]
+).% other permutations are possible
 
 test(incrementcount) :-
   incrementCount(x, [], [[x,1]]).
@@ -181,13 +182,33 @@ node(c).
 edge(a,b).
 edge(b,c).
 edge(c,a).
+
 clique(L) :- 
   findall(X,node(X),Nodes),
   subset(L,Nodes), allConnected(L).
 
+allConnected([]).
+allConnected([F | R]) :-
+  allConnectedHelper(F, R),
+  allConnected(R).
+
+allConnectedHelper(_, []).
+allConnectedHelper(X, [F | R]) :-
+  connected(X, F),
+  allConnectedHelper(X, R).
+  
+
+connected(X,Y) :-
+  edge(X,Y);
+  edge(Y,X).
+
+
+
+
+
 subset([], _).
 subset([X|Xs], Set) :-
-  append(_, [X|Set1], Set),
+  xappend(_, [X|Set1], Set),
   subset(Xs, Set1).
 
 
