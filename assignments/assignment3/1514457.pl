@@ -170,8 +170,24 @@ sub([L | R], S, [Output | ROutput]) :- % not an atom
   sub(L, S, Output),
   sub(R, S, ROutput).
 
-  
-  
+
+% question 6
+%
+node(a).
+node(b).
+node(c).
+
+edge(a,b).
+edge(b,c).
+edge(c,a).
+clique(L) :- 
+  findall(X,node(X),Nodes),
+  subset(L,Nodes), allConnected(L).
+
+subset([], _).
+subset([X|Xs], Set) :-
+  append(_, [X|Set1], Set),
+  subset(Xs, Set1).
 
 
 :- begin_tests(question7).
@@ -179,7 +195,7 @@ test(convert1) :-
   convert([e,e,a,e,b,e],R),
   R = [c,c].
 test(convert2) :-
-  convert([e,e,a,e,b,e],R),
+  convert([e,q,a,b,e,e],R),
   R = [q,c,c].
 test(convert3) :-
   convert([e,a,e,e],R),
@@ -194,3 +210,29 @@ test(convert6) :-
   convert([q,e,q,b,q,e,l,q,a,e],R),
   R = [q,e,q,c,q,e,l,q,c].
 :- end_tests(question7).
+
+end_q_exists([q | _]).
+end_q_exists([X | R]) :-
+  X \= q,
+  end_q_exists(R).
+
+convert(Term, Result) :-
+  convertHelper(Term, Result, false).
+convertHelper([], [], _).
+convertHelper([q | R], [q | Output], false) :- % found a q, quote starts
+  end_q_exists(R),
+  convertHelper(R, Output, true).
+convertHelper([q | R], [q | Output], false) :- % no end q exists
+  \+ end_q_exists(R),
+  convertHelper(R, Output, false).
+convertHelper([q | R], [q | Output], true) :- % found a second q, quote ends
+  convertHelper(R, Output, false).
+convertHelper([e | R], Output, false) :- % discard e not in quote
+  convertHelper(R, Output, false).
+convertHelper([X | R], [X | Output], true) :- % keep any character that is not q as-is in a quote
+  X \= q,
+  convertHelper(R, Output, true).
+convertHelper([X | R], [c | Output], false) :- % anything not in a quote is changed to c
+  X \= q,
+  X \= e,
+  convertHelper(R, Output, false).
