@@ -88,7 +88,8 @@ test(countone) :-
   countOne(a, [a,b,c,a,e,f,a,h], 3).
 test(countall) :-
   countAll([a,b,e,c,c,b],N),
-  N = [[a,1],[e,1],[b,2],[c,2]].
+  N = [[a,1],[e,1],[b,2],[c,2]];
+  N = [[e,1],[a,1],[b,2],[c,2]]. % other permutations are possible
 
 test(incrementcount) :-
   incrementCount(x, [], [[x,1]]).
