@@ -68,6 +68,7 @@ xmember(A,[B|L]) :-
 %  swap([a,1,b], W),
 %  W = [1,a,b].
 %:- end_tests(question2).
+
 swap([], []).
 swap([A], [A]).
 swap([A, B | R1], [B, A | R2]) :-
@@ -108,6 +109,7 @@ swap([A, B | R1], [B, A | R2]) :-
 %  filter([3,4,[5,2],[1,7,3]],lessThan,3,W),
 %  W = [2,1].
 %:- end_tests(question3).
+
 filter([], _, _, []).
 filter([F | R], OP, N, [F | Output]) :-
   number(F),
@@ -179,6 +181,7 @@ doOP(X, equal, Y) :- X =:= Y.
 %  N = [[e,1],[a,1],[b,2],[c,2]]
 %).% other permutations are possible, mine seems to return the second permutation
 %:- end_tests(question4).
+
 countAll([], []).
 countAll([F | R], SortedOutput) :-
   countAll(R, IntermediateOutput),
