@@ -1,18 +1,11 @@
 /*
-CMPUT 325 Assignment 4
-Author: Arun Woosaree
-Student ID: 1514457
+Name: Arun Woosaree
+Student Number: 1514457
+Course: CMPUT 325
+Section: B1
+Assignment 3
 */
-% HEY REMEMBER TO DELETE ME
-node(a).
-node(b).
-node(c).
-node(d).
 
-edge(a,b).
-edge(b,c).
-edge(c,d).
-edge(a,c).
 /* Question 1
  setIntersect(+S1,+S2,-S3)
  this takes in 2 lists of atoms, S1 and S2.
@@ -29,11 +22,11 @@ edge(a,c).
  else just recurse with the tail of S1, not adding the head of S1 to the output.
 
 */
-:- begin_tests(question1).
-test(setIntersect) :-
-  setIntersect([a,b,c,d,e,g],[b,a,c,e,f,q],S),
-  S = [a,b,c,e].
-:- end_tests(question1).
+%:- begin_tests(question1).
+%test(setIntersect) :-
+%  setIntersect([a,b,c,d,e,g],[b,a,c,e,f,q],S),
+%  S = [a,b,c,e].
+%:- end_tests(question1).
 
 setIntersect([], _, []). % if first list is empty return empty list
 setIntersect([First | Rest], S2, [First | Output]) :-
@@ -67,17 +60,17 @@ xmember(A,[B|L]) :-
  and then recurse on the tail of the list
 
 */
-:- begin_tests(question2).
-test(swap1) :-
-  swap([a,1,b,2], W),
-  W = [1,a,2,b].
-test(swap2) :-
-  swap([a,1,b], W),
-  W = [1,a,b].
-:- end_tests(question2).
+%:- begin_tests(question2).
+%test(swap1) :-
+%  swap([a,1,b,2], W),
+%  W = [1,a,2,b].
+%test(swap2) :-
+%  swap([a,1,b], W),
+%  W = [1,a,b].
+%:- end_tests(question2).
 swap([], []).
 swap([A], [A]).
-swap([A, B | R1], [B, A | R2]) :- % if A and B
+swap([A, B | R1], [B, A | R2]) :-
   swap(R1, R2). 
 
 
@@ -104,17 +97,17 @@ swap([A, B | R1], [B, A | R2]) :- % if A and B
  otherwise, that means the head of L is a number that does not satisfy the
  condition, so we filter the tail of L and do not add the head to the output
 */
-:- begin_tests(question3).
-test(filtergreater) :-
-  filter([3,4,[5,2],[1,7,3]],greaterThan,3,W),
-  W = [4,5,7].
-test(filterequal) :-
-  filter([3,4,[5,2],[1,7,3]],equal,3,W),
-  W = [3,3].
-test(filterless) :-
-  filter([3,4,[5,2],[1,7,3]],lessThan,3,W),
-  W = [2,1].
-:- end_tests(question3).
+%:- begin_tests(question3).
+%test(filtergreater) :-
+%  filter([3,4,[5,2],[1,7,3]],greaterThan,3,W),
+%  W = [4,5,7].
+%test(filterequal) :-
+%  filter([3,4,[5,2],[1,7,3]],equal,3,W),
+%  W = [3,3].
+%test(filterless) :-
+%  filter([3,4,[5,2],[1,7,3]],lessThan,3,W),
+%  W = [2,1].
+%:- end_tests(question3).
 filter([], _, _, []).
 filter([F | R], OP, N, [F | Output]) :-
   number(F),
@@ -149,14 +142,14 @@ xappend([A|L],L1,[A|L2]) :- xappend(L,L1,L2).
  if OP is equal, it applies the =:= operator to X and Y (X =:= Y)
  if OP is lessThan, it applies the < operator to X and Y (X < Y)
  */
-:- begin_tests(doop).
-test(greater) :-
-  doOP(5, greaterThan, 3).
-test(equal) :-
-  doOP(42, equal, 42).
-test(less) :-
-  doOP(3, lessThan, 5).
-:- end_tests(doop).
+%:- begin_tests(doop).
+%test(greater) :-
+%  doOP(5, greaterThan, 3).
+%test(equal) :-
+%  doOP(42, equal, 42).
+%test(less) :-
+%  doOP(3, lessThan, 5).
+%:- end_tests(doop).
 
 doOP(X, greaterThan, Y) :- X > Y.
 doOP(X, lessThan, Y) :- X < Y.
@@ -178,14 +171,14 @@ doOP(X, equal, Y) :- X =:= Y.
  and finally we sort the results by n, using our good old friend bubble sort,
  an inefficient, but simple sorting algorithm.
 
- */
-:- begin_tests(question4).
-test(countall) :-
-  countAll([a,b,e,c,c,b],N),(
-  N = [[a,1],[e,1],[b,2],[c,2]];
-  N = [[e,1],[a,1],[b,2],[c,2]]
-).% other permutations are possible, mine seems to return the second permutation
-:- end_tests(question4).
+*/
+%:- begin_tests(question4).
+%test(countall) :-
+%  countAll([a,b,e,c,c,b],N),(
+%  N = [[a,1],[e,1],[b,2],[c,2]];
+%  N = [[e,1],[a,1],[b,2],[c,2]]
+%).% other permutations are possible, mine seems to return the second permutation
+%:- end_tests(question4).
 countAll([], []).
 countAll([F | R], SortedOutput) :-
   countAll(R, IntermediateOutput),
@@ -206,17 +199,17 @@ countAll([F | R], SortedOutput) :-
 
  if X is not found in L, but L is not empty yet, recurse on the tail of L and
  look for it until the list is empty
- */
-:- begin_tests(incrementcount).
-test(incrementcount) :-
-  incrementCount(x, [], [[x,1]]).
-test(incrementcount2) :-
-  incrementCount(x, [[x,1]], [[x,2]]).
-test(incrementcount3) :-
-  incrementCount(x, [[a,1], [b,2]], [[a,1], [b,2], [x,1]]).
-test(incrementcount4) :-
-  incrementCount(x, [[a,1], [x,1], [b,2]], [[a,1], [x,2], [b,2]]).
-:- end_tests(incrementcount).
+*/
+%:- begin_tests(incrementcount).
+%test(incrementcount) :-
+%  incrementCount(x, [], [[x,1]]).
+%test(incrementcount2) :-
+%  incrementCount(x, [[x,1]], [[x,2]]).
+%test(incrementcount3) :-
+%  incrementCount(x, [[a,1], [b,2]], [[a,1], [b,2], [x,1]]).
+%test(incrementcount4) :-
+%  incrementCount(x, [[a,1], [x,1], [b,2]], [[a,1], [x,2], [b,2]]).
+%:- end_tests(incrementcount).
 incrementCount(X, [], [[X,1]]).
 incrementCount(X, [[X, CountX] | R], [[X, CountXPlusOne] | R]) :-
   CountXPlusOne is CountX + 1.
@@ -240,14 +233,15 @@ incrementCount(Y, [[X, CountX] | R], [[X, CountX] | T]) :-
  else, we do the normal bubble sort algorithm.
  we do a pass over the list, and swap elements that are out of order
  then, we repeat this until the list is sorted
- */
-:- begin_tests(bubblesort).
-test(bubble_sort) :-
-  bubble_sort([[a,1], [b,2], [c,3], [d,4]], [[a,1], [b,2], [c,3], [d,4]]).
-test(bubble_sort) :-
-  bubble_sort([[b,2], [d,4], [c,3], [a,1]], Result),
-  is_sorted(Result).
-:- end_tests(bubblesort).
+*/
+%:- begin_tests(bubblesort).
+%test(bubble_sort) :-
+%  bubble_sort([[a,1], [b,2], [c,3], [d,4]], [[a,1], [b,2], [c,3], [d,4]]).
+%test(bubble_sort) :-
+%  bubble_sort([[b,2], [d,4], [c,3], [a,1]], Result),
+%  is_sorted(Result).
+%:- end_tests(bubblesort).
+
 bubble_sort(L, L) :- is_sorted(L).
 bubble_sort(L, Output) :-
   xappend(X, [[A, Acount],[B, Bcount] | Y], L),
@@ -265,7 +259,7 @@ bubble_sort(L, Output) :-
  
  else we have 2 or more elements. check if the first element is less than the
  second element, and recurse on the tail of the list.
- */
+*/
 is_sorted([]).
 is_sorted([[_,_]]).
 is_sorted([[_, Acount], [B,Bcount] | R]) :-
@@ -292,21 +286,22 @@ is_sorted([[_, Acount], [B,Bcount] | R]) :-
 
  Else, the head of L is not an atom. We call sub on both the head and the tail,
  and combine the outputs
- */
-:- begin_tests(question5).
-test(sub) :-
-  sub([a,[a,d],[e,a]],[[a,2]],L),
-  L= [2,[2,d],[e,2]].
+*/
+%:- begin_tests(question5).
+%test(sub) :-
+%  sub([a,[a,d],[e,a]],[[a,2]],L),
+%  L= [2,[2,d],[e,2]].
+%
+%test(sub2) :-
+%  sub([a,b,c], [[a,d], [b, c]], [d, c, c]).
+%
+%test(sub3) :-
+%  sub([a,[b, [c, [d]]]], [[a,z], [z, v], [c, g], [d, p]] , [z,[b, [g, [p]]]]).
+%
+%test(subexpression) :-
+%  sub([a, b, c], [[b, 4 < 1]], [a, 4<1, c]).
+%:- end_tests(question5).
 
-test(sub2) :-
-  sub([a,b,c], [[a,d], [b, c]], [d, c, c]).
-
-test(sub3) :-
-  sub([a,[b, [c, [d]]]], [[a,z], [z, v], [c, g], [d, p]] , [z,[b, [g, [p]]]]).
-
-test(subexpression) :-
-  sub([a, b, c], [[b, 4 < 1]], [a, 4<1, c]).
-:- end_tests(question5).
 sub([], _, []).
 sub([X | R], S, [Y | Output]) :- % is an atom
   atom(X),
@@ -350,11 +345,12 @@ find_substitution(X, [[Xi, _] | S], Output) :-
 
  then, we check every element in L, and see if it is connected using the
  allConnected helper predicate defned below
- */
-:- begin_tests(question6).
-test(allconnected) :-
-  allConnected([a,b,c]).
-:- end_tests(question6).
+*/
+%:- begin_tests(question6).
+%test(allconnected) :-
+%  allConnected([a,b,c]).
+%:- end_tests(question6).
+
 allConnected([]).
 allConnected([F | R]) :-
   allConnectedHelper(F, R),
@@ -390,11 +386,13 @@ connected(X,Y) :-
  where each is connected to every other node in the subset. 
 
  This code is given to us in the assignment
- */
-:- begin_tests(clique).
-test(clique) :-
-  clique([a,b,c]).
-:- end_tests(clique).
+*/
+% for the node example defined in eclass
+%:- begin_tests(clique).
+%test(clique) :-
+%  clique([a,b,c]).
+%:- end_tests(clique).
+
 clique(L) :- 
   findall(X,node(X),Nodes),
   subset(L,Nodes), allConnected(L).
@@ -403,7 +401,7 @@ clique(L) :-
  given L, O is a list of subsets of L
 
  This code is given to us in the assignment
- */
+*/
 subset([], _).
 subset([X|Xs], Set) :-
   append(_, [X|Set1], Set),
@@ -425,27 +423,27 @@ subset([X|Xs], Set) :-
  we call the convertHelper predicate defined below, which takes in the same
  2 arguments as convert. It also takes in a third argument, which is a boolean
  to help with keeping track of matching q atoms
- */
-:- begin_tests(question7).
-test(convert1) :-
-  convert([e,e,a,e,b,e],R),
-  R = [c,c].
-test(convert2) :-
-  convert([e,q,a,b,e,e],R),
-  R = [q,c,c].
-test(convert3) :-
-  convert([e,a,e,e],R),
-  R = [c].
-test(convert4) :-
-  convert([e,q,a,e,b,q,e,a,e],R),
-  R = [q,a,e,b,q,c].
-test(convert5) :-
-  convert([a,q,e,l,q,r,e,q,b,e],R),
-  R = [c,q,e,l,q,c,q,c].
-test(convert6) :-
-  convert([q,e,q,b,q,e,l,q,a,e],R),
-  R = [q,e,q,c,q,e,l,q,c].
-:- end_tests(question7).
+*/
+%:- begin_tests(question7).
+%test(convert1) :-
+%  convert([e,e,a,e,b,e],R),
+%  R = [c,c].
+%test(convert2) :-
+%  convert([e,q,a,b,e,e],R),
+%  R = [q,c,c].
+%test(convert3) :-
+%  convert([e,a,e,e],R),
+%  R = [c].
+%test(convert4) :-
+%  convert([e,q,a,e,b,q,e,a,e],R),
+%  R = [q,a,e,b,q,c].
+%test(convert5) :-
+%  convert([a,q,e,l,q,r,e,q,b,e],R),
+%  R = [c,q,e,l,q,c,q,c].
+%test(convert6) :-
+%  convert([q,e,q,b,q,e,l,q,a,e],R),
+%  R = [q,e,q,c,q,e,l,q,c].
+%:- end_tests(question7).
 
 convert(Term, Result) :-
   convertHelper(Term, Result, false).
@@ -491,7 +489,7 @@ convert(Term, Result) :-
 
  if we find any character that is not q or e outside a quote, we change it to c
  and recurse on the tail of Term. c is added to the output.
- */
+*/
 convertHelper([], [], _).
 convertHelper([q | R], [q | Output], false) :-
   end_q_exists(R),
