@@ -7,10 +7,12 @@ Student ID: 1514457
 node(a).
 node(b).
 node(c).
+node(d).
 
 edge(a,b).
 edge(b,c).
-edge(c,a).
+edge(c,d).
+edge(a,c).
 /* Question 1
  setIntersect(+S1,+S2,-S3)
  this takes in 2 lists of atoms, S1 and S2.
@@ -284,12 +286,9 @@ is_sorted([[_, Acount], [B,Bcount] | R]) :-
  How this works:
  If L is empty, then so is L1 (base case)
  
- If the head of L is the first element in the first pair of S,
- then it is an atom (because all xi are atoms). We substitute 
- xi for ei in the output, and recurse on the tail of L.
-
- If the head of L is an atom, but doesn't match the first element
- in the first pair of S, we don't replace it, and recurse on the tail of L
+ If the head of L is an atom, we attempt to find a substitution for it
+ with the find_substitution predicate defined below. If a substitution is
+ not found, the atom is left as-is in the output
 
  Else, the head of L is not an atom. We call sub on both the head and the tail,
  and combine the outputs
@@ -300,20 +299,46 @@ test(sub) :-
   L= [2,[2,d],[e,2]].
 
 test(sub2) :-
-  sub([a,b,c], [[a,b], [b, c]], [b, c, c]).
+  sub([a,b,c], [[a,d], [b, c]], [d, c, c]).
 
 test(sub3) :-
-  sub([a, b, c], [[b, 4 < 1]], [a, false, c]).
+  sub([a,[b, [c, [d]]]], [[a,z], [z, v], [c, g], [d, p]] , [z,[b, [g, [p]]]]).
+
+test(subexpression) :-
+  sub([a, b, c], [[b, 4 < 1]], [a, 4<1, c]).
 :- end_tests(question5).
 sub([], _, []).
-sub([Xi | R], [[Xi, Ei] | S], [Ei | Output]) :- % substitute atom
-  sub(R, [[Xi, Ei] | S], Output).
-sub([Xi | R], S, [Xi | Output]) :- % is an atom but doesn't match
-  atom(Xi),
+sub([X | R], S, [Y | Output]) :- % is an atom
+  atom(X),
+  find_substitution(X, S, Y),
   sub(R, S, Output).
 sub([L | R], S, [Output | ROutput]) :- % not an atom
   sub(L, S, Output),
   sub(R, S, ROutput).
+
+
+/* find_substitution(+X, +S, -E)
+ this takes in 2 arguments, X and S and outputs E
+ X is an atom which we wish to substitute, and S is the list of pairs
+ containing substitutions. This makes it so that E is the substituted
+ value, or X is returned if it is not found.
+
+ How it works:
+ if the substitution list is empty, X is not substituted (base case)
+
+ if a substitution is found, return E
+
+ else, recurse on the tail of the substitution list and keep looking
+ for a substitution
+ 
+ */
+find_substitution(X, [], X).
+find_substitution(X, [[X, E] | _], E).
+find_substitution(X, [[Xi, _] | S], Output) :-
+  X \= Xi,
+  find_substitution(X, S, Output).
+
+
 
 /* Question 6
  allConnected(+L)
