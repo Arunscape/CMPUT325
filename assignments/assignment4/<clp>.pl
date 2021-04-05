@@ -55,3 +55,24 @@
 % We remove these from the domain to get 8
 % Thus G5 must be 8 since we removed all other possible values from the domain
 
+% Question 1 part 2
+% I went ahead and enumerated all of the possible values for all of the squares
+% and found that it is indeed not possible to solve this puzzle using AC-3 alone.
+% The closest you get using this algorithm, is that the domain for a few squares
+% are reduced to only two possibilities. However, none of them can be reduced to
+% just one possibility using AC-3 alone
+% One obvious example of a domain value that cannot possibly be removed by AC-3
+% is the number 4. By simply observing the puzzle, (and also by enumerating
+% all of the possible values for each square), you quickly find out that the
+% number 4 cannot ever be eliminated from any of the squares using just AC-3
+% because none of the given squares contains the value 4. That is, in the initial
+% state of the board, the number 4 never appears once in the entire board.
+% So, there is no row, column, or 3x3 grid where the number 4 can be eliminated
+% from the domain for a particular square, since is does not appear anywhere on
+% the board initially. This alone does not prove that the number 4 cannot be
+% removed from any square by AC-3 however. It would still be possible for the
+% value 4 to be removed from the domain of a square, if some other square's
+% domain could be reduced to the number 4. However, none of the squares in this
+% case are reduced to a single value using AC-3 alone, so we are stuck with the
+% given values, and none of those values is the number 4, so 4 cannot be removed
+% from the domain of any square using just the AC-3 algorithm.
