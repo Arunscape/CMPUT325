@@ -129,3 +129,13 @@ test(itsme) :-
   T = 2.
 
 :-end_tests(question2).
+
+% question 3
+subsetsum(L, N) :-
+  same_length(L, Coefficients),
+  Coefficients ins 0..1,
+  maplist(applyCoeff, L, Coefficients, Output),
+  sum(Output, #=, N),
+  label(Coefficients).
+
+applyCoeff(Coeff, X, Y) :- Y #= Coeff * X.
