@@ -76,3 +76,56 @@
 % case are reduced to a single value using AC-3 alone, so we are stuck with the
 % given values, and none of those values is the number 4, so 4 cannot be removed
 % from the domain of any square using just the AC-3 algorithm.
+
+
+:- use_module(library(clpfd)).
+% Question 2
+
+encrypt(W1,W2,W3) :- 
+   length(W1,N),           % if you need to know the lengths of words
+   length(W3,N1),   
+   append(W1,W2,W),
+   append(W,W3,L),
+   list_to_set(L,Letters), % remove duplicates, a predicate in list library
+   [LeadLetter1|_] = W1,   % identify the leading letter to be set to non-zero
+   [LeadLetter2|_] = W2,
+   [LeadLetter3|_] = W3,
+   !,                      % never need to redo the above
+   Letters ins 0..9,
+   all_distinct(Letters),
+   LeadLetter1 #\= 0,
+   LeadLetter2 #\= 0,
+   LeadLetter3 #\= 0,
+   digits_to_number(W1, Sum1),
+   digits_to_number(W2, Sum2),
+   digits_to_number(W3, Sum3),
+   Sum1 + Sum2 #=  Sum3,
+   label(Letters).
+
+digits_to_number(Digits, Number) :-
+  digits_to_number(Digits, 0, Number).
+digits_to_number([], Sum, Sum).
+digits_to_number([Digit | Rest], Sum, Number) :-
+  PartialSum #= Sum*10 + Digit,
+  digits_to_number(Rest, PartialSum, Number).
+
+:- begin_tests(question2).
+test(sendmoney) :-
+  encrypt([S,E,N,D], [M,O,R,E], [M,O,N,E,Y]),
+  S = 9,
+  E = 5,
+  N = 6,
+  D = 7,
+  M = 1,
+  O = 0,
+  R = 8,
+  Y = 2.
+
+test(itsme) :-
+  E = 0,
+  I = 1,
+  M = 3,
+  S = 8,
+  T = 2.
+
+:-end_tests(question2).
