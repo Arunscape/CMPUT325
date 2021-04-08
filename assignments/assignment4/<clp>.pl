@@ -159,72 +159,41 @@ reviewer(jim,theory,games).
 
 workLoadAtMost(2).
 
-%assign(W1,W2) :-
-%  [Reviewer1 | RestR1] = W1,
-%  [Reviewer2 | RestR2] = W2,
-%  paper(Index, Author1, Author2, Subject),
-%  % author cannot be own reviwer
-%  Reviewer1 #\= Author1,
-%  Reviewer2 #\= Author1,
-%  Reviewer1 #\= Author2,
-%  Reviewer2 #\= Author2,
-%  % reviewer must match subject area
-%  reviewer(Reviewer1, Subject11, Subject12),
-%  reviewer(Reviewer2, Subject21, Subject22),
-%    (Subject11 #= Subject, Subject21 #= Subject);
-%    (Subject11 #= Subject, Subject22 #= Subject);
-%    (Subject12 #= Subject, Subject21 #= Subject);
-%    (Subject12 #= Subject, Subject22 #= Subject);
-%  % each paper assigned to 2 reviewers
-%  Reviewer1 #\= Reviewer2,
-%  % no reviewer assigned more than k papers
-%  workLoadAtMost(Max),
-%  check_max_reviews(W1, W2, Max),
-%  assign(RestR1, RestR2),
-%  label(W1),
-%  label(W2).
-%
-%check_max_reviews(W1, W2, Max, Reviewer) :-
-%  append(W1, W2, W),
-%  countoccurences(W, Reviewer, 0, Max).
-%
-%
-countoccurences([], _, Count, Max) :-
-  Count #=< Max.
-
-countoccurences([H | T], H, Count, Max) :-
-  countoccurences(T, H, Count + 1, Max).
-
-countoccurences([H | T], Reviewer, Count, Max) :-
-  H #\= Reviewer,
-  countoccurences(T, Reviewer, Count, Max).
-
-
-% get the domain for reviewers 
-
-assignHelper(W1, W2) :-
-  same_length(W1, W2),
-  count_reviewers(NumReviewers),
-  R1 ins 1..NumReviewers,
-  R2 ins 1..NumReviewers,
-  maplist(constrain_workload(R1, R2
+assign(R1, R2) :-
+  count_reviewers(Count),
+  %same_length(W1, R1),
+  %same_length(W2, R2),
+  %same_length(W1, W2),
+  same_length(R1, R2),
+  length(W1, Count),
+  length(W2, Count),
+  R1 ins 1..Count,
+  R2 ins 1..Count,
+  %cannot_review_own_paper(R1, R2, W1, W2, 1, Count),
   label(R1),
-  label(R2),
-  maplist(nth1(ReviewerIndex, R1, ), W1)
-  
-
+  label(R2).
 
 
 count_reviewers(Count) :-
   aggregate_all(count, paper(_,_,_,_), Count).
 
-constrain_workload(R1, R2, Reviewer) :-
-  workLoadAtMost(Max),
-  append(R1, R2, R),
-  countoccurences(R, Reviewer, 0, Max).
+cannot_review_own_paper(_, _, _, _, CurrentIndex, PaperCount) :-
+  CurrentIndex > PaperCount.
 
-constrain_workloads(R1, R2) :-
-  append(R1, R2, R),
-  list_to_set(R, [R1 | Rs]),
-  constrain_workload([R1 | Rs], 
+cannot_review_own_paper(W1, W2, R1, R2, CurrentIndex, PaperCount) :-
+  paper(CurrentIndex, Author1, Author2, Subject),
+  nth1(CurrentIndex, R1, ReviewerIndex1),
+  nth1(CurrentIndex, R2, ReviewerIndex2),
+  nth1(ReviewerIndex1, W1, Name1),
+  nth1(ReviewerIndex2, W2, Name2),
+  Name1 \= Author1,
+  Name1 \= Author2,
+  Name2 \= Author1,
+  Name2 \= Author2,
+  Name1 \= Name2,
+  cannot_review_own_paper(R1, R2, CurrentIndexPlusOne),
+  CurrentIndexPlusOne is CurrentIndex + 1.
 
+
+% lists
+% author reviewer topic
