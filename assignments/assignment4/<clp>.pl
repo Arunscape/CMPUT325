@@ -159,40 +159,76 @@ reviewer(jim,theory,games).
 
 workLoadAtMost(2).
 
-assign(R1, R2) :-
-  count_reviewers(Count),
-  %same_length(W1, R1),
-  %same_length(W2, R2),
-  %same_length(W1, W2),
-  same_length(R1, R2),
+
+gen_numbers(W1, W2) :-
+  count_papers(Count),
   length(W1, Count),
   length(W2, Count),
-  R1 ins 1..Count,
-  R2 ins 1..Count,
-  %cannot_review_own_paper(R1, R2, W1, W2, 1, Count),
-  label(R1),
-  label(R2).
+  count_reviewers(RCount),
+  W1 ins 1..RCount,
+  W2 ins 1..RCount,
+  constrain(W1, W2),
+  label(W1),
+  label(W2).
 
 
-count_reviewers(Count) :-
+
+count_element_in_list(Element, List, Count) :-
+  aggregate_all(count, member(Element, List), Count).
+  
+constrain_workload(Element, List) :-
+  count_element_in_list(Element, List, Count),
+  workLoadAtMost(Max),
+  Count #=< Max.
+
+constrain(W1, W2) :-
+  append(W1, W2, W),
+  constrain_all_workloads(W).
+constrain_all_workloads(L) :-
+  list_to_set(L, S),
+  constrain_all_workloads(L, S).
+constrain_all_workloads(_, []).
+constrain_all_workloads(Original, [H | T]) :-
+  constrain_workload(H, Original),
+  constrain_all_workloads(Original, T).
+
+
+count_papers(Count) :-
   aggregate_all(count, paper(_,_,_,_), Count).
 
-cannot_review_own_paper(_, _, _, _, CurrentIndex, PaperCount) :-
-  CurrentIndex > PaperCount.
 
-cannot_review_own_paper(W1, W2, R1, R2, CurrentIndex, PaperCount) :-
-  paper(CurrentIndex, Author1, Author2, Subject),
-  nth1(CurrentIndex, R1, ReviewerIndex1),
-  nth1(CurrentIndex, R2, ReviewerIndex2),
-  nth1(ReviewerIndex1, W1, Name1),
-  nth1(ReviewerIndex2, W2, Name2),
-  Name1 \= Author1,
-  Name1 \= Author2,
-  Name2 \= Author1,
-  Name2 \= Author2,
-  Name1 \= Name2,
-  cannot_review_own_paper(R1, R2, CurrentIndexPlusOne),
-  CurrentIndexPlusOne is CurrentIndex + 1.
+%names(L) :-
+%  findall(A, paper(_, A, _, _), L1),
+%  findall(A, paper(_, _, A, _), L2),
+%  findall(R, reviewer(R, _, _), L3),
+%  append(L1, L2, L4),
+%  append(L4, L3, L5),
+%  list_to_set(L5, L6),
+%  delete(L6, xxx, L). % xxx is not an author
+%  
+%name_to_int(Int, Name) :-
+%  names(L),
+%  nth0(Int, L, Name).
+
+reviewers(L) :-
+  findall(R, reviewer(R, _, _), L).
+count_reviewers(Count) :-
+  aggregate_all(count, reviewer(_, _, _), Count).
+
+
+
+subjects(L) :-
+  findall(S, paper(_, _, _, S), L1),
+  findall(S, reviewer(_, S, _), L2),
+  findall(S, reviewer(_, _, S), L3),
+  append(L1, L2, L4),
+  append(L4, L3, L5),
+  list_to_set(L5, L).
+
+subject_to_int(Int, Subject) :-
+  subjects(L),
+  nth1(Int, L, Subject).
+
 
 
 % lists
