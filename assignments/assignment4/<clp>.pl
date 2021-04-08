@@ -139,3 +139,92 @@ subsetsum(L, N) :-
   label(Coefficients).
 
 applyCoeff(Coeff, X, Y) :- Y #= Coeff * X.
+
+% question 4
+paper(1,lily,xxx,ai).
+paper(2,peter,john,database).
+paper(3,ann,xxx,theory).
+paper(4,ken,lily,network).
+paper(5,kris,xxx,games).
+
+reviewer(lily,theory,network).
+reviewer(john,ai,theory).
+reviewer(peter,database,network).
+reviewer(ann,theory,network).
+reviewer(kris,theory,games).
+reviewer(ken,database,games).
+reviewer(bill,database,ai).
+reviewer(jim,theory,games).
+
+
+workLoadAtMost(2).
+
+%assign(W1,W2) :-
+%  [Reviewer1 | RestR1] = W1,
+%  [Reviewer2 | RestR2] = W2,
+%  paper(Index, Author1, Author2, Subject),
+%  % author cannot be own reviwer
+%  Reviewer1 #\= Author1,
+%  Reviewer2 #\= Author1,
+%  Reviewer1 #\= Author2,
+%  Reviewer2 #\= Author2,
+%  % reviewer must match subject area
+%  reviewer(Reviewer1, Subject11, Subject12),
+%  reviewer(Reviewer2, Subject21, Subject22),
+%    (Subject11 #= Subject, Subject21 #= Subject);
+%    (Subject11 #= Subject, Subject22 #= Subject);
+%    (Subject12 #= Subject, Subject21 #= Subject);
+%    (Subject12 #= Subject, Subject22 #= Subject);
+%  % each paper assigned to 2 reviewers
+%  Reviewer1 #\= Reviewer2,
+%  % no reviewer assigned more than k papers
+%  workLoadAtMost(Max),
+%  check_max_reviews(W1, W2, Max),
+%  assign(RestR1, RestR2),
+%  label(W1),
+%  label(W2).
+%
+%check_max_reviews(W1, W2, Max, Reviewer) :-
+%  append(W1, W2, W),
+%  countoccurences(W, Reviewer, 0, Max).
+%
+%
+countoccurences([], _, Count, Max) :-
+  Count #=< Max.
+
+countoccurences([H | T], H, Count, Max) :-
+  countoccurences(T, H, Count + 1, Max).
+
+countoccurences([H | T], Reviewer, Count, Max) :-
+  H #\= Reviewer,
+  countoccurences(T, Reviewer, Count, Max).
+
+
+% get the domain for reviewers 
+
+assignHelper(W1, W2) :-
+  same_length(W1, W2),
+  count_reviewers(NumReviewers),
+  R1 ins 1..NumReviewers,
+  R2 ins 1..NumReviewers,
+  maplist(constrain_workload(R1, R2
+  label(R1),
+  label(R2),
+  maplist(nth1(ReviewerIndex, R1, ), W1)
+  
+
+
+
+count_reviewers(Count) :-
+  aggregate_all(count, paper(_,_,_,_), Count).
+
+constrain_workload(R1, R2, Reviewer) :-
+  workLoadAtMost(Max),
+  append(R1, R2, R),
+  countoccurences(R, Reviewer, 0, Max).
+
+constrain_workloads(R1, R2) :-
+  append(R1, R2, R),
+  list_to_set(R, [R1 | Rs]),
+  constrain_workload([R1 | Rs], 
+
