@@ -167,38 +167,26 @@ gen_numbers(W1, W2) :-
   count_reviewers(RCount),
   W1 ins 1..RCount,
   W2 ins 1..RCount,
-  constrain(W1, W2),
-  label(W1),
-  label(W2).
+  constrain(W1,W2).
+  %  label(W1),
+  %  label(W2).
 
 constrain(W1, W2) :-
   append(W1, W2, W),
-  %aggregate(maxCount(Count,Element),aggregate(count,member(Element,W),Count),maxCount(Count, _)),
-  msort(W, Sorted),
-  clumped(Sorted, Counts),
-  pairs_values(Counts, Values),
-  max_list(Values, MaxCount),
+  aggregate(set(Element-Count), aggregate(count, member(Element,W), Count), Pairs),
+  pairs_values(Pairs, Counts),
+  max_list(Counts, MaxCount),
   workLoadAtMost(Max),
-  MaxCount #=< Max.
+  MaxCount #=< Max,
+  label(W).
+
+
 
 
 
 count_papers(Count) :-
   aggregate_all(count, paper(_,_,_,_), Count).
 
-
-%names(L) :-
-%  findall(A, paper(_, A, _, _), L1),
-%  findall(A, paper(_, _, A, _), L2),
-%  findall(R, reviewer(R, _, _), L3),
-%  append(L1, L2, L4),
-%  append(L4, L3, L5),
-%  list_to_set(L5, L6),
-%  delete(L6, xxx, L). % xxx is not an author
-%  
-%name_to_int(Int, Name) :-
-%  names(L),
-%  nth0(Int, L, Name).
 
 reviewers(L) :-
   findall(R, reviewer(R, _, _), L).
@@ -219,7 +207,6 @@ subject_to_int(Int, Subject) :-
   subjects(L),
   nth1(Int, L, Subject).
 
+%check_papers(Index, NumPapers, _, _, _, _) :-
 
 
-% lists
-% author reviewer topic
