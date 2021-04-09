@@ -170,8 +170,23 @@ gen_numbers(W1, W2) :-
   constrain(W1,W2).
   %  label(W1),
   %  label(W2).
+  
+assign(W1,W2) :-
+  count_papers(NumPapers),
+  count_reviewers(NumReviewers),
+  gen_domains(W1, W2, NumPapers, NumReviewers),
+  constrain_max_reviewers(W1, W2),
+  constrain_reviewer_and_subject(W1, W2, 1, NumPapers).
 
-constrain(W1, W2) :-
+
+gen_domains(W1, W2, NumPapers, NumReviewers) :-
+  length(W1, NumPapers),
+  length(W2, NumPapers),
+  W1 ins 1..NumReviewers,
+  W2 ins 1..NumReviewers.
+
+
+constrain_max_reviewers(W1, W2) :-
   append(W1, W2, W),
   aggregate(set(Element-Count), aggregate(count, member(Element,W), Count), Pairs),
   pairs_values(Pairs, Counts),
@@ -179,6 +194,25 @@ constrain(W1, W2) :-
   workLoadAtMost(Max),
   MaxCount #=< Max,
   label(W).
+
+constrain_reviewer_and_subject(_, _, Index, NumPapers) :-
+  Index #> NumPapers.
+constrain_reviewer_and_subject(W1, W2, Index, NumPapers) :-
+  reviewer_to_int(Index, Reviewer1),
+  reviewer_to_int(Index, Reviewer2),
+  reviewer(Reviewer1, Subject1, Subject2),
+  reviewer(Reviewer2, Subject3, Subject4),
+  paper(Index, Author1, Author2, Subject),
+  Author1 \= Reviewer1,
+  Author1 \= Reviewer2,
+  Author2 \= Reviewer1,
+  Author2 \= Reviewer2,
+  Subject =:= Subject1;
+  Subject =:= Subject2;
+  Subject =:= Subject3;
+  Subject =:= Subject4,
+  cannot_review_own_paper(W1, W2, Index + 1, NumPapers).
+  
 
 
 
@@ -190,6 +224,10 @@ count_papers(Count) :-
 
 reviewers(L) :-
   findall(R, reviewer(R, _, _), L).
+reviewer_to_int(Int, Name) :-
+  reviewers(L),
+  nth1(Int, L, Name).
+
 count_reviewers(Count) :-
   aggregate_all(count, reviewer(_, _, _), Count).
 
