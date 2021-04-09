@@ -171,26 +171,16 @@ gen_numbers(W1, W2) :-
   label(W1),
   label(W2).
 
-
-
-count_element_in_list(Element, List, Count) :-
-  aggregate_all(count, member(Element, List), Count).
-  
-constrain_workload(Element, List) :-
-  count_element_in_list(Element, List, Count),
-  workLoadAtMost(Max),
-  Count #=< Max.
-
 constrain(W1, W2) :-
   append(W1, W2, W),
-  constrain_all_workloads(W).
-constrain_all_workloads(L) :-
-  list_to_set(L, S),
-  constrain_all_workloads(L, S).
-constrain_all_workloads(_, []).
-constrain_all_workloads(Original, [H | T]) :-
-  constrain_workload(H, Original),
-  constrain_all_workloads(Original, T).
+  %aggregate(maxCount(Count,Element),aggregate(count,member(Element,W),Count),maxCount(Count, _)),
+  msort(W, Sorted),
+  clumped(Sorted, Counts),
+  pairs_values(Counts, Values),
+  max_list(Values, MaxCount),
+  workLoadAtMost(Max),
+  MaxCount #=< Max.
+
 
 
 count_papers(Count) :-
