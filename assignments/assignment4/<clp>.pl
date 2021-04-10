@@ -159,92 +159,104 @@ reviewer(jim,theory,games).
 
 workLoadAtMost(2).
 
-
-gen_numbers(W1, W2) :-
-  count_papers(Count),
-  length(W1, Count),
-  length(W2, Count),
-  count_reviewers(RCount),
-  W1 ins 1..RCount,
-  W2 ins 1..RCount,
-  constrain(W1,W2).
-  %  label(W1),
-  %  label(W2).
-  
 assign(W1,W2) :-
   count_papers(NumPapers),
   count_reviewers(NumReviewers),
-  gen_domains(W1, W2, NumPapers, NumReviewers),
-  constrain_max_reviewers(W1, W2),
-  constrain_reviewer_and_subject(W1, W2, 1, NumPapers).
-
-
-gen_domains(W1, W2, NumPapers, NumReviewers) :-
   length(W1, NumPapers),
   length(W2, NumPapers),
-  W1 ins 1..NumReviewers,
-  W2 ins 1..NumReviewers.
+  length(N1, NumPapers),
+  length(N2, NumPapers),
+  reviewers(ReviewerNames),
+  papers(PaperIDs),
+  constrain_reviewers_and_subject(ReviewerNames, PaperIDs, N1, N2),
+  constrain_max_reviewers(N1, N2, NumPapers, NumReviewers),
+  numbers_to_reviewers(W1, W2, N1, N2, ReviewerNames).
+  
 
-
-constrain_max_reviewers(W1, W2) :-
-  append(W1, W2, W),
-  aggregate(set(Element-Count), aggregate(count, member(Element,W), Count), Pairs),
-  pairs_values(Pairs, Counts),
-  max_list(Counts, MaxCount),
+constrain_max_reviewers(W1, W2, NumPapers, NumReviewers) :-
   workLoadAtMost(Max),
-  MaxCount #=< Max,
-  label(W).
+  length(W1, NumPapers),
+  length(W2, NumPapers),
+  R is Max * NumReviewers,
+  Range is R - 1,
+  append(W1, W2, W),
+  W ins 0..Range,
+  all_distinct(W).
 
-constrain_reviewer_and_subject(_, _, Index, NumPapers) :-
-  Index #> NumPapers.
-constrain_reviewer_and_subject(W1, W2, Index, NumPapers) :-
-  reviewer_to_int(Index, Reviewer1),
-  reviewer_to_int(Index, Reviewer2),
-  reviewer(Reviewer1, Subject1, Subject2),
-  reviewer(Reviewer2, Subject3, Subject4),
-  paper(Index, Author1, Author2, Subject),
+constrain_paper(ReviewerNames, PaperIndex, Rev1Num, Rev2Num) :-
+  Rev1Num #\= Rev2Num,
+  paper(PaperIndex, Author1, Author2, Subject),
+  int_to_reviewer(ReviewerNames, Rev1Num, Reviewer1),
+  int_to_reviewer(ReviewerNames, Rev2Num, Reviewer2),
+  reviewer(Reviewer1, S1, S2),
+  reviewer(Reviewer2, S3, S4),
   Author1 \= Reviewer1,
   Author1 \= Reviewer2,
   Author2 \= Reviewer1,
   Author2 \= Reviewer2,
-  Subject =:= Subject1;
-  Subject =:= Subject2;
-  Subject =:= Subject3;
-  Subject =:= Subject4,
-  cannot_review_own_paper(W1, W2, Index + 1, NumPapers).
+  one_of_subject(Subject, S1, S2, S3, S4).
+
+constrain_reviewers_and_subject(Reviewers, PaperIDs, N1, N2) :-
+  maplist(constrain_paper(Reviewers), PaperIDs, N1, N2).
+
+numbers_to_reviewers(ReviewerNames, W1, W2, N1, N2) :-
+  maplist(int_to_reviewer(ReviewerNames), N1, W1),
+  maplist(int_to_reviewer(ReviewerNames), N2, W2).
+
+
+%constrain_reviewer_and_subject(_, _, Index, NumPapers) :-
+%  Index >= NumPapers.
+%constrain_reviewer_and_subject(D1, D2, Index, _) :-
+%  nth0(Index, D1, Rev1Num),
+%  nth0(Index, D2, Rev2Num),
+%  int_to_reviewer(Rev1Num, Rev1Name),
+%  int_to_reviewer(Rev2Num, Rev2Name),
+%  reviewer(Rev1Name, Sub1, Sub2),
+%  reviewer(Rev2Name, Sub3, Sub4),
+%  nth0(Index, W1, Rev1Name),
+%  nth0(Index, W2, Rev2Name),
+%  PaperIndex is Index + 1,
+%  paper(PaperIndex, Author1, Author2, Subject),
+%  Author1 \= Rev1Name,
+%  Author1 \= Rev2Name,
+%  Author2 \= Rev1Name,
+%  Author2 \= Rev2Name,
+%  one_of_subject(Subject, Sub1, Sub2, Sub3, Sub4).
   
-
-
-
-
 
 count_papers(Count) :-
   aggregate_all(count, paper(_,_,_,_), Count).
 
+papers(L) :-
+  findall(ID, paper(ID, _, _, _), L).
 
 reviewers(L) :-
   findall(R, reviewer(R, _, _), L).
+int_to_reviewer(L, Int, Name) :-
+  %  reviewers(L),
+  count_reviewers(Count),
+  ReviewerNumber #= Int mod Count,
+  nth0(ReviewerNumber, L, Name).
+
 reviewer_to_int(Int, Name) :-
   reviewers(L),
-  nth1(Int, L, Name).
+  nth0(Int, L, Name).
+
+int_reviewer_mod_int(Int, Out) :-
+  count_reviewers(Count),
+  Out is Int mod Count.
 
 count_reviewers(Count) :-
   aggregate_all(count, reviewer(_, _, _), Count).
 
 
-
-subjects(L) :-
-  findall(S, paper(_, _, _, S), L1),
-  findall(S, reviewer(_, S, _), L2),
-  findall(S, reviewer(_, _, S), L3),
-  append(L1, L2, L4),
-  append(L4, L3, L5),
-  list_to_set(L5, L).
-
-subject_to_int(Int, Subject) :-
-  subjects(L),
-  nth1(Int, L, Subject).
-
 %check_papers(Index, NumPapers, _, _, _, _) :-
 
-
+one_of_subject(S, S1, _, _, _) :-
+  S = S1.
+one_of_subject(S, _, S2, _, _) :-
+  S = S2.
+one_of_subject(S, _, _, S3, _) :-
+  S = S3.
+one_of_subject(S, _, _, _, S4) :-
+  S = S4.
