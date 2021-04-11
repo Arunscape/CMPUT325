@@ -146,6 +146,10 @@ paper(2,peter,john,database).
 paper(3,ann,xxx,theory).
 paper(4,ken,lily,network).
 paper(5,kris,xxx,games).
+paper(6,jim,xxx,games).
+paper(7,bill,xxx,theory).
+paper(8,bill,lily,ai).
+paper(9,peter,ann,games).
 
 reviewer(lily,theory,network).
 reviewer(john,ai,theory).
@@ -155,74 +159,10 @@ reviewer(kris,theory,games).
 reviewer(ken,database,games).
 reviewer(bill,database,ai).
 reviewer(jim,theory,games).
-
+reviewer(kevin,theory,games).
+reviewer(paul,ai,network).
 
 workLoadAtMost(2).
-
-assign(W1,W2) :-
-  count_papers(NumPapers),
-  count_reviewers(NumReviewers),
-  length(W1, NumPapers),
-  length(W2, NumPapers),
-  length(N1, NumPapers),
-  length(N2, NumPapers),
-  reviewers(ReviewerNames),
-  papers(PaperIDs),
-  constrain_reviewers_and_subject(ReviewerNames, PaperIDs, N1, N2),
-  constrain_max_reviewers(N1, N2, NumPapers, NumReviewers),
-  numbers_to_reviewers(W1, W2, N1, N2, ReviewerNames).
-  
-
-constrain_max_reviewers(W1, W2, NumPapers, NumReviewers) :-
-  workLoadAtMost(Max),
-  length(W1, NumPapers),
-  length(W2, NumPapers),
-  R is Max * NumReviewers,
-  Range is R - 1,
-  append(W1, W2, W),
-  W ins 0..Range,
-  all_distinct(W).
-
-constrain_paper(ReviewerNames, PaperIndex, Rev1Num, Rev2Num) :-
-  Rev1Num #\= Rev2Num,
-  paper(PaperIndex, Author1, Author2, Subject),
-  int_to_reviewer(ReviewerNames, Rev1Num, Reviewer1),
-  int_to_reviewer(ReviewerNames, Rev2Num, Reviewer2),
-  reviewer(Reviewer1, S1, S2),
-  reviewer(Reviewer2, S3, S4),
-  Author1 \= Reviewer1,
-  Author1 \= Reviewer2,
-  Author2 \= Reviewer1,
-  Author2 \= Reviewer2,
-  one_of_subject(Subject, S1, S2, S3, S4).
-
-constrain_reviewers_and_subject(Reviewers, PaperIDs, N1, N2) :-
-  maplist(constrain_paper(Reviewers), PaperIDs, N1, N2).
-
-numbers_to_reviewers(ReviewerNames, W1, W2, N1, N2) :-
-  maplist(int_to_reviewer(ReviewerNames), N1, W1),
-  maplist(int_to_reviewer(ReviewerNames), N2, W2).
-
-
-%constrain_reviewer_and_subject(_, _, Index, NumPapers) :-
-%  Index >= NumPapers.
-%constrain_reviewer_and_subject(D1, D2, Index, _) :-
-%  nth0(Index, D1, Rev1Num),
-%  nth0(Index, D2, Rev2Num),
-%  int_to_reviewer(Rev1Num, Rev1Name),
-%  int_to_reviewer(Rev2Num, Rev2Name),
-%  reviewer(Rev1Name, Sub1, Sub2),
-%  reviewer(Rev2Name, Sub3, Sub4),
-%  nth0(Index, W1, Rev1Name),
-%  nth0(Index, W2, Rev2Name),
-%  PaperIndex is Index + 1,
-%  paper(PaperIndex, Author1, Author2, Subject),
-%  Author1 \= Rev1Name,
-%  Author1 \= Rev2Name,
-%  Author2 \= Rev1Name,
-%  Author2 \= Rev2Name,
-%  one_of_subject(Subject, Sub1, Sub2, Sub3, Sub4).
-  
 
 count_papers(Count) :-
   aggregate_all(count, paper(_,_,_,_), Count).
@@ -232,25 +172,9 @@ papers(L) :-
 
 reviewers(L) :-
   findall(R, reviewer(R, _, _), L).
-int_to_reviewer(L, Int, Name) :-
-  %  reviewers(L),
-  count_reviewers(Count),
-  ReviewerNumber #= Int mod Count,
-  nth0(ReviewerNumber, L, Name).
-
-reviewer_to_int(Int, Name) :-
-  reviewers(L),
-  nth0(Int, L, Name).
-
-int_reviewer_mod_int(Int, Out) :-
-  count_reviewers(Count),
-  Out is Int mod Count.
 
 count_reviewers(Count) :-
   aggregate_all(count, reviewer(_, _, _), Count).
-
-
-%check_papers(Index, NumPapers, _, _, _, _) :-
 
 one_of_subject(S, S1, _, _, _) :-
   S = S1.
@@ -260,3 +184,60 @@ one_of_subject(S, _, _, S3, _) :-
   S = S3.
 one_of_subject(S, _, _, _, S4) :-
   S = S4.
+
+assign(W1, W2) :-
+    papers(PaperIDs),
+    gen_domain(W1, W2, N1, N2),
+    maplist(constrain_paper, PaperIDs, N1, N2),
+    append(N1, N2, N),
+    constrain_all_workloads(N),
+    label(N),
+    maplist(reviewer_to_int, N1, W1),
+    maplist(reviewer_to_int, N2, W2).
+
+constrain_all_workloads(N) :-
+  count_reviewers(NumPapers),
+  numlist(1, NumPapers, Nums),
+  maplist(constrain_max_occurences(N), L).
+
+
+gen_domain(W1, W2, N1, N2) :-
+  count_papers(NumPapers),
+  count_reviewers(NumReviewers),
+  length(W1, NumPapers),
+  length(W2, NumPapers),
+  length(N1, NumPapers),
+  length(N2, NumPapers),
+  N1 ins 1..NumReviewers,
+  N2 ins 1..NumReviewers.
+
+reviewer_to_int(Int, Name) :-
+    reviewers(L),
+    nth1(Int, L, Name).
+
+constrain_paper(Index, Rev1Num, Rev2Num) :-
+    Rev1Num #\= Rev2Num,
+    paper(Index, Author1, Author2, Subject),
+    reviewer_to_int(Rev1Num, Rev1Name),
+    reviewer_to_int(Rev2Num, Rev2Name),
+    reviewer(Rev1Name, Sub1, Sub2),
+    reviewer(Rev2Name, Sub3, Sub4),
+    Author1 \= Rev1Name, 
+    Author1 \= Rev2Name, 
+    Author2 \= Rev1Name, 
+    Author2 \= Rev2Name,
+    one_of_subject(Subject, Sub1, Sub2, Sub3, Sub4).
+
+% for some reason, aggregate_all is slow
+count_occurrences([], _, 0).
+count_occurrences([X|Rest], X, Count):-  
+  CountPlusOne #= Count + 1,
+  count_occurrences(Rest,X,CountPlusOne).
+count_occurrences([NotX|Rest], X, Count):-
+  NotX #\= X,
+  count_occurrences(Rest,X,Count).
+
+constrain_max_occurences(L, Element) :-
+  workLoadAtMost(Max),
+  count_occurrences(L, Element, Count),
+  Count #=< Max.
