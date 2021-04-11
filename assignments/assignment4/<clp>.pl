@@ -201,7 +201,7 @@ constrain_paper(Index, Rev1Num, Rev2Num) :-
 constrain_all_workloads(N) :-
   count_reviewers(NumPapers),
   numlist(1, NumPapers, Nums),
-  maplist(constrain_max_occurences(N), L).
+  maplist(constrain_max_occurences(N), Nums).
 
 reviewer_to_int(Int, Name) :-
   reviewers(L),
@@ -235,10 +235,10 @@ constrain_max_occurences(L, Element) :-
 
 % for some reason, aggregate_all is slow
 count_occurrences([], _, 0).
-count_occurrences([X|Rest], X, Count):-  
-  CountPlusOne #= Count + 1,
-  count_occurrences(Rest,X,CountPlusOne).
-count_occurrences([NotX|Rest], X, Count):-
+count_occurrences([X | Rest], X, Count):-  
+  CountPlusOne #= Count - 1,
+  count_occurrences(Rest, X, CountPlusOne).
+count_occurrences([NotX | Rest], X, Count):-
   NotX #\= X,
-  count_occurrences(Rest,X,Count).
+  count_occurrences(Rest, X, Count).
 
