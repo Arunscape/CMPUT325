@@ -164,41 +164,15 @@ reviewer(paul,ai,network).
 
 workLoadAtMost(2).
 
-count_papers(Count) :-
-  aggregate_all(count, paper(_,_,_,_), Count).
-
-papers(L) :-
-  findall(ID, paper(ID, _, _, _), L).
-
-reviewers(L) :-
-  findall(R, reviewer(R, _, _), L).
-
-count_reviewers(Count) :-
-  aggregate_all(count, reviewer(_, _, _), Count).
-
-one_of_subject(S, S1, _, _, _) :-
-  S = S1.
-one_of_subject(S, _, S2, _, _) :-
-  S = S2.
-one_of_subject(S, _, _, S3, _) :-
-  S = S3.
-one_of_subject(S, _, _, _, S4) :-
-  S = S4.
-
 assign(W1, W2) :-
-    papers(PaperIDs),
-    gen_domain(W1, W2, N1, N2),
-    maplist(constrain_paper, PaperIDs, N1, N2),
-    append(N1, N2, N),
-    constrain_all_workloads(N),
-    label(N),
-    maplist(reviewer_to_int, N1, W1),
-    maplist(reviewer_to_int, N2, W2).
-
-constrain_all_workloads(N) :-
-  count_reviewers(NumPapers),
-  numlist(1, NumPapers, Nums),
-  maplist(constrain_max_occurences(N), L).
+  papers(PaperIDs),
+  gen_domain(W1, W2, N1, N2),
+  maplist(constrain_paper, PaperIDs, N1, N2),
+  append(N1, N2, N),
+  constrain_all_workloads(N),
+  label(N),
+  maplist(reviewer_to_int, N1, W1),
+  maplist(reviewer_to_int, N2, W2).
 
 
 gen_domain(W1, W2, N1, N2) :-
@@ -211,22 +185,53 @@ gen_domain(W1, W2, N1, N2) :-
   N1 ins 1..NumReviewers,
   N2 ins 1..NumReviewers.
 
-reviewer_to_int(Int, Name) :-
-    reviewers(L),
-    nth1(Int, L, Name).
-
 constrain_paper(Index, Rev1Num, Rev2Num) :-
-    Rev1Num #\= Rev2Num,
-    paper(Index, Author1, Author2, Subject),
-    reviewer_to_int(Rev1Num, Rev1Name),
-    reviewer_to_int(Rev2Num, Rev2Name),
-    reviewer(Rev1Name, Sub1, Sub2),
-    reviewer(Rev2Name, Sub3, Sub4),
-    Author1 \= Rev1Name, 
-    Author1 \= Rev2Name, 
-    Author2 \= Rev1Name, 
-    Author2 \= Rev2Name,
-    one_of_subject(Subject, Sub1, Sub2, Sub3, Sub4).
+  Rev1Num #\= Rev2Num,
+  paper(Index, Author1, Author2, Subject),
+  reviewer_to_int(Rev1Num, Rev1Name),
+  reviewer_to_int(Rev2Num, Rev2Name),
+  reviewer(Rev1Name, Sub1, Sub2),
+  reviewer(Rev2Name, Sub3, Sub4),
+  Author1 \= Rev1Name, 
+  Author1 \= Rev2Name, 
+  Author2 \= Rev1Name, 
+  Author2 \= Rev2Name,
+  one_of_subject(Subject, Sub1, Sub2, Sub3, Sub4).
+
+constrain_all_workloads(N) :-
+  count_reviewers(NumPapers),
+  numlist(1, NumPapers, Nums),
+  maplist(constrain_max_occurences(N), L).
+
+reviewer_to_int(Int, Name) :-
+  reviewers(L),
+  nth1(Int, L, Name).
+
+count_papers(Count) :-
+  aggregate_all(count, paper(_,_,_,_), Count).
+
+count_reviewers(Count) :-
+  aggregate_all(count, reviewer(_, _, _), Count).
+
+papers(L) :-
+  findall(ID, paper(ID, _, _, _), L).
+
+reviewers(L) :-
+  findall(R, reviewer(R, _, _), L).
+
+one_of_subject(S, S1, _, _, _) :-
+  S = S1.
+one_of_subject(S, _, S2, _, _) :-
+  S = S2.
+one_of_subject(S, _, _, S3, _) :-
+  S = S3.
+one_of_subject(S, _, _, _, S4) :-
+  S = S4.
+
+constrain_max_occurences(L, Element) :-
+  workLoadAtMost(Max),
+  count_occurrences(L, Element, Count),
+  Count #=< Max.
 
 % for some reason, aggregate_all is slow
 count_occurrences([], _, 0).
@@ -237,7 +242,3 @@ count_occurrences([NotX|Rest], X, Count):-
   NotX #\= X,
   count_occurrences(Rest,X,Count).
 
-constrain_max_occurences(L, Element) :-
-  workLoadAtMost(Max),
-  count_occurrences(L, Element, Count),
-  Count #=< Max.
