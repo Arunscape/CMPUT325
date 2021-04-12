@@ -219,13 +219,17 @@ papers(L) :-
 reviewers(L) :-
   findall(R, reviewer(R, _, _), L).
 
-one_of_subject(S, S1, _, _, _) :-
-  S = S1.
-one_of_subject(S, _, S2, _, _) :-
-  S = S2.
-one_of_subject(S, _, _, S3, _) :-
+one_of_subject(S, S1, _, S3, _) :-
+  S = S1,
   S = S3.
-one_of_subject(S, _, _, _, S4) :-
+one_of_subject(S, _, S2, _, S4) :-
+  S = S2,
+  S = S4.
+one_of_subject(S, _, S2, S3, _) :-
+  S = S2,
+  S = S3.
+one_of_subject(S, S1, _, _, S4) :-
+  S = S1,
   S = S4.
 
 constrain_max_occurences(L, Element) :-
