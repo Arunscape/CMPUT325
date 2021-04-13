@@ -167,9 +167,9 @@ workLoadAtMost(2).
 assign(W1, W2) :-
   papers(PaperIDs),
   gen_domain(W1, W2, N1, N2),
-  maplist(constrain_paper, PaperIDs, N1, N2),
   append(N1, N2, N),
-  constrain_all_workloads(N),
+  all_distinct(N),
+  maplist(constrain_paper, PaperIDs, N1, N2),
   label(N),
   maplist(reviewer_to_int, N1, W1),
   maplist(reviewer_to_int, N2, W2).
@@ -178,15 +178,23 @@ assign(W1, W2) :-
 gen_domain(W1, W2, N1, N2) :-
   count_papers(NumPapers),
   count_reviewers(NumReviewers),
+  workLoadAtMost(Max),
   length(W1, NumPapers),
   length(W2, NumPapers),
   length(N1, NumPapers),
   length(N2, NumPapers),
-  N1 ins 1..NumReviewers,
-  N2 ins 1..NumReviewers.
+  R is NumReviewers * Max,
+  Range is R - 1,
+  N1 ins 0..Range,
+  N2 ins 0..Range.
 
 constrain_paper(Index, Rev1Num, Rev2Num) :-
-  Rev1Num #\= Rev2Num,
+  Rev1Num #< Rev2Num,
+  count_reviewers(NumReviewers),
+  Rev1Mod #= Rev1Num mod NumReviewers,
+  Rev2Mod #= Rev2Num mod NumReviewers,
+  Rev1Mod #< Rev2Mod,
+  Rev1Mod #\= Rev2Mod,
   paper(Index, Author1, Author2, Subject),
   reviewer_to_int(Rev1Num, Rev1Name),
   reviewer_to_int(Rev2Num, Rev2Name),
@@ -198,14 +206,11 @@ constrain_paper(Index, Rev1Num, Rev2Num) :-
   Author2 \= Rev2Name,
   one_of_subject(Subject, Sub1, Sub2, Sub3, Sub4).
 
-constrain_all_workloads(N) :-
-  count_reviewers(NumPapers),
-  numlist(1, NumPapers, Nums),
-  maplist(constrain_max_occurences(N), Nums).
-
 reviewer_to_int(Int, Name) :-
   reviewers(L),
-  nth1(Int, L, Name).
+  count_reviewers(NumReviewers),
+  Index #= Int mod NumReviewers,
+  nth0(Index, L, Name).
 
 count_papers(Count) :-
   aggregate_all(count, paper(_,_,_,_), Count).
@@ -231,18 +236,3 @@ one_of_subject(S, _, S2, S3, _) :-
 one_of_subject(S, S1, _, _, S4) :-
   S = S1,
   S = S4.
-
-constrain_max_occurences(L, Element) :-
-  workLoadAtMost(Max),
-  count_occurrences(L, Element, Count),
-  Count #=< Max.
-
-% for some reason, aggregate_all is slow
-count_occurrences([], _, 0).
-count_occurrences([X | Rest], X, Count):-  
-  CountPlusOne #= Count - 1,
-  count_occurrences(Rest, X, CountPlusOne).
-count_occurrences([NotX | Rest], X, Count):-
-  NotX #\= X,
-  count_occurrences(Rest, X, Count).
-
