@@ -17,3 +17,6 @@ goal(T):-
   at(car3,loc4,T),
   at(car4,loc1,T).
 
+% This took 9152 bytes of memory and 0.033s to run on my laptop
+% CPU i7-7700HQ 2.8Ghz
+% RAM 16GB 2400Mhz DDR4
