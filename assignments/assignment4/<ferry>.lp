@@ -1,3 +1,11 @@
+/*
+Name: Arun Woosaree
+Student Number: 1514457
+Course: CMPUT 325
+Section: B1
+Assignment 4
+*/
+
 % Initially, there are cars at various locations, and there is a
 % ferry at some location. The ferry can only transport one car at
 % a time and the goal is to transport all cars to their

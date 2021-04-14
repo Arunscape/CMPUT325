@@ -1,4 +1,13 @@
+/*
+Name: Arun Woosaree
+Student Number: 1514457
+Course: CMPUT 325
+Section: B1
+Assignment 4
+*/
+
 #const steps=15.
+
 
 car(car1;car2;car3;car4;car5).
 
