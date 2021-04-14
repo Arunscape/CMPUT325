@@ -147,6 +147,10 @@ encrypt(W1,W2,W3) :-
    Sum1 + Sum2 #=  Sum3,
    label(Letters).
 
+% This predicate converts a list of numbers to an
+% actual number, assuming base10. We sum up
+% each number, and multiply by 10 based on its
+% position in the list
 :- begin_tests(digits).
 test(digits) :-
   digits_to_number([1,2,3,4,5,6,7,8,9,0], 1234567890).
