@@ -1,10 +1,8 @@
-/*
-Name: Arun Woosaree
-Student Number: 1514457
-Course: CMPUT 325
-Section: B1
-Assignment 4
-*/
+%Name: Arun Woosaree
+%Student Number: 1514457
+%Course: CMPUT 325
+%Section: B1
+%Assignment 4
 
 #const steps=12.
 
