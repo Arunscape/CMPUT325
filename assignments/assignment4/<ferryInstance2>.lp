@@ -23,3 +23,6 @@ goal(T):-
 % This took 10228 bytes of memory and 0.194s to run on my laptop
 % CPU i7-7700HQ 2.8Ghz
 % RAM 16GB 2400Mhz DDR4
+
+% There are 5 locations, and 5 cars, each at a different location.
+% We move each of the cars one location over

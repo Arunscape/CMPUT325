@@ -138,5 +138,8 @@ goal :- time(T), goal(T).
 % 1. ferry cannot be moved to two different locations at the same time
 % 2. it's not possible to board different cars at the same time and same location. 
 
+% I think this code is pretty self explanatory
+% we add constraints that are exactly as described above
+
 :- at(ferry, Loc, T), at(ferry, Loc1, T), Loc != Loc1.
 :- board(Car1, Loc, T), board(Car2, Loc, T), Car1 != Car2.

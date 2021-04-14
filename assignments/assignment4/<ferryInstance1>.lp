@@ -20,3 +20,6 @@ goal(T):-
 % This took 9152 bytes of memory and 0.033s to run on my laptop
 % CPU i7-7700HQ 2.8Ghz
 % RAM 16GB 2400Mhz DDR4
+%
+% There are 4 locations, each car at a different location
+% and we move each car one location over
