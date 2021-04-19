@@ -2,8 +2,194 @@
 * Pre midterm stuff
 
 ** SECD virtual machine
+- https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830027
+- https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830028
+
+
+#+begin_example lisp
+(lambda (x y) (if (eq x y) x (+ 1 y)))
+(LDF
+  ( LD (1.2) LD (1.1) EQ SEL (LD (1.1)) (LD (1.2) LDC 1 ADD)
+  RTN ))
+(LDF (LD (1.2) LD (1.1) EQ SEL (LD (1.1) JOIN) (LD (1.1) ((LD 1.2) LDC 1 + JOIN))
+             RTN) )
+#+end_example
+
+#+begin_example lisp
+(lambda (x y) ((lambda (z) (+ x y z)) 6))
+Note that the body of the outside lambda function is an application ((lambda (z) (+ x y z)) 6)),
+where the operator + is generic, just like the same operator in lisp.
+To decompose the over-all task, you should first show the SECD code for this expression and denote it by, e.g.,e’.
+Then, plug it into the full solution.
+Answer: e’ = (NIL LDC 6 CONS LDF (LD (2.1) LD (1.2) LD (1.1) ADD RTN) AP)
+Then, the full solution is:(LDF e’ || (RTN))
+#+end_example
+
+#+begin_example lisp
+(lambda (x) ((lambda (z) (+ x x z)) 4))
+Note that the body of the outside lambda function is an application((lambda (z) (+ x x z)) 4)).
+To decompose the overall task, you should first show the SECD code for this expression anddenote it by, e.g.,e’.
+Then, plug it into the full solution.
+Answer:(LDF)  (e’ || (RTN)), where e’is
+e = (NIL LDC 4 CONS (LDF (LD (2.1) LD (1.1) LD (1.1) ADD RTN) ) AP
+#+end_example
+** Context based interpreter
+#+begin_example lisp
+((lambda (f) (f 2 3)) (lambda (x y) (* x (+ y 1))))
+
+context when (f 2 3) is evaluated (initial context is CT0)
+{f -> [(lambda (x y) (* x (+ y 1))), CT0]} U CT0
+
+context when (* x (+ y 1)) is evaluated
+{x -> 2, y -> 3} U CT0
+#+end_example
+
+#+begin_example lisp
+eval
+    ((lambda (f x) (cons z (f x x))) (lambda (u v) (cons u v)) 5)
+in CT0
+
+CT0 = {z -> 2}
+
+context when (cons z (f x x)) is evaluated
+A: Let e1 denote(lambda (u v) (cons u v)).
+Then, eval(cons z (f x x))in the context{f→[e1, CT0], x→5}∪CT0
+where[e1, CT0] denotes the corresponding closure. Denote this context by CT1.
+
+context when(f x x) is evaluated
+A: Continuing the above, eval(f x x)in CT1.
+Also, eval z in CT1 (not part of thequestion), which yields 2.
+
+context when(cons u v) is evaluated
+A: Continuing the above, eval f in CT1 gives [e1, CT0]
+and eval(x x)in CT1 gives(5 5)
+Now, apply the function ine1and we have eval(cons u v)in the context{u→5, v→5}∪CT0
+===
+Overall result is
+Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 . 5).
+#+end_example
+
 
 ** Lambda calculus
+#+begin_example
+truth table practice
+Lxy|xNM
+if x is true then N else M
+
+x y | output
+T T | F
+T F | F
+F T | F
+F F | F
+(Lxy|F)
+
+x y | output
+T T | F
+T F | F
+F T | F
+F F | T
+(Lxy|xF(NOT y)
+
+x y | output
+T T | F
+T F | F
+F T | T
+F F | F
+(Lxy|xFy)
+
+
+x y | output
+T T | F
+T F | F
+F T | T
+F F | T
+(Lxy|xFT)
+
+x y | output
+T T | F
+T F | T
+F T | F
+F F | F
+(Lxy|yFx)
+
+x y | output
+T T | F
+T F | T
+F T | F
+F F | T
+(Lxy|yFT)
+
+x y | output
+T T | F
+T F | T
+F T | T
+F F | F
+(Lxy|x(NOT y)y)
+
+x y | output
+T T | F
+T F | T
+F T | T
+F F | T
+(Lxy|y(NOT x)T)
+(*Lxy|x(NOT y)T)
+
+x y | output
+T T | T
+T F | F
+F T | F
+F F | F
+(Lxy|xyF)
+
+x y | output
+T T | T
+T F | F
+F T | F
+F F | T
+(Lxy|xy(NOT y)
+
+x y | output
+T T | T
+T F | F
+F T | T
+F F | F
+(Lxy|y)
+
+x y | output
+T T | T
+T F | F
+F T | T
+F F | T
+(Lxy|xyT)
+
+x y | output
+T T | T
+T F | T
+F T | F
+F F | F
+(Lxy|x)
+
+x y | output
+T T | T
+T F | T
+F T | F
+F F | T
+(Lxy|xT(NOT y))
+
+x y | output
+T T | T
+T F | T
+F T | T
+F F | F
+(Lxy|xTy)
+
+x y | output
+T T | T
+T F | T
+F T | T
+F F | T
+(Lxy|T)
+#+end_example
 
 ** Lisp
 *** Useful functions
@@ -479,6 +665,36 @@ curl -Lo tasks.pl https://raw.githubusercontent.com/triska/clpfd/master/tasks.pl
 #+include: "code_examples/sendmory.pl" src prolog
 #+include: "code_examples/sudoku.pl" src prolog
 #+include: "code_examples/tasks.pl" src prolog
+*** True/False
+- (true ) prolog's backtracking is useful for a CLP solver
+- (false) CLP is more general than logic programming
+- (false) all variable sin a constraint problem have the same domain
+- (true ) a variable domain in CLPFD must be a range of consecutive integers
+- (true ) a constraint problem can be solved with C or Java
+- (true ) current CLP systems are useful for industrial applications
+- (false) a problem with 2 contradictory constraints can still have a solution
+- (false) CLP is designed to replace all previous forms of logic programming
+- (true ) CLP can be 1 million times more efficient than prolog backtracking
+- (false) CLPFD contains one fixed strategy for assigning values to variables
+   
+** Foundations of logic programming
+- Herbrand universe :: The set of all ground terms
+*** True/false
+Let P be a program consisting of Horn clauses,
+let H be its Herbrand universe, and
+let B be the Herbrand base of P.
+Let the minus sign ‘-’ stand for logical negation
+- (false) A Horn clause has at most one negative literal
+- (false) p→ (a ∨ b) is a Horn clause
+- (true ) (a ∨ b) → p is a Horn clause
+- (true ) an atom is a literal
+- (true ) a negated atom is a literal
+- (true ) any subset of B is an interpretation of P
+- (true ) B is a model of P
+- (false) the empty set is always a model of P
+- (true ) -∀x p(x)  is logically equivalent to ∃x -p(x)
+  
+  
 ** Constraint logic programming
 ** Constraint satisfaction problem
 - 3 ingredients
