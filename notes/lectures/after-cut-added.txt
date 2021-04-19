@@ -1,0 +1,106 @@
+% Here, we rewrite the sample programs that we studied earlier by using the cut.
+% Recall that the main issue is: if more than two or more heads of clauses are unifiable with
+% an intended input, backtracking will cause alternative clauses to be invoked. If this is not 
+% intended, then use the cut to cut alternatives to be invoked. 
+
+
+% No need to use cut, as the heads give distinct patterns. In the following,
+% we will not provide such comments, but it is important to also notice
+% the programs for which no cut is needed. 
+
+append([],L,L).
+append([A|L],L1,[A|L2]) :- append(L,L1,L2).
+
+
+% member(A,L): A is in list L
+
+member(A,[A|_]) :- !. 
+member(A,[B|L]) :- member(A,L).
+
+
+%***************************************************************
+% you can use any constant symbol to represent 0 and
+% any function symbol to represent the successor function
+
+plus(0, X, X).
+plus(s(X), Y, s(Z)) :- plus(X,Y,Z).
+
+mult(0, _, 0).
+mult(s(0), X, X) :- !. 
+mult(s(X), Y, N) :- mult(X, Y, N1), plus(Y, N1, N).
+
+fact(0, s(0)).
+fact(s(0), s(0)) :- !.
+fact(s(X), N) :- fact(X, N1), mult(N1, s(X), N).
+
+
+% In practical programming, use
+% builtin predicates for arithmetics.
+
+fact1(0, 1).
+fact1(1, 1) :- !.
+fact1(X, N) :- Z is X - 1, fact1(Z, N1),
+               N is N1 * X.
+
+
+% cartesian product.
+
+cartesian([], _, []).
+cartesian([A|N], L, M) :-
+     pair(A,L,M1),
+     cartesian(N, L, M2),
+     append(M1, M2, M).
+
+pair(_, [], []).
+pair(A, [B|L], [[A,B]|N] ) :- pair(A, L, N).
+
+
+% tests
+
+t6(W) :- cartesian([a,b], [d,e], W).
+
+
+%****************************************************************
+% reverse(X,Y): Y is the reverse of input list X
+
+reverse([], []).
+reverse([A|L1], L2) :- reverse(L1, N), append(N, [A], L2).
+
+
+%***************************************************************
+% Given a (possibly nested) list of numbers L,
+% sum(L,N) will have N bound to the sum of the numbers in L.
+
+sum([],0).
+sum(N,N) :- number(N), !. 
+sum([A|L],S) :- sum(A,S1), sum(L,S2), S is S1 + S2.
+
+
+% test case:
+t(S) :- sum([2,3,[4,5,[6],7],9], S).
+
+
+%****************************************************************
+% flatten(L,L1): flatten a list of atoms (atoms and numbers) L to
+% a flat list L1.
+
+flatten([],[]).
+flatten([A|L],[A|L1]) :-
+     xatom(A), !, flatten(L,L1).
+flatten([A|L],R) :-
+     flatten(A,A1), flatten(L,L1), append(A1,L1,R).
+
+xatom(A) :- atom(A).
+xatom(A) :- number(A).
+
+% tests
+
+f1(I) :- flatten([2,[a],[b,5,[c],d],9], I).
+
+%*************************************************************
+% Finally, for the N-queens program, no cut is needed. In particular,
+% if you want to enumerate all instances of a relation, you rely on
+% backtracking to invoke alternative claues; you don't want to cut
+% any. 
+
+

@@ -1,0 +1,63 @@
+
+
+1.-----------------------------------
+(Lxy | xx(yy)) (Lx | xy) (Lx | x)
+
+Normal order.
+(Lx | xy)(Lx | xy)((Lx | x)(Lx | x))
+(Lx | xy)y((Lx | x)(Lx | x))
+yy((Lx | x)(Lx | x))
+yy(Lx | x)
+
+Applicative order.
+(Lx | xy)(Lx | xy)((Lx | x)(Lx | x))
+(Lx | xy)(Lx | xy)(Lx | x)
+(Lx | xy)y(Lx | x)
+yy(Lx | x)
+
+2.------------------------------------
+
+a)
+x -> y is (OR (NOT x) y)
+OR = (Lxy | xTy)
+NOT = (Lx | xFT)
+OR (NOT x) y = (NOT x)Ty = xFTTy 
+IMP = (Lxy | xFTTy)
+
+b) 
+T = (Lxy | x)  
+F = (Lxy | y)
+IMP TF = ((Lxy | xFTTy) TF) = TFTTF = (TFT)TF = FTF = F 
+IMP FT = ((Lxy | xFTTy) FT) = FFTTT = (FFT)TT = TTT = T 
+
+
+3. --------------------------------------------------------
+(((lambda (x y) (lambda (z) (if (> x y) (+ x z) (+ x y)))) 4 5) 10)
+
+This is an application, ((lambda (x y) (lambda (z) ...)) 4 5) 
+is applied to argument 10.
+
+The function part above itself is an application, (lambda (x y) (lambda (z) ...)) 
+is applied to arguments 4 and 5. 
+
+Recursive calls: 
+
+eval ((lambda (x y) (lambda (z) (if (> x y) (+ x z) (+ x y))) 4 5) in CT0
+     
+     This is an application; eval its function part in CT0 yields a closure, say C,
+     and eval (4 5) in CT0 ==> (4 5). We get the body of the function being applied
+     from C to form the next call: eval the body of the function in the 
+     extended context, where parameters of the function (we get it from C) are bound 
+     to the eval'ed arguments, appended to the context saved in C, which CT0 in this 
+     case. 
+
+eval (lambda (z) (if (> x y) (+ x z) (+ x y))) in {x-> 4, y->5} U CT0
+  
+     This yield a closure, which is used right away to make the next call 
+     (after eval 10 in CT0 ==> 10)
+
+eval (if (> x y) (+ x z) (+ x y)) in {z->10, x-> 4, y->5} U CT0
+
+==> 9
+
+So, the last context is {z->10, x-> 4, y->5} U CT0

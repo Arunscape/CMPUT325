@@ -1,0 +1,97 @@
+% Created 2021-04-18 Sun 15:24
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Arun Woosaree}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Arun Woosaree},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Pre midterm stuff}
+\label{sec:org804909c}
+
+\subsection{SECD virtual machine}
+\label{sec:org6b91de5}
+
+\subsection{Lambda calculus}
+\label{sec:org5abf9dc}
+
+\subsection{Lisp}
+\label{sec:orge8944b3}
+
+\section{Post midterm stuff}
+\label{sec:org172eddf}
+\subsection{Prolog}
+\label{sec:orgf40bf68}
+\subsubsection{Code examples}
+\label{sec:org372e707}
+\begin{verbatim}
+% append(L1,L2,L3): append L1 and L2 to get L3
+append([],L,L).
+append([A|L],L1,[A|L2]) :- append(L,L1,L2).
+
+% member(A,L): A is in list L
+member(A,[A|_]).
+member(A,[B|L]) :- A \== B, member(A,L).
+
+cartesian([], _, []).
+cartesian([A|N], L, M) :-
+     pair(A,L,M1),
+     cartesian(N, L, M2),
+     append(M1, M2, M).
+cartesian([a,b], [d,e], [[a,d], [a,e], [b,d], [b,e]]).
+
+pair(_, [], []).
+pair(A, [B|L], [[A,B]|N] ) :- pair(A, L, N).
+
+% reverse(X,Y): Y is the reverse of input list X
+reverse([], []).
+reverse([A|L1], L2) :- reverse(L1, N), append(N, [A], L2).
+
+% sum(L,N) will have N bound to the sum of the numbers in L.
+sum([],0).
+sum(N,N) :- number(N).
+sum([A|L],S) :- sum(A,S1), sum(L,S2), S is S1 + S2.
+
+% flatten(L,L1): flatten a list of atoms (atoms and numbers) L to a flat list L1.
+flatten([],[]).
+flatten([A|L],[A|L1]) :-
+     xatom(A), flatten(L,L1).
+flatten([A|L],R) :-
+     flatten(A,A1), flatten(L,L1), append(A1,L1,R).
+
+xatom(A) :- atom(A).
+xatom(A) :- number(A).
+\end{verbatim}
+\subsection{Constraint logic programming}
+\label{sec:orgb6ff779}
+\subsection{Constraint satisfaction problem}
+\label{sec:orge6f54ab}
+\subsection{Answer set Programming}
+\label{sec:org0f06330}
+\subsubsection{Another one found in notes todo look for}
+\label{sec:org1bdcefa}
+\subsubsection{Ferry problem}
+\label{sec:orga06bbcc}
+\end{document}

@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-04-19 Mon 13:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Arun Woosaree" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgebe50da">1. Pre midterm stuff</a>
+<ul>
+<li><a href="#orge7b7c23">1.1. SECD virtual machine</a></li>
+<li><a href="#orgb29d74c">1.2. Lambda calculus</a></li>
+<li><a href="#org9ac96a9">1.3. Lisp</a>
+<ul>
+<li><a href="#org6b701e1">1.3.1. Useful functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd01f452">2. Post midterm stuff</a>
+<ul>
+<li><a href="#org7d5000f">2.1. Prolog</a>
+<ul>
+<li><a href="#org8e4dd09">2.1.1. Code examples</a></li>
+</ul>
+</li>
+<li><a href="#orge3ccc63">2.2. Constraint logic programming</a></li>
+<li><a href="#org15a75ea">2.3. Constraint satisfaction problem</a></li>
+<li><a href="#org087d501">2.4. Answer set Programming</a>
+<ul>
+<li><a href="#orgc814b91">2.4.1. Ground vs not ground</a></li>
+<li><a href="#orgc617725">2.4.2. Problems</a></li>
+<li><a href="#org230f7e1">2.4.3. Ferry problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgebe50da" class="outline-2">
+<h2 id="orgebe50da"><span class="section-number-2">1</span> Pre midterm stuff</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge7b7c23" class="outline-3">
+<h3 id="orge7b7c23"><span class="section-number-3">1.1</span> SECD virtual machine</h3>
+</div>
+
+<div id="outline-container-orgb29d74c" class="outline-3">
+<h3 id="orgb29d74c"><span class="section-number-3">1.2</span> Lambda calculus</h3>
+</div>
+
+<div id="outline-container-org9ac96a9" class="outline-3">
+<h3 id="org9ac96a9"><span class="section-number-3">1.3</span> Lisp</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org6b701e1" class="outline-4">
+<h4 id="org6b701e1"><span class="section-number-4">1.3.1</span> Useful functions</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">useful functions</span>
+
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xmember</span> (X Y<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+   ((not Y) nil<span style="color: #5B6268;">)</span>
+   ((equal X (car Y)) t<span style="color: #5B6268;">)</span>
+   (t (xmember X (cdr Y<span style="color: #5B6268;">)))))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xcomplement</span> (S1 S2<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((null S1) nil<span style="color: #5B6268;">)</span>
+    ((xmember (car S1) S2) (xcomplement (cdr S1) S2<span style="color: #5B6268;">))</span>
+    (t (cons (car S1) (xcomplement (cdr S1) S2<span style="color: #5B6268;">)))))</span>
+(<span style="color: #ECBE7B;">assert</span> (equal (xcomplement '(a b c d e) '(a c)) '(b d e<span style="color: #5B6268;">)))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xfilter</span> (test L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((null L) nil<span style="color: #5B6268;">)</span>
+    ((funcall test (car L)) (cons (car L) (xfilter test (cdr L<span style="color: #5B6268;">))))</span>
+    (t (xfilter test (cdr L<span style="color: #5B6268;">)))))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xrotate</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (null L) nil
+      (append (cdr L) (list (car L<span style="color: #5B6268;">)))))</span>
+(<span style="color: #ECBE7B;">assert</span> (equal (xrotate '(<span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span>)) '(<span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #5B6268;">)))</span>
+
+(cdr '(<span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #5B6268;">))</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xrotateAll</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (atom L) L
+      (xrotate (mapcar 'xrotateAll L<span style="color: #5B6268;">))))</span>
+(<span style="color: #ECBE7B;">assert</span> (equal (xrotateAll '(a b (<span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span>) (c d))) '(b (<span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">1</span>) (d c) a<span style="color: #5B6268;">)))</span>
+(<span style="color: #ECBE7B;">assert</span> (equal (xrotateAll '((a b) () (<span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span>) c d)) '(nil (<span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">1</span>) c d (b a<span style="color: #5B6268;">))))</span>
+(<span style="color: #ECBE7B;">assert</span> (equal (xrotateAll '(a b nil (<span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> (<span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span>)))) '(b nil (<span style="color: #da8548; font-weight: bold;">2</span> (<span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">3</span>) <span style="color: #da8548; font-weight: bold;">1</span>) a<span style="color: #5B6268;">)))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it flattens lists with sublists of any depth such that the result is just a list of atoms</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">assumes that NIL will not appear in the list given</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Test cases (the test-case function is in a comment at the end of this file)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 2.1 (flatten '(a (b c) d)) '(a b c d))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 2.2 (flatten '((((a))))) '(a))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 2.3 (flatten '(a (b c) (d ((e)) f))) '(a b c d e f))</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">flatten</span> (X<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((null X) nil<span style="color: #5B6268;">)</span>
+    ((atom (car X)) (cons (car X) (flatten (cdr X<span style="color: #5B6268;">))))</span>
+    (t (append (flatten (car X)) (flatten (cdr X<span style="color: #5B6268;">))))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it removes duplicate items from a list, preserving the order of elements</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">assumes that NIL will not appear in the list given</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 3.1 (remove-duplicate '(a b c a d b)) '(c a d b)) ;abcd is also a valid order</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">remove-duplicate</span> (X<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+   ((not X) nil<span style="color: #5B6268;">)</span>
+   ((xmember (car X) (cdr X)) (remove-duplicates (cdr X<span style="color: #5B6268;">)))</span>
+   (t (cons (car X) (remove-duplicates (cdr X<span style="color: #5B6268;">))))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it mixes the elements of L1 and L2, interweaving them</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">if one list is shorter than the other, append remaining elements to the end</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">mix</span> (L1 L2<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+   ((not L2) L1<span style="color: #5B6268;">)</span>
+   ((not L1) L2<span style="color: #5B6268;">)</span>
+   (t (cons (car L1) (mix L2 (cdr L1<span style="color: #5B6268;">))))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it returns all the subsets of a given set</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">allsubsets</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (null L) (list nil<span style="color: #5B6268;">)</span>
+    (gen-subsets (car L) (allsubsets (cdr L<span style="color: #5B6268;">)))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it generates subsets for a given list</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">I got the algorithm from wikipedia:  https://en.wikipedia.org/wiki/Power_set#Recursive_definition</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">For a non-empty set S (assignment calls it L)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">let e be any element of the set (car L), which we get from allsubsets above</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and T is the relative complement of e</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">then the power set of S is a union of a power set of T and</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">a power set of T whose each element is expanded with e</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">gen-subsets</span> (e Tcomplement<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (not Tcomplement) nil
+    (cons
+     (cons e (car Tcomplement<span style="color: #5B6268;">))</span>
+     (cons (car Tcomplement) (gen-subsets e (cdr Tcomplement<span style="color: #5B6268;">))))))</span>
+
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">QUESTION 6</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Part 1</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">given a list L, which is a list of pairs representing linkage</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and x, the page to start at</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it returns a list of all webpages that are reachable if you start at x, and follow links to other pages</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it finds all the websites that can be reached, then removes duplicate items</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and also x, if it is present (see remove-x)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">see find-links</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Test cases (the test-case function is in a comment at the end of this file)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.11 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada))) '(SHOPIFY AIRCANADA))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.12 (reached 'google '( (google shopify) (shopify amazon) (amazon google) ) ) '(amazon shopify))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.13 (reached 'google '( (google shopify) (shopify amazon) (amazon indigo)  )) '(INDIGO amazon shopify))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.14 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))  '(SHOPIFY delta AIRCANADA))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.14 (reached 'google '( (google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google) ))  '(SHOPIFY delta AIRCANADA))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">;;backwards reached</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.15 (reached 'google '((shopify aircanada) (google shopify))) '(aircanada shopify))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">;; cycle</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.16 (reached 'a '((a b) (b a) (a c))) '(b c))</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">reached</span> (x L<span style="color: #5B6268;">)</span>
+  (remove-duplicate
+   (remove-x x
+             (find-links x L L nil<span style="color: #5B6268;">))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">given x, and a list L, it will remove occurrences of x in L</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it checks each item in the list, and if x is equal to that item, we ignore it</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and recurse on (cdr l)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">otherwise, we include the item, and remove duplicates from the rest of the list</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">remove-x</span> (x L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+   ((null L) nil<span style="color: #5B6268;">)</span>
+   ((eq x (car L)) (remove-x x (cdr L<span style="color: #5B6268;">)))</span>
+   (t (cons (car L) (remove-x x (cdr L<span style="color: #5B6268;">))))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it finds all of the places that can be reached</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(see the description for reached)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">the difference here, is that there can be duplicates,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and the starting point x, can also be included in the result</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">in reached, these are removed from the result returned by this function</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">x is the starting point to search</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">L is the given list of links</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">original is the original list of links. It starts out being the same as L,</span>
+<span style="color: #5B6268;">;;  </span><span style="color: #5B6268;">but because we need to check each pair, we use L to go over each element in the list</span>
+<span style="color: #5B6268;">;;  </span><span style="color: #5B6268;">and when we need the original list, we pass that in.</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">visited is a list to keep track of websites we have visited</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">if we've already visited the site, then we return nil</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">if we've exhausted all elements, we return x in a list,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">if there are still items in L, we recursively build that list</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">so the end result contains all of the websites visited</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(caar L) is the first website in the first element of the list given</span>
+<span style="color: #5B6268;">;;  </span><span style="color: #5B6268;">e.g. (caar '((a b) (c d))) should give a</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(cadar L) is the second website in the first element of the list given</span>
+<span style="color: #5B6268;">;;  </span><span style="color: #5B6268;">e.g. (caar '((a b) (c d))) should give b</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">when recursively building this list, we check if x is equal to (caar L)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">which means that the website x links to somewhere else</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">we get that using (cadar L) and then recursively find out which</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">websites (cadar L) links to since those can also be reached from x</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">we also search the rest of the list, since x could link to other places later</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">in the list</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">find-links</span> (x L original visited<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+   ((null L) (list x)) <span style="color: #5B6268;">; done iteration, ran out of items</span>
+   ((xmember x visited) nil<span style="color: #5B6268;">)</span>
+   ((eq x (caar L)) (append (find-links (cadar L) original original (cons x visited<span style="color: #5B6268;">))</span>
+                            (find-links x (cdr L) original visited<span style="color: #5B6268;">)))</span>
+   (t (find-links x (cdr L) original visited<span style="color: #5B6268;">))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">QUESTION 6</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Part 2</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">given S, which is a list of websites</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">L, which is a list of pairs representing linkage between websites,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">this returns a permutation of S, such that the websites</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">with the most links to it is first in the list</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">if 2 pages are equally important, the order does not matter</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">a site referring to itself does not count</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and a multiple references to a site from another same site only counts once</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">first, we count the references to each site using get-rank (see below)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">then, we sort it using mySort, which sorts based on the number of references counted</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">finally, we get rid of the counts, and return just the final sorted list of</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">elements that were originally in S</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Test cases (the test-case function is in a comment at the end of this file)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.221 (rank '(google shopify aircanada amazon) '((google shopify) (google aircanada) (amazon aircanada))) '(AIRCANADA SHOPIFY GOOGLE AMAZON))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.222 (rank '(google shopify amazon) '((google shopify) (shopify amazon) (amazon google))) '(GOOGLE SHOPIFY AMAZON))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.223 (rank '(google shopify amazon indigo) '((google shopify) (shopify amazon) (amazon indigo))) '(SHOPIFY AMAZON INDIGO GOOGLE))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.224 (rank '(google shopify aircanada amazon delta) '((google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google))) '(AIRCANADA SHOPIFY DELTA GOOGLE AMAZON))</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">rank</span> (S L<span style="color: #5B6268;">)</span>
+  (map-get-cars
+   (mySort
+    (get-rank S L<span style="color: #5B6268;">))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">I can't use mapcar for this assignment, so this just</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">goes over each element, and maps each pair to just the first element</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">example: ((1 2) (3 4) (5 6)) becomes (1 3 5)</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">map-get-cars</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (null L) nil
+    (cons (caar L) (map-get-cars (cdr L<span style="color: #5B6268;">)))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Custom sort function, this function was given to us on eclass</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">mySort</span> (L<span style="color: #5B6268;">)</span>
+  (sort L 'greaterThan<span style="color: #5B6268;">))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Custom sort function, this function was given to us on eclass</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">it sorts such that the item with the greatest second item in the pair comes first</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">I use cdr instead of cadr here because I end up with a list of dotted pairs, so</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">cdr gets me an atom, which is the second item in the pair</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">greaterThan</span> (L1 L2<span style="color: #5B6268;">)</span>
+  (&gt; (cdr L1) (cdr L2<span style="color: #5B6268;">)))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">given S, which is a list of websites</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">L, which is a list of pairs representing linkage between websites,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">this returns a list of pairs, where the first item in the pair comes from list S,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and the second item is how many unique links there are to that website</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">for each element in S, we count how many references there are to that element (see count-references)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">we then take that element and map it to a pair with the first element being itself, and the second</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">element being the result of count-references</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Test cases (the test-case function is in a comment at the end of this file)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.21 (test-rank '(google shopify aircanada amazon) '((google shopify) (google aircanada) (amazon aircanada))) '((AIRCANADA 2) (SHOPIFY 1) (GOOGLE 0) (AMAZON 0)))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.22 (test-rank '(google shopify amazon) '((google shopify) (shopify amazon) (amazon google))) '((GOOGLE 1) (SHOPIFY 1) (AMAZON 1)))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.23 (test-rank '(google shopify amazon indigo) '((google shopify) (shopify amazon) (amazon indigo))) '((SHOPIFY 1) (AMAZON 1) (INDIGO 1) (GOOGLE 0)))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.24 (test-rank '(google shopify aircanada amazon delta) '((google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (google google))) '((AIRCANADA 2) (SHOPIFY 1) (DELTA 1) (GOOGLE 0) (AMAZON 0)))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">;; multiple references don't count and references to self don't count</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(test-case 6.25 (test-rank '(google shopify aircanada amazon delta) '((google shopify) (google aircanada) (amazon aircanada) (aircanada delta) (aircanada aircanada) (aircanada delta) (google google))) '((AIRCANADA 2) (SHOPIFY 1) (DELTA 1) (GOOGLE 0) (AMAZON 0)))</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">this just makes sure that my test cases match the result that i'm expecting it to be equal to</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">since get-rank returns a list of dotted pairs instead of a list of pairs</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(defun test-rank (S L)</span>
+<span style="color: #5B6268;">;;   </span><span style="color: #5B6268;">(mapcar (lambda (x) (list (car x) (cdr x)))</span>
+<span style="color: #5B6268;">;;           </span><span style="color: #5B6268;">(mySort (get-rank S L))))</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">get-rank</span> (S L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (null S) nil
+    (cons
+     (cons (car S) (count-references (car S) L nil<span style="color: #5B6268;">))</span>
+     (get-rank (cdr S) L<span style="color: #5B6268;">))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">What does this function do?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">given x, and a list of pairs L,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">this counts how many references there are to x in L</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">How does the function work?</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">sources keeps track of the sources which have linked to x</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">that way, we can make sure that we don't add duplicates</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">when we're done iterating through the list L, we return the length of sources</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">else, if x is equal to the second element in the current pair (cadar L), we add</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">the first element (caar L) to the list of sources</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">but first, we need to make sure that it is not already in the list of sources</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">and also that it is not a link to itself</span>
+<span style="color: #5B6268;">;;</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">if those conditions are not satisfied, then we search through the rest of L,</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">until it is exhausted</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">count-references</span> (x L sources<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+   ((null L) (len sources<span style="color: #5B6268;">))</span>
+   ((and
+     (equal x (cadar L<span style="color: #5B6268;">))</span>
+     (not (xmember (caar L) sources<span style="color: #5B6268;">))</span>
+     (not (eq x (caar L<span style="color: #5B6268;">))))</span>
+    (count-references x (cdr L) (cons (caar L) sources<span style="color: #5B6268;">)))</span>
+   (t (count-references x (cdr L) sources<span style="color: #5B6268;">))))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">should be self explanatory, but in case it's not:</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">this gives the length of a list by going over each element in it and adding one</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">when the list is empty, we return 0 and add the rest of the ones together</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">len</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (null L) <span style="color: #da8548; font-weight: bold;">0</span>
+      (+ <span style="color: #da8548; font-weight: bold;">1</span> (len (cdr L<span style="color: #5B6268;">)))))</span>
+
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">TEST CASE HELPER FUNCTION</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">this is commented out because format is not in the list of allowed functions</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">but I used it to run my test cases defined above</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">(defun test-case (ID Test Result)</span>
+<span style="color: #5B6268;">;;   </span><span style="color: #5B6268;">(if (equal Test Result)</span>
+<span style="color: #5B6268;">;;       </span><span style="color: #5B6268;">(format t "Test ~S OK~%" ID)</span>
+<span style="color: #5B6268;">;;       </span><span style="color: #5B6268;">(format t "FAIL: Test ~S expected ~S got ~S~%" ID Result Test)))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">submit these</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">do later</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xcomplement</span> (S1 S2<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((null S1) nil<span style="color: #5B6268;">)</span>
+    ((xmember (car S1) S2) (xcomplement (cdr S1) S2<span style="color: #5B6268;">))</span>
+    (t (cons (car S1) (xcomplement (cdr S1) S2<span style="color: #5B6268;">)))))</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">from assignment 1</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">xmember</span> (X Y<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((not Y) nil<span style="color: #5B6268;">)</span>
+    ((equal X (car Y)) t<span style="color: #5B6268;">)</span>
+    (t (xmember X (cdr Y<span style="color: #5B6268;">)))))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">subset0</span> (S1 S2<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">let</span> ((c (xcomplement S1 S2<span style="color: #5B6268;">)))</span>
+    (<span style="color: #51afef;">if</span> (null c) T nil<span style="color: #5B6268;">)))</span>
+
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">can be nested</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">from assignment 1</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">flatten</span> (X<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((null X) nil<span style="color: #5B6268;">)</span>
+    ((atom (car X)) (cons (car X) (flatten (cdr X<span style="color: #5B6268;">))))</span>
+    (t (append (flatten (car X)) (flatten (cdr X<span style="color: #5B6268;">))))))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">min0</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">let</span> ((flat (flatten L))) (reduce (<span style="color: #51afef;">lambda</span> (x y) (<span style="color: #51afef;">if</span> (&lt; x y) x y)) flat<span style="color: #5B6268;">)))</span>
+(min0 '(<span style="color: #da8548; font-weight: bold;">5</span> (<span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">7</span> (<span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">6</span><span style="color: #5B6268;">))))</span>
+
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">todo reduce</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">exam</span> (L<span style="color: #5B6268;">)</span>
+  (reduce (<span style="color: #51afef;">lambda</span> (x y) (+ x y<span style="color: #5B6268;">))</span>
+          (mapcar
+           (<span style="color: #51afef;">lambda</span> (x) (* (+ <span style="color: #da8548; font-weight: bold;">2</span> (car x)) (cdr x))) L<span style="color: #5B6268;">)))</span>
+(exam '((<span style="color: #da8548; font-weight: bold;">2</span> . <span style="color: #da8548; font-weight: bold;">5</span>) (<span style="color: #da8548; font-weight: bold;">4</span> . <span style="color: #da8548; font-weight: bold;">3</span>) (<span style="color: #da8548; font-weight: bold;">5</span> . <span style="color: #da8548; font-weight: bold;">8</span><span style="color: #5B6268;">)))</span>
+
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">exchange0</span> (L<span style="color: #5B6268;">)</span>
+  (mapcar (<span style="color: #51afef;">lambda</span> (x) (cons (cdr x) (car x))) L<span style="color: #5B6268;">))</span>
+(exchange0 '((a . b) (c . d) (e . f<span style="color: #5B6268;">)))</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">rethink this one</span>
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">swapAll</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">if</span> (and (atom (car L)) (atom (cdr L<span style="color: #5B6268;">)))</span>
+      (cons (cdr L) (car L<span style="color: #5B6268;">))</span>
+      (mapcar (<span style="color: #51afef;">lambda</span> (x<span style="color: #5B6268;">)</span>
+                (<span style="color: #51afef;">cond</span>
+                  ((and (atom (car x)) (atom (cdr x))) (cons (cdr x) (car x<span style="color: #5B6268;">)))</span>
+                  ((and (atom (car x)) (not (atom (cdr x)))) (cons (swapAll (cdr x)) (car x<span style="color: #5B6268;">)))</span>
+                  ((and (not (atom (car x))) (atom (cdr x))) (cons (cdr x) (swapAll (car x<span style="color: #5B6268;">))))</span>
+                  (t (cons (swapAll (cdr x))(swapAll (car x)))))) L<span style="color: #5B6268;">)))</span>
+
+(swapAll '(((a . b) . (c . d)) (e . f<span style="color: #5B6268;">)))</span>
+(swapAll '(((a . b) . c) (e . f<span style="color: #5B6268;">)))</span>
+
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">is-simple-pair</span> (x<span style="color: #5B6268;">)</span>
+  (and (atom (car x)) (atom (cdr x<span style="color: #5B6268;">))))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">swapAll</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((is-simple-pair L) (cons (cdr L) (car L<span style="color: #5B6268;">)))</span>
+    (t (cons (<span style="color: #51afef;">if</span> (atom (cdr L<span style="color: #5B6268;">))</span>
+                 (cdr L<span style="color: #5B6268;">)</span>
+                 (swapAll (cdr L<span style="color: #5B6268;">)))</span>
+             (<span style="color: #51afef;">if</span> (atom (car L<span style="color: #5B6268;">))</span>
+                 (car L<span style="color: #5B6268;">)</span>
+                 (swapAll (car L<span style="color: #5B6268;">)))))))</span>
+
+(<span style="color: #51afef;">defun</span> <span style="color: #c678dd;">swap</span> (L<span style="color: #5B6268;">)</span>
+  (<span style="color: #51afef;">cond</span>
+    ((atom L) L<span style="color: #5B6268;">)</span>
+    (t (cons (<span style="color: #51afef;">if</span> (atom (cdr L)) (cdr L) (swap (cdr L))) (<span style="color: #51afef;">if</span> (atom (car L)) (car L) (swap (car L<span style="color: #5B6268;">)))))))</span>
+(swap '(((a . b) . (c . d)) (e . f<span style="color: #5B6268;">)))</span>
+(swap '(((a . b) . c) (e . f<span style="color: #5B6268;">)))</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd01f452" class="outline-2">
+<h2 id="orgd01f452"><span class="section-number-2">2</span> Post midterm stuff</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org7d5000f" class="outline-3">
+<h3 id="org7d5000f"><span class="section-number-3">2.1</span> Prolog</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org8e4dd09" class="outline-4">
+<h4 id="org8e4dd09"><span class="section-number-4">2.1.1</span> Code examples</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">% </span><span style="color: #5B6268;">append(L1,L2,L3): append L1 and L2 to get L3</span>
+<span style="color: #c678dd;">append</span>(<span style="color: #51afef;">[]</span>,<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">L</span>).
+<span style="color: #c678dd;">append</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,<span style="color: #dcaeea;">L1</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L2</span><span style="color: #51afef;">]</span>) :- append(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">L1</span>,<span style="color: #dcaeea;">L2</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">member(A,L): A is in list L</span>
+<span style="color: #c678dd;">member</span>(<span style="color: #dcaeea;">A</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>).
+<span style="color: #c678dd;">member</span>(<span style="color: #dcaeea;">A</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">B</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>) :- <span style="color: #dcaeea;">A</span> \== <span style="color: #dcaeea;">B</span>, member(<span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">L</span>).
+
+<span style="color: #c678dd;">cartesian</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">cartesian</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">N</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">M</span>) :-
+     pair(<span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">M1</span>),
+     cartesian(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">M2</span>),
+     append(<span style="color: #dcaeea;">M1</span>, <span style="color: #dcaeea;">M2</span>, <span style="color: #dcaeea;">M</span>).
+<span style="color: #c678dd;">cartesian</span>(<span style="color: #51afef;">[</span>a,b<span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>d,e<span style="color: #51afef;">]</span>, <span style="color: #51afef;">[[</span>a,d<span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>a,e<span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>b,d<span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>b,e<span style="color: #51afef;">]]</span>).
+
+<span style="color: #c678dd;">pair</span>(<span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">pair</span>(<span style="color: #dcaeea;">A</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">B</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">B</span><span style="color: #51afef;">]|</span><span style="color: #dcaeea;">N</span><span style="color: #51afef;">]</span> ) :- pair(<span style="color: #dcaeea;">A</span>, <span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">N</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">reverse(X,Y): Y is the reverse of input list X</span>
+<span style="color: #c678dd;">reverse</span>(<span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">reverse</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L1</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">L2</span>) :- reverse(<span style="color: #dcaeea;">L1</span>, <span style="color: #dcaeea;">N</span>), append(<span style="color: #dcaeea;">N</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">L2</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">sum(L,N) will have N bound to the sum of the numbers in L.</span>
+<span style="color: #c678dd;">sum</span>(<span style="color: #51afef;">[]</span>,<span style="color: #da8548; font-weight: bold;">0</span>).
+<span style="color: #c678dd;">sum</span>(<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">N</span>) :- number(<span style="color: #dcaeea;">N</span>), <span style="color: #51afef;">!</span>. 
+<span style="color: #c678dd;">sum</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,<span style="color: #dcaeea;">S</span>) :- sum(<span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">S1</span>), sum(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">S2</span>), <span style="color: #dcaeea;">S</span> is <span style="color: #dcaeea;">S1</span> + <span style="color: #dcaeea;">S2</span>.
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">flatten(L,L1): flatten a list of atoms (atoms and numbers) L to a flat list L1.</span>
+<span style="color: #c678dd;">flatten</span>(<span style="color: #51afef;">[]</span>,<span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">flatten</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L1</span><span style="color: #51afef;">]</span>) :-
+     xatom(<span style="color: #dcaeea;">A</span>), <span style="color: #51afef;">!</span>, flatten(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">L1</span>).
+<span style="color: #c678dd;">flatten</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,<span style="color: #dcaeea;">R</span>) :-
+     flatten(<span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">A1</span>), flatten(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">L1</span>), append(<span style="color: #dcaeea;">A1</span>,<span style="color: #dcaeea;">L1</span>,<span style="color: #dcaeea;">R</span>).
+
+<span style="color: #c678dd;">xatom</span>(<span style="color: #dcaeea;">A</span>) :- atom(<span style="color: #dcaeea;">A</span>).
+<span style="color: #c678dd;">xatom</span>(<span style="color: #dcaeea;">A</span>) :- number(<span style="color: #dcaeea;">A</span>).
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">cut</span>
+<span style="color: #c678dd;">x</span> :- p, <span style="color: #51afef;">!</span>, q.
+<span style="color: #c678dd;">x</span> :-r.
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">same as if p then q else r</span>
+
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">The four square problem:</span>
+<span style="color: #5B6268;">Given a natural number N, Sol is bound to a list of 4 or fewer numbers</span>
+<span style="color: #5B6268;">so that the sum of their squares equals N</span>
+<span style="color: #5B6268;">*/</span>
+
+<span style="color: #c678dd;">f_sq</span>(<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">Sol</span>) :-
+   length(<span style="color: #dcaeea;">L</span>,<span style="color: #da8548; font-weight: bold;">4</span>),
+   <span style="color: #dcaeea;">L</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #dcaeea;">N</span>,
+   constraint0(<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">L</span>),
+   label(<span style="color: #dcaeea;">L</span>),
+   removeZero(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">Sol</span>).
+
+<span style="color: #c678dd;">constraint0</span>(<span style="color: #dcaeea;">N</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">S1</span>,<span style="color: #dcaeea;">S2</span>,<span style="color: #dcaeea;">S3</span>,<span style="color: #dcaeea;">S4</span><span style="color: #51afef;">]</span>) :-
+   <span style="color: #dcaeea;">N</span> #= <span style="color: #dcaeea;">S1</span>*<span style="color: #dcaeea;">S1</span> + <span style="color: #dcaeea;">S2</span>*<span style="color: #dcaeea;">S2</span> + <span style="color: #dcaeea;">S3</span>*<span style="color: #dcaeea;">S3</span> + <span style="color: #dcaeea;">S4</span>*<span style="color: #dcaeea;">S4</span>,
+   <span style="color: #dcaeea;">S1</span> #=&lt; <span style="color: #dcaeea;">S2</span>, <span style="color: #dcaeea;">S2</span> #=&lt; <span style="color: #dcaeea;">S3</span>, <span style="color: #dcaeea;">S3</span> #=&lt; <span style="color: #dcaeea;">S4</span>.
+     <span style="color: #5B6268;">% </span><span style="color: #5B6268;">this removes some redundant solutions</span>
+
+<span style="color: #c678dd;">removeZero</span>(<span style="color: #51afef;">[]</span>,<span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">removeZero</span>(<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">0</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,<span style="color: #dcaeea;">L1</span>) :-
+   <span style="color: #51afef;">!</span>,
+   removeZero(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">L1</span>).
+<span style="color: #c678dd;">removeZero</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">L1</span><span style="color: #51afef;">]</span>) :-
+   removeZero(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">L1</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">find all solutions.</span>
+<span style="color: #c678dd;">fsq_all</span>(<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">L</span>) :- findall(<span style="color: #dcaeea;">Sol</span>,f_sq(<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">Sol</span>),<span style="color: #dcaeea;">L</span>).
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Closed Knight's Tour.</span>
+
+<span style="color: #5B6268;">   Written by Markus Triska (triska@metalevel.at) Nov. 2nd 2009</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">n_tour</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Ts</span>) :-
+        length(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">N</span>),
+        maplist(same_length(<span style="color: #dcaeea;">Ts</span>), <span style="color: #dcaeea;">Ts</span>),
+        append(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">Vs</span>),
+        successors(<span style="color: #dcaeea;">Vs</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #da8548; font-weight: bold;">1</span>),
+        circuit(<span style="color: #dcaeea;">Vs</span>).
+
+<span style="color: #c678dd;">successors</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>).
+<span style="color: #c678dd;">successors</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">V</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Vs</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">K0</span>) :-
+        findall(<span style="color: #dcaeea;">Num</span>, n_k_next(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">K0</span>, <span style="color: #dcaeea;">Num</span>), <span style="color: #51afef;">[</span><span style="color: #dcaeea;">Next</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Nexts</span><span style="color: #51afef;">]</span>),
+        foldl(num_to_dom, <span style="color: #dcaeea;">Nexts</span>, <span style="color: #dcaeea;">Next</span>, <span style="color: #dcaeea;">Dom</span>),
+        <span style="color: #dcaeea;">V</span> in <span style="color: #dcaeea;">Dom</span>,
+        <span style="color: #dcaeea;">K1</span> #= <span style="color: #dcaeea;">K0</span> + <span style="color: #da8548; font-weight: bold;">1</span>,
+        successors(<span style="color: #dcaeea;">Vs</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">K1</span>).
+
+<span style="color: #c678dd;">num_to_dom</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">D0</span>, <span style="color: #dcaeea;">D0</span>\/<span style="color: #dcaeea;">N</span>).
+
+<span style="color: #c678dd;">n_x_y_k</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">Y</span>, <span style="color: #dcaeea;">K</span>) :- <span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span>,<span style="color: #dcaeea;">Y</span><span style="color: #51afef;">]</span> ins <span style="color: #da8548; font-weight: bold;">1</span>..<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">K</span> #= <span style="color: #dcaeea;">N</span>*(<span style="color: #dcaeea;">Y</span>-<span style="color: #da8548; font-weight: bold;">1</span>) + <span style="color: #dcaeea;">X</span>.
+
+<span style="color: #c678dd;">n_k_next</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">K</span>, <span style="color: #dcaeea;">Next</span>) :-
+        n_x_y_k(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">X0</span>, <span style="color: #dcaeea;">Y0</span>, <span style="color: #dcaeea;">K</span>),
+        <span style="color: #51afef;">[</span><span style="color: #dcaeea;">DX</span>,<span style="color: #dcaeea;">DY</span><span style="color: #51afef;">]</span> ins -<span style="color: #da8548; font-weight: bold;">2</span> \/ -<span style="color: #da8548; font-weight: bold;">1</span> \/ <span style="color: #da8548; font-weight: bold;">1</span> \/ <span style="color: #da8548; font-weight: bold;">2</span>,
+        abs(<span style="color: #dcaeea;">DX</span>) + abs(<span style="color: #dcaeea;">DY</span>) #= <span style="color: #da8548; font-weight: bold;">3</span>,
+        <span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span>,<span style="color: #dcaeea;">Y</span><span style="color: #51afef;">]</span> ins <span style="color: #da8548; font-weight: bold;">1</span>..<span style="color: #dcaeea;">N</span>,
+        <span style="color: #dcaeea;">X</span> #= <span style="color: #dcaeea;">X0</span> + <span style="color: #dcaeea;">DX</span>,
+        <span style="color: #dcaeea;">Y</span> #= <span style="color: #dcaeea;">Y0</span> + <span style="color: #dcaeea;">DY</span>,
+        n_x_y_k(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">Y</span>, <span style="color: #dcaeea;">Next</span>),
+        label(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">DX</span>,<span style="color: #dcaeea;">DY</span><span style="color: #51afef;">]</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Text display.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+<span style="color: #c678dd;">print_tour</span>(<span style="color: #dcaeea;">Ts</span>) :- print_tour(<span style="color: #dcaeea;">Ts</span>, <span style="color: #da8548; font-weight: bold;">3</span>).
+
+<span style="color: #c678dd;">print_tour</span>(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">I</span>) :-
+        tour_enumeration(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">Es</span>),
+        phrase(format_string(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">I</span>, <span style="color: #dcaeea;">I</span>), <span style="color: #dcaeea;">Fs</span>),
+        maplist(format(<span style="color: #dcaeea;">Fs</span>), <span style="color: #dcaeea;">Es</span>).
+
+<span style="color: #c678dd;">format_</span>(<span style="color: #dcaeea;">Fs</span>, <span style="color: #dcaeea;">Args</span>, <span style="color: #dcaeea;">Xs0</span>, <span style="color: #dcaeea;">Xs</span>) :- format(codes(<span style="color: #dcaeea;">Xs0</span>,<span style="color: #dcaeea;">Xs</span>), <span style="color: #dcaeea;">Fs</span>, <span style="color: #dcaeea;">Args</span>).
+
+<span style="color: #c678dd;">format_string</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>) --&gt; <span style="color: #98be65;">"\n"</span>.
+<span style="color: #c678dd;">format_string</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Rest</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">N0</span>, <span style="color: #dcaeea;">I</span>) --&gt; <span style="color: #98be65;">"~t~w~"</span>, call(format_(<span style="color: #98be65;">"~w|"</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">N0</span><span style="color: #51afef;">]</span>)),
+        <span style="color: #51afef;">{</span> <span style="color: #dcaeea;">N1</span> #= <span style="color: #dcaeea;">N0</span> + <span style="color: #dcaeea;">I</span> <span style="color: #51afef;">}</span>,
+        format_string(<span style="color: #dcaeea;">Rest</span>, <span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">I</span>).
+
+<span style="color: #c678dd;">tour_enumeration</span>(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">Es</span>) :-
+        same_length(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">Es</span>),
+        maplist(same_length(<span style="color: #dcaeea;">Ts</span>), <span style="color: #dcaeea;">Es</span>),
+        append(<span style="color: #dcaeea;">Ts</span>, <span style="color: #dcaeea;">Vs</span>),
+        append(<span style="color: #dcaeea;">Es</span>, <span style="color: #dcaeea;">Ls</span>),
+        foldl(vs_enumeration(<span style="color: #dcaeea;">Vs</span>, <span style="color: #dcaeea;">Ls</span>), <span style="color: #dcaeea;">Vs</span>, <span style="color: #da8548; font-weight: bold;">1</span>-<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #dcaeea;">_</span>).
+
+<span style="color: #c678dd;">vs_enumeration</span>(<span style="color: #dcaeea;">Vs</span>, <span style="color: #dcaeea;">Ls</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">V0</span>-<span style="color: #dcaeea;">E0</span>, <span style="color: #dcaeea;">V</span>-<span style="color: #dcaeea;">E</span>) :-
+        <span style="color: #dcaeea;">E</span> #= <span style="color: #dcaeea;">E0</span> + <span style="color: #da8548; font-weight: bold;">1</span>,
+        nth1(<span style="color: #dcaeea;">V0</span>, <span style="color: #dcaeea;">Ls</span>, <span style="color: #dcaeea;">E0</span>),
+        nth1(<span style="color: #dcaeea;">V0</span>, <span style="color: #dcaeea;">Vs</span>, <span style="color: #dcaeea;">V</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Examples:</span>
+
+<span style="color: #5B6268;">   ?- n_tour(N, Ts), maplist(label, Ts).</span>
+<span style="color: #5B6268;">   %@ N = 0,</span>
+<span style="color: #5B6268;">   %@ Ts = [] ;</span>
+<span style="color: #5B6268;">   %@ N = 6,</span>
+<span style="color: #5B6268;">   %@ Ts = [[9, 10, 7, 8, 16, 17], ..., , [27, 28, 20|...]] .</span>
+
+<span style="color: #5B6268;">   ?- n_tour(6, Ts), maplist(label, Ts), print_tour(Ts).</span>
+<span style="color: #5B6268;">   %@   1 30 25  6  3 32</span>
+<span style="color: #5B6268;">   %@  26  7  2 31 24  5</span>
+<span style="color: #5B6268;">   %@  29 36 27  4 33 16</span>
+<span style="color: #5B6268;">   %@   8 19 34 15 12 23</span>
+<span style="color: #5B6268;">   %@  35 28 21 10 17 14</span>
+<span style="color: #5B6268;">   %@  20  9 18 13 22 11</span>
+
+<span style="color: #5B6268;">   ?- time((n_tour(8, Ts), append(Ts, Vs), labeling([ff], Vs))).</span>
+<span style="color: #5B6268;">   %@ % 4,191,339 inferences, 0.790 CPU in 0.807 seconds (98% CPU, 5305492 Lips)</span>
+
+<span style="color: #5B6268;">   ?- n_tour(8, Ts), append(Ts, Vs), labeling([ff], Vs), print_tour(Ts).</span>
+<span style="color: #5B6268;">   %@   1  4 63 28 31 26 19 22</span>
+<span style="color: #5B6268;">   %@  62 29  2  5 20 23 32 25</span>
+<span style="color: #5B6268;">   %@   3 64 39 30 27 56 21 18</span>
+<span style="color: #5B6268;">   %@  38 61  6 53 40 33 24 55</span>
+<span style="color: #5B6268;">   %@   7 52 41 34 57 54 17 46</span>
+<span style="color: #5B6268;">   %@  60 37  8 49 44 47 14 11</span>
+<span style="color: #5B6268;">   %@  51 42 35 58  9 12 45 16</span>
+<span style="color: #5B6268;">   %@  36 59 50 43 48 15 10 13</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Magic Hexagon of order 3, solved with CLP(FD) constraints</span>
+<span style="color: #5B6268;">   Written 2006 by Markus Triska triska@metalevel.at</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+
+<span style="color: #5B6268;">   Place the integers 1,...,19 in the following grid so that the sum</span>
+<span style="color: #5B6268;">   of all numbers in a straight line (there are lines of length 3, 4</span>
+<span style="color: #5B6268;">   and 5) is equal to 38:</span>
+
+<span style="color: #5B6268;">            A   B   C</span>
+<span style="color: #5B6268;">          D   E   F   G</span>
+<span style="color: #5B6268;">        H   I   J   K   L</span>
+<span style="color: #5B6268;">          M   N   O   P</span>
+<span style="color: #5B6268;">            Q   R   S</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">sum38</span>(<span style="color: #dcaeea;">Vs</span>) :- sum(<span style="color: #dcaeea;">Vs</span>, #=, <span style="color: #da8548; font-weight: bold;">38</span>).
+
+<span style="color: #c678dd;">magic_hexagon</span>(<span style="color: #dcaeea;">Vs</span>) :-
+        <span style="color: #dcaeea;">Vs</span> = <span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">B</span>,<span style="color: #dcaeea;">C</span>,<span style="color: #dcaeea;">D</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">F</span>,<span style="color: #dcaeea;">G</span>,<span style="color: #dcaeea;">H</span>,<span style="color: #dcaeea;">I</span>,<span style="color: #dcaeea;">J</span>,<span style="color: #dcaeea;">K</span>,<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">P</span>,<span style="color: #dcaeea;">Q</span>,<span style="color: #dcaeea;">R</span>,<span style="color: #dcaeea;">S</span><span style="color: #51afef;">]</span>,
+        <span style="color: #dcaeea;">Vs</span> ins <span style="color: #da8548; font-weight: bold;">1</span>..<span style="color: #da8548; font-weight: bold;">19</span>,
+        all_different(<span style="color: #dcaeea;">Vs</span>),
+        maplist(sum38, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">B</span>,<span style="color: #dcaeea;">C</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">D</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">F</span>,<span style="color: #dcaeea;">G</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">H</span>,<span style="color: #dcaeea;">I</span>,<span style="color: #dcaeea;">J</span>,<span style="color: #dcaeea;">K</span>,<span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">P</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">Q</span>,<span style="color: #dcaeea;">R</span>,<span style="color: #dcaeea;">S</span><span style="color: #51afef;">]</span>,
+                        <span style="color: #51afef;">[</span><span style="color: #dcaeea;">H</span>,<span style="color: #dcaeea;">D</span>,<span style="color: #dcaeea;">A</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">I</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">B</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">Q</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">J</span>,<span style="color: #dcaeea;">F</span>,<span style="color: #dcaeea;">C</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">R</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">K</span>,<span style="color: #dcaeea;">G</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">S</span>,<span style="color: #dcaeea;">P</span>,<span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>,
+                        <span style="color: #51afef;">[</span><span style="color: #dcaeea;">C</span>,<span style="color: #dcaeea;">G</span>,<span style="color: #dcaeea;">L</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">B</span>,<span style="color: #dcaeea;">F</span>,<span style="color: #dcaeea;">K</span>,<span style="color: #dcaeea;">P</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">J</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">S</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">D</span>,<span style="color: #dcaeea;">I</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">H</span>,<span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">Q</span><span style="color: #51afef;">]]</span>).
+
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">?- magic_hexagon(Vs), labeling([ff], Vs).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">@ Vs = [3, 17, 18, 19, 7, 1, 11, 16, 2, 5, 6, 9, 12, 4, 8, 14, 10, 13, 15] ;</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">@ Vs = [3, 19, 16, 17, 7, 2, 12, 18, 1, 5, 4, 10, 11, 6, 8, 13, 9, 14, 15] .</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">@ etc.</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Magic Square CLP(FD) formulation.</span>
+<span style="color: #5B6268;">   Written 2015 by Markus Triska (triska@metalevel.at)</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">magic_square</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Square</span>) :-
+        length(<span style="color: #dcaeea;">Square</span>, <span style="color: #dcaeea;">N</span>),
+        maplist(same_length(<span style="color: #dcaeea;">Square</span>), <span style="color: #dcaeea;">Square</span>),
+        append(<span style="color: #dcaeea;">Square</span>, <span style="color: #dcaeea;">Vs</span>),
+        <span style="color: #dcaeea;">Sq</span> #= <span style="color: #dcaeea;">N</span>^<span style="color: #da8548; font-weight: bold;">2</span>,
+        <span style="color: #dcaeea;">Vs</span> ins <span style="color: #da8548; font-weight: bold;">1</span>..<span style="color: #dcaeea;">Sq</span>,
+        all_different(<span style="color: #dcaeea;">Vs</span>),
+        <span style="color: #dcaeea;">Sum</span> #= <span style="color: #dcaeea;">N</span>*(<span style="color: #dcaeea;">Sq</span> + <span style="color: #da8548; font-weight: bold;">1</span>) // <span style="color: #da8548; font-weight: bold;">2</span>,
+        maplist(sum_eq(<span style="color: #dcaeea;">Sum</span>), <span style="color: #dcaeea;">Square</span>),
+        transpose(<span style="color: #dcaeea;">Square</span>, <span style="color: #dcaeea;">TSquare</span>),
+        maplist(sum_eq(<span style="color: #dcaeea;">Sum</span>), <span style="color: #dcaeea;">TSquare</span>),
+        square_diagonal(<span style="color: #dcaeea;">Square</span>, <span style="color: #dcaeea;">Ds</span>),
+        sum_eq(<span style="color: #dcaeea;">Sum</span>, <span style="color: #dcaeea;">Ds</span>),
+        reverse(<span style="color: #dcaeea;">Square</span>, <span style="color: #dcaeea;">RSquare</span>),
+        square_diagonal(<span style="color: #dcaeea;">RSquare</span>, <span style="color: #dcaeea;">RDs</span>),
+        sum_eq(<span style="color: #dcaeea;">Sum</span>, <span style="color: #dcaeea;">RDs</span>).
+
+<span style="color: #c678dd;">sum_eq</span>(<span style="color: #dcaeea;">Sum</span>, <span style="color: #dcaeea;">List</span>) :- sum(<span style="color: #dcaeea;">List</span>, #=, <span style="color: #dcaeea;">Sum</span>).
+
+<span style="color: #c678dd;">square_diagonal</span>(<span style="color: #dcaeea;">Rows</span>, <span style="color: #dcaeea;">Ds</span>) :- foldl(diagonal, <span style="color: #dcaeea;">Rows</span>, <span style="color: #dcaeea;">Ds</span>, <span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>).
+
+<span style="color: #c678dd;">diagonal</span>(<span style="color: #dcaeea;">Row</span>, <span style="color: #dcaeea;">D</span>, <span style="color: #dcaeea;">Prefix0</span>, <span style="color: #dcaeea;">Prefix</span>) :-
+        append(<span style="color: #dcaeea;">Prefix0</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">D</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Row</span>),
+        same_length(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Prefix0</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Prefix</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Examples:</span>
+
+<span style="color: #5B6268;">   ?- magic_square(N, S), append(S, Vs), label(Vs), maplist(writeln, S).</span>
+<span style="color: #5B6268;">   %@ N = 0,</span>
+<span style="color: #5B6268;">   %@ S = Vs, Vs = [] ;</span>
+<span style="color: #5B6268;">   %@ [1]</span>
+<span style="color: #5B6268;">   %@ N = 1,</span>
+<span style="color: #5B6268;">   %@ S = [[1]],</span>
+<span style="color: #5B6268;">   %@ Vs = [1] ;</span>
+<span style="color: #5B6268;">   %@ [2,7,6]</span>
+<span style="color: #5B6268;">   %@ [9,5,1]</span>
+<span style="color: #5B6268;">   %@ [4,3,8]</span>
+<span style="color: #5B6268;">   %@ N = 3,</span>
+<span style="color: #5B6268;">   %@ S = [[2, 7, 6], [9, 5, 1], [4, 3, 8]],</span>
+<span style="color: #5B6268;">   %@ Vs = [2, 7, 6, 9, 5, 1, 4, 3, 8] .</span>
+
+<span style="color: #5B6268;">   ?- magic_square(4, S), append(S, Vs), label(Vs), maplist(writeln, S).</span>
+<span style="color: #5B6268;">   %@ [1,2,15,16]</span>
+<span style="color: #5B6268;">   %@ [12,14,3,5]</span>
+<span style="color: #5B6268;">   %@ [13,7,10,4]</span>
+<span style="color: #5B6268;">   %@ [8,11,6,9]</span>
+<span style="color: #5B6268;">   %@ S = [[1, 2, 15, 16], [12, 14, 3, 5], [13, 7, 10, 4], [8, 11, 6, 9]],</span>
+<span style="color: #5B6268;">   %@ Vs = [1, 2, 15, 16, 12, 14, 3, 5, 13|...] .</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Relation between a natural number N and its factorial F.</span>
+
+<span style="color: #5B6268;">   CLP(FD) constraints allow for a concise declarative solution that</span>
+<span style="color: #5B6268;">   can be used in all directions.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">n_factorial</span>(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>).
+<span style="color: #c678dd;">n_factorial</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">F</span>) :-
+        <span style="color: #dcaeea;">N</span> #&gt; <span style="color: #da8548; font-weight: bold;">0</span>,
+        <span style="color: #dcaeea;">N1</span> #= <span style="color: #dcaeea;">N</span> - <span style="color: #da8548; font-weight: bold;">1</span>,
+        <span style="color: #dcaeea;">F</span> #= <span style="color: #dcaeea;">N</span> * <span style="color: #dcaeea;">F1</span>,
+        n_factorial(<span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">F1</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Examples:</span>
+
+<span style="color: #5B6268;">   ?- n_factorial(47, F).</span>
+<span style="color: #5B6268;">   %@ F = 258623241511168180642964355153611979969197632389120000000000 ;</span>
+<span style="color: #5B6268;">   %@ false.</span>
+
+<span style="color: #5B6268;">   ?- n_factorial(N, 1).</span>
+<span style="color: #5B6268;">   %@ N = 0 ;</span>
+<span style="color: #5B6268;">   %@ N = 1 ;</span>
+<span style="color: #5B6268;">   %@ false.</span>
+
+<span style="color: #5B6268;">   ?- n_factorial(N, F).</span>
+<span style="color: #5B6268;">   %@ N = 0,</span>
+<span style="color: #5B6268;">   %@ F = 1 ;</span>
+<span style="color: #5B6268;">   %@ N = F, F = 1 ;</span>
+<span style="color: #5B6268;">   %@ N = F, F = 2 ;</span>
+<span style="color: #5B6268;">   %@ N = 3,</span>
+<span style="color: #5B6268;">   %@ F = 6 .</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   N Queens.</span>
+
+<span style="color: #5B6268;">   Written Feb. 2008 by Markus Triska (triska@metalevel.at)</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">n_queens</span>(<span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Qs</span>) :-
+        length(<span style="color: #dcaeea;">Qs</span>, <span style="color: #dcaeea;">N</span>),
+        <span style="color: #dcaeea;">Qs</span> ins <span style="color: #da8548; font-weight: bold;">1</span>..<span style="color: #dcaeea;">N</span>,
+        safe_queens(<span style="color: #dcaeea;">Qs</span>).
+
+<span style="color: #c678dd;">safe_queens</span>(<span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">safe_queens</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">Q</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Qs</span><span style="color: #51afef;">]</span>) :- safe_queens(<span style="color: #dcaeea;">Qs</span>, <span style="color: #dcaeea;">Q</span>, <span style="color: #da8548; font-weight: bold;">1</span>), safe_queens(<span style="color: #dcaeea;">Qs</span>).
+
+<span style="color: #c678dd;">safe_queens</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>).
+<span style="color: #c678dd;">safe_queens</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">Q</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Qs</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Q0</span>, <span style="color: #dcaeea;">D0</span>) :-
+        <span style="color: #dcaeea;">Q0</span> #\= <span style="color: #dcaeea;">Q</span>,
+        abs(<span style="color: #dcaeea;">Q0</span> - <span style="color: #dcaeea;">Q</span>) #\= <span style="color: #dcaeea;">D0</span>,
+        <span style="color: #dcaeea;">D1</span> #= <span style="color: #dcaeea;">D0</span> + <span style="color: #da8548; font-weight: bold;">1</span>,
+        safe_queens(<span style="color: #dcaeea;">Qs</span>, <span style="color: #dcaeea;">Q0</span>, <span style="color: #dcaeea;">D1</span>).
+
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Examples:</span>
+
+<span style="color: #5B6268;">   ?- n_queens(8, Qs), labeling([ff], Qs).</span>
+<span style="color: #5B6268;">   %@ Qs = [1, 5, 8, 6, 3, 7, 2, 4] ;</span>
+<span style="color: #5B6268;">   %@ Qs = [1, 6, 8, 3, 7, 4, 2, 5] .</span>
+
+<span style="color: #5B6268;">   ?- n_queens(100, Qs), labeling([ff], Qs).</span>
+<span style="color: #5B6268;">   %@ Qs = [1, 3, 5, 57, 59, 4, 64, 7, 58|...] .</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Cryptoarithmetic puzzle: Assign one of the digits 0,..,9 to each of</span>
+<span style="color: #5B6268;">   the letters S,E,N,D,M,O,R and Y in such a way that the following</span>
+<span style="color: #5B6268;">   calculation is valid, and no leading zeroes appear.</span>
+
+<span style="color: #5B6268;">   Written 2007 by Markus Triska (triska@metalevel.at)</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">puzzle</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">S</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">D</span><span style="color: #51afef;">]</span> + <span style="color: #51afef;">[</span><span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">R</span>,<span style="color: #dcaeea;">E</span><span style="color: #51afef;">]</span> = <span style="color: #51afef;">[</span><span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">Y</span><span style="color: #51afef;">]</span>) :-
+        <span style="color: #dcaeea;">Vars</span> = <span style="color: #51afef;">[</span><span style="color: #dcaeea;">S</span>,<span style="color: #dcaeea;">E</span>,<span style="color: #dcaeea;">N</span>,<span style="color: #dcaeea;">D</span>,<span style="color: #dcaeea;">M</span>,<span style="color: #dcaeea;">O</span>,<span style="color: #dcaeea;">R</span>,<span style="color: #dcaeea;">Y</span><span style="color: #51afef;">]</span>,
+        <span style="color: #dcaeea;">Vars</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #da8548; font-weight: bold;">9</span>,
+        all_different(<span style="color: #dcaeea;">Vars</span>),
+                  <span style="color: #dcaeea;">S</span>*<span style="color: #da8548; font-weight: bold;">1000</span> + <span style="color: #dcaeea;">E</span>*<span style="color: #da8548; font-weight: bold;">100</span> + <span style="color: #dcaeea;">N</span>*<span style="color: #da8548; font-weight: bold;">10</span> + <span style="color: #dcaeea;">D</span> +
+                  <span style="color: #dcaeea;">M</span>*<span style="color: #da8548; font-weight: bold;">1000</span> + <span style="color: #dcaeea;">O</span>*<span style="color: #da8548; font-weight: bold;">100</span> + <span style="color: #dcaeea;">R</span>*<span style="color: #da8548; font-weight: bold;">10</span> + <span style="color: #dcaeea;">E</span> #=
+        <span style="color: #dcaeea;">M</span>*<span style="color: #da8548; font-weight: bold;">10000</span> + <span style="color: #dcaeea;">O</span>*<span style="color: #da8548; font-weight: bold;">1000</span> + <span style="color: #dcaeea;">N</span>*<span style="color: #da8548; font-weight: bold;">100</span> + <span style="color: #dcaeea;">E</span>*<span style="color: #da8548; font-weight: bold;">10</span> + <span style="color: #dcaeea;">Y</span>,
+        <span style="color: #dcaeea;">M</span> #\= <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">S</span> #\= <span style="color: #da8548; font-weight: bold;">0</span>.
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Examples:</span>
+
+<span style="color: #5B6268;">   ?- puzzle(As+Bs=Cs).</span>
+<span style="color: #5B6268;">   %@ As = [9, X1, X2, X3],</span>
+<span style="color: #5B6268;">   %@ Bs = [1, 0, X4, X1],</span>
+<span style="color: #5B6268;">   %@ Cs = [1, 0, X2, X1, X5],</span>
+<span style="color: #5B6268;">   %@ X1 in 4..7,</span>
+<span style="color: #5B6268;">   %@ all_different([9, X1, X2, X3, 1, 0, X4, X5]),</span>
+<span style="color: #5B6268;">   %@ 91*X1+X3+10*X4#=90*X2+X5,</span>
+<span style="color: #5B6268;">   %@ X2 in 5..8,</span>
+<span style="color: #5B6268;">   %@ X3 in 2..8,</span>
+<span style="color: #5B6268;">   %@ X4 in 2..8,</span>
+<span style="color: #5B6268;">   %@ X5 in 2..8.</span>
+
+<span style="color: #5B6268;">   ?- puzzle(As+Bs=Cs), label(As).</span>
+<span style="color: #5B6268;">   %@ As = [9, 5, 6, 7],</span>
+<span style="color: #5B6268;">   %@ Bs = [1, 0, 8, 5],</span>
+<span style="color: #5B6268;">   %@ Cs = [1, 0, 6, 5, 2] ;</span>
+<span style="color: #5B6268;">   %@ false.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Sudoku CLP(FD) formulation.</span>
+
+<span style="color: #5B6268;">   Written Feb. 2008 by Markus Triska  (triska@metalevel.at)</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">sudoku</span>(<span style="color: #dcaeea;">Rows</span>) :-
+        length(<span style="color: #dcaeea;">Rows</span>, <span style="color: #da8548; font-weight: bold;">9</span>), maplist(same_length(<span style="color: #dcaeea;">Rows</span>), <span style="color: #dcaeea;">Rows</span>),
+        append(<span style="color: #dcaeea;">Rows</span>, <span style="color: #dcaeea;">Vs</span>), <span style="color: #dcaeea;">Vs</span> ins <span style="color: #da8548; font-weight: bold;">1</span>..<span style="color: #da8548; font-weight: bold;">9</span>,
+        maplist(all_distinct, <span style="color: #dcaeea;">Rows</span>),
+        transpose(<span style="color: #dcaeea;">Rows</span>, <span style="color: #dcaeea;">Columns</span>), maplist(all_distinct, <span style="color: #dcaeea;">Columns</span>),
+        <span style="color: #dcaeea;">Rows</span> = <span style="color: #51afef;">[</span><span style="color: #dcaeea;">As</span>,<span style="color: #dcaeea;">Bs</span>,<span style="color: #dcaeea;">Cs</span>,<span style="color: #dcaeea;">Ds</span>,<span style="color: #dcaeea;">Es</span>,<span style="color: #dcaeea;">Fs</span>,<span style="color: #dcaeea;">Gs</span>,<span style="color: #dcaeea;">Hs</span>,<span style="color: #dcaeea;">Is</span><span style="color: #51afef;">]</span>,
+        blocks(<span style="color: #dcaeea;">As</span>, <span style="color: #dcaeea;">Bs</span>, <span style="color: #dcaeea;">Cs</span>), blocks(<span style="color: #dcaeea;">Ds</span>, <span style="color: #dcaeea;">Es</span>, <span style="color: #dcaeea;">Fs</span>), blocks(<span style="color: #dcaeea;">Gs</span>, <span style="color: #dcaeea;">Hs</span>, <span style="color: #dcaeea;">Is</span>).
+
+<span style="color: #c678dd;">blocks</span>(<span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">blocks</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">N1</span>,<span style="color: #dcaeea;">N2</span>,<span style="color: #dcaeea;">N3</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Ns1</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">N4</span>,<span style="color: #dcaeea;">N5</span>,<span style="color: #dcaeea;">N6</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Ns2</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">N7</span>,<span style="color: #dcaeea;">N8</span>,<span style="color: #dcaeea;">N9</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Ns3</span><span style="color: #51afef;">]</span>) :-
+        all_distinct(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">N1</span>,<span style="color: #dcaeea;">N2</span>,<span style="color: #dcaeea;">N3</span>,<span style="color: #dcaeea;">N4</span>,<span style="color: #dcaeea;">N5</span>,<span style="color: #dcaeea;">N6</span>,<span style="color: #dcaeea;">N7</span>,<span style="color: #dcaeea;">N8</span>,<span style="color: #dcaeea;">N9</span><span style="color: #51afef;">]</span>),
+        blocks(<span style="color: #dcaeea;">Ns1</span>, <span style="color: #dcaeea;">Ns2</span>, <span style="color: #dcaeea;">Ns3</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Sample problems.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+<span style="color: #c678dd;">problem</span>(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #dcaeea;">P</span>) :-
+        <span style="color: #dcaeea;">P</span> = <span style="color: #51afef;">[[</span><span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">5</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">3</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>,
+             <span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">9</span><span style="color: #51afef;">]]</span>.
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Example:</span>
+
+<span style="color: #5B6268;">   ?- problem(1, Rows), sudoku(Rows),</span>
+<span style="color: #5B6268;">      maplist(labeling([ff]), Rows), maplist(writeln, Rows).</span>
+<span style="color: #5B6268;">   %@ [1,5,6,8,9,4,3,2,7]</span>
+<span style="color: #5B6268;">   %@ [9,2,8,7,3,1,4,5,6]</span>
+<span style="color: #5B6268;">   %@ [4,7,3,2,6,5,9,1,8]</span>
+<span style="color: #5B6268;">   %@ [3,6,2,4,1,7,8,9,5]</span>
+<span style="color: #5B6268;">   %@ [7,8,9,3,5,2,6,4,1]</span>
+<span style="color: #5B6268;">   %@ [5,1,4,9,8,6,2,7,3]</span>
+<span style="color: #5B6268;">   %@ [8,3,1,5,4,9,7,6,2]</span>
+<span style="color: #5B6268;">   %@ [6,9,7,1,2,3,5,8,4]</span>
+<span style="color: #5B6268;">   %@ [2,4,5,6,7,8,1,3,9]</span>
+<span style="color: #5B6268;">   %@ Rows = [[1, 5, 6, 8, 9, 4, 3, 2|...], [9, 2, 8, 7, 3, 1, 4|...], [4, 7, 3, 2, 6, 5|...], [3, 6, 2, 4, 1|...], [7, 8, 9, 3|...], [5, 1, 4|...], [8, 3|...], [6|...], [...|...]].</span>
+
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   Task scheduling example.</span>
+
+<span style="color: #5B6268;">   Written May 2016 by Markus Triska (triska@metalevel.at)</span>
+<span style="color: #5B6268;">   Public domain code.</span>
+
+<span style="color: #5B6268;">   The </span><span style="color: #c678dd;">cumulative/2</span><span style="color: #5B6268;"> constraint is used to express non-overlapping</span>
+<span style="color: #5B6268;">   tasks with a resource consumption limit. The </span><span style="color: #c678dd;">min/1</span><span style="color: #5B6268;"> labeling option</span>
+<span style="color: #5B6268;">   is used to find schedules that minimize the total duration.</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+
+:- use_module(library(clpfd)).
+
+<span style="color: #c678dd;">tasks</span>(<span style="color: #dcaeea;">Tasks</span>, <span style="color: #dcaeea;">Starts</span>, <span style="color: #dcaeea;">End</span>) :-
+        <span style="color: #dcaeea;">Tasks</span> = <span style="color: #51afef;">[</span>task(<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #dcaeea;">_</span>),
+                 task(<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #dcaeea;">_</span>),
+                 task(<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #dcaeea;">_</span>),
+                 task(<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #dcaeea;">_</span>)<span style="color: #51afef;">]</span>,
+        maplist(task_start, <span style="color: #dcaeea;">Tasks</span>, <span style="color: #dcaeea;">Starts</span>),
+        <span style="color: #dcaeea;">Starts</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #da8548; font-weight: bold;">100</span>,
+        cumulative(<span style="color: #dcaeea;">Tasks</span>, <span style="color: #51afef;">[</span>limit(<span style="color: #da8548; font-weight: bold;">2</span>)<span style="color: #51afef;">]</span>),
+        foldl(max_end, <span style="color: #dcaeea;">Tasks</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">End</span>).
+
+<span style="color: #c678dd;">task_start</span>(task(<span style="color: #dcaeea;">Start</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>), <span style="color: #dcaeea;">Start</span>).
+
+<span style="color: #c678dd;">max_end</span>(task(<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">End</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>), <span style="color: #dcaeea;">E0</span>, <span style="color: #dcaeea;">E</span>) :-
+        <span style="color: #dcaeea;">E</span> #= max(<span style="color: #dcaeea;">E0</span>, <span style="color: #dcaeea;">End</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span style="color: #5B6268;">   ?- tasks(Tasks, Starts, End), labeling([min(End)], Starts).</span>
+<span style="color: #5B6268;">   %@ Tasks = [task(0, 3, 3, 1, _G32), task(0, 4, 4, 1, _G41), task(4, 2, 6, 1, _G50), task(3, 3, 6, 1, _G59)],</span>
+<span style="color: #5B6268;">   %@ Starts = [0, 0, 4, 3],</span>
+<span style="color: #5B6268;">   %@ End = 6 .</span>
+<span style="color: #5B6268;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge3ccc63" class="outline-3">
+<h3 id="orge3ccc63"><span class="section-number-3">2.2</span> Constraint logic programming</h3>
+</div>
+<div id="outline-container-org15a75ea" class="outline-3">
+<h3 id="org15a75ea"><span class="section-number-3">2.3</span> Constraint satisfaction problem</h3>
+</div>
+<div id="outline-container-org087d501" class="outline-3">
+<h3 id="org087d501"><span class="section-number-3">2.4</span> Answer set Programming</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-orgc814b91" class="outline-4">
+<h4 id="orgc814b91"><span class="section-number-4">2.4.1</span> Ground vs not ground</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<dl class="org-dl">
+<dt>grounding</dt><dd>the process of translating a non-groud program to a ground one</dd>
+<dt>(no term)</dt><dd>if you have variables, it&rsquo;s ground</dd>
+<dt>(no term)</dt><dd>if it&rsquo;s the same function, but with concrete numbers/atoms in place of a variable, it&rsquo;s grounded</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgc617725" class="outline-4">
+<h4 id="orgc617725"><span class="section-number-4">2.4.2</span> Problems</h4>
+<div class="outline-text-4" id="text-2-4-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgdd3a629"></a>Elevator problem<br />
+<div class="outline-text-5" id="text-2-4-2-1">
+<ul class="org-ul">
+<li>elevator transports passengers from initial floors to goal floors</li>
+<li>when it stops at a floor, any passenger can board or unboard</li>
+<li>the goal is to transport all passengers to their destination floors</li>
+</ul>
+</div>
+</li>
+<li><a id="org4d4d749"></a>Gripper problem<br />
+<div class="outline-text-5" id="text-2-4-2-2">
+<ul class="org-ul">
+<li>transport all the balls from one room to another</li>
+<li>robot is allowed to move form one room to the other and use its 2 grippers to pick up and put down balls</li>
+</ul>
+</div>
+</li>
+<li><a id="org5f60260"></a>Blocks world<br />
+<div class="outline-text-5" id="text-2-4-2-3">
+<ul class="org-ul">
+<li>build one or more vertical stacks of blocks</li>
+<li>only one block moved at a time</li>
+<li>block can be placed on the table or on top of another block</li>
+<li>blocks that are under other blocks cannot be moved</li>
+</ul>
+</div>
+</li>
+<li><a id="org17de883"></a>N queens problem<br />
+<div class="outline-text-5" id="text-2-4-2-4">
+<p>
+n<sub>queens</sub> problem
+</p>
+<div class="org-src-container">
+<pre class="src src-asp">#show q/2.
+d(1..queens).
+1 {q(X,Y):d(Y)} 1 :-d(X).
+:- d(X), d(Y), d(X1), q(X,Y), q(X1,Y), X1 != X.
+:- d(X), d(Y), d(Y1), q(X,Y), q(X,Y1), Y1 != Y.
+% the above is not needed logically
+:- d(X), d(Y), d(X1), d(Y1), q(X,Y), q(X1,Y1),
+X != X1, Y != Y1, abs(X -X1) == abs(Y -Y1).
+:-d(Y), not hasq(Y).
+hasq(Y) :-d(X), d(Y), q(X,Y).
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org230f7e1" class="outline-4">
+<h4 id="org230f7e1"><span class="section-number-4">2.4.3</span> Ferry problem</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<div class="org-src-container">
+<pre class="src src-asp">move(ferry, From, To, Time)
+board(Car, Location, Time)
+unboard(Car, Location, Time)
+at(Object, Location, Time) % object is at Location at Time
+in(ferry, Car, T) % Car is in ferry at Time
+empty(ferry, T) % ferry is empty at Time
+moving(ferry, T) % don't care about location at Time
+affected(Object, T) % Object is affected by some action at Time
+
+% constrains
+
+% ferry cannot be moved to 2 different locations at the same time
+:- at(ferry, Loc, T), at(ferry, Loc1, T), Loc != Loc1.
+
+% two cars cannot be boarded at the same time and location
+:- board(Car1, Loc, T), board(Car2, Loc, T), Car1 != Car2.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Arun Woosaree</p>
+<p class="date">Created: 2021-04-19 Mon 13:49</p>
+</div>
+</body>
+</html>
