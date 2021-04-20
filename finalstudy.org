@@ -1233,6 +1233,7 @@ curl -Lo tasks.pl https://raw.githubusercontent.com/triska/clpfd/master/tasks.pl
 - (false) CLPFD contains one fixed strategy for assigning values to variables
    
 ** Foundations of logic programming
+- https://eclass.srv.ualberta.ca/pluginfile.php/6714438/mod_resource/content/9/logic-foundations.pdf
 - Herbrand universe :: The set of all ground terms
 *** True/false
 Let P be a program consisting of Horn clauses,
@@ -1275,7 +1276,7 @@ two different cars cannot board the same location at the same time
 :- board(Car1, Loc, T), board(Car2, Loc, T), Car1 != Car2.
 #+end_example
 *** Ground vs not ground
-- grounding :: the process of translating a non-groud program to a ground one
+- grounding :: the process of translating a non-ground program to a ground one
 - if you have variables, it's ground
 - if it's the same function, but with concrete numbers/atoms in place of a variable, it's grounded
 
