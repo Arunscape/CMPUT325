@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-04-19 Mon 16:59 -->
+<!-- 2021-04-19 Mon 18:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -228,38 +228,38 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf63b211">1. Pre midterm stuff</a>
+<li><a href="#orga481aba">1. Pre midterm stuff</a>
 <ul>
-<li><a href="#orgfe6224d">1.1. SECD virtual machine</a></li>
-<li><a href="#orgead8c97">1.2. Context based interpreter</a></li>
-<li><a href="#org9561e46">1.3. Lambda calculus</a></li>
-<li><a href="#orgedb8269">1.4. Lisp</a>
+<li><a href="#orga47f076">1.1. SECD virtual machine</a></li>
+<li><a href="#org0e8e58d">1.2. Context based interpreter</a></li>
+<li><a href="#org996e5fc">1.3. Lambda calculus</a></li>
+<li><a href="#orgac76aa0">1.4. Lisp</a>
 <ul>
-<li><a href="#orga3a2ec8">1.4.1. Useful functions</a></li>
+<li><a href="#orgd023a30">1.4.1. Useful functions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7d251f1">2. Post midterm stuff</a>
+<li><a href="#org1e079b0">2. Post midterm stuff</a>
 <ul>
-<li><a href="#org1099e09">2.1. Prolog</a>
+<li><a href="#org979966b">2.1. Prolog</a>
 <ul>
-<li><a href="#orga420580">2.1.1. Code examples</a></li>
-<li><a href="#org6e44933">2.1.2. True/False</a></li>
+<li><a href="#org9055bef">2.1.1. Code examples</a></li>
+<li><a href="#org90b8392">2.1.2. True/False</a></li>
 </ul>
 </li>
-<li><a href="#org20f88de">2.2. Foundations of logic programming</a>
+<li><a href="#org252c03d">2.2. Foundations of logic programming</a>
 <ul>
-<li><a href="#org57899c3">2.2.1. True/false</a></li>
+<li><a href="#orgf13d3cb">2.2.1. True/false</a></li>
 </ul>
 </li>
-<li><a href="#org0bd401d">2.3. Constraint logic programming</a></li>
-<li><a href="#orgea79d78">2.4. Constraint satisfaction problem</a></li>
-<li><a href="#org606d526">2.5. Answer set Programming</a>
+<li><a href="#org7de94a9">2.3. Constraint logic programming</a></li>
+<li><a href="#org9a9ae8c">2.4. Constraint satisfaction problem</a></li>
+<li><a href="#org73a91af">2.5. Answer set Programming</a>
 <ul>
-<li><a href="#org122de2b">2.5.1. Ground vs not ground</a></li>
-<li><a href="#orgf74e37a">2.5.2. Problems</a></li>
-<li><a href="#orgdaa8f94">2.5.3. Ferry problem</a></li>
+<li><a href="#orge3b1d6a">2.5.1. Ground vs not ground</a></li>
+<li><a href="#org4ad7baf">2.5.2. Problems</a></li>
+<li><a href="#org0b2e6bd">2.5.3. Ferry problem</a></li>
 </ul>
 </li>
 </ul>
@@ -267,12 +267,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf63b211" class="outline-2">
-<h2 id="orgf63b211"><span class="section-number-2">1</span> Pre midterm stuff</h2>
+<div id="outline-container-orga481aba" class="outline-2">
+<h2 id="orga481aba"><span class="section-number-2">1</span> Pre midterm stuff</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgfe6224d" class="outline-3">
-<h3 id="orgfe6224d"><span class="section-number-3">1.1</span> SECD virtual machine</h3>
+<div id="outline-container-orga47f076" class="outline-3">
+<h3 id="orga47f076"><span class="section-number-3">1.1</span> SECD virtual machine</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><a href="https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830027">https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830027</a></li>
@@ -280,7 +280,7 @@
 </ul>
 
 
-<pre class="example" id="org336a30a">
+<pre class="example" id="org9d40956">
 (lambda (x y) (if (eq x y) x (+ 1 y)))
 (LDF
   ( LD (1.2) LD (1.1) EQ SEL (LD (1.1)) (LD (1.2) LDC 1 ADD)
@@ -289,7 +289,7 @@
              RTN) )
 </pre>
 
-<pre class="example" id="org5735e24">
+<pre class="example" id="orgfa94a11">
 (lambda (x y) ((lambda (z) (+ x y z)) 6))
 Note that the body of the outside lambda function is an application ((lambda (z) (+ x y z)) 6)),
 where the operator + is generic, just like the same operator in lisp.
@@ -299,7 +299,7 @@ Answer: e’ = (NIL LDC 6 CONS LDF (LD (2.1) LD (1.2) LD (1.1) ADD RTN) AP)
 Then, the full solution is:(LDF e’ || (RTN))
 </pre>
 
-<pre class="example" id="orge64c8e8">
+<pre class="example" id="org6413cef">
 (lambda (x) ((lambda (z) (+ x x z)) 4))
 Note that the body of the outside lambda function is an application((lambda (z) (+ x x z)) 4)).
 To decompose the overall task, you should first show the SECD code for this expression anddenote it by, e.g.,e’.
@@ -309,10 +309,10 @@ e = (NIL LDC 4 CONS (LDF (LD (2.1) LD (1.1) LD (1.1) ADD RTN) ) AP
 </pre>
 </div>
 </div>
-<div id="outline-container-orgead8c97" class="outline-3">
-<h3 id="orgead8c97"><span class="section-number-3">1.2</span> Context based interpreter</h3>
+<div id="outline-container-org0e8e58d" class="outline-3">
+<h3 id="org0e8e58d"><span class="section-number-3">1.2</span> Context based interpreter</h3>
 <div class="outline-text-3" id="text-1-2">
-<pre class="example" id="org539afa0">
+<pre class="example" id="orga7e3822">
 ((lambda (f) (f 2 3)) (lambda (x y) (* x (+ y 1))))
 
 context when (f 2 3) is evaluated (initial context is CT0)
@@ -322,7 +322,7 @@ context when (* x (+ y 1)) is evaluated
 {x -&gt; 2, y -&gt; 3} U CT0
 </pre>
 
-<pre class="example" id="org8d7921a">
+<pre class="example" id="org1fa8ef1">
 eval
     ((lambda (f x) (cons z (f x x))) (lambda (u v) (cons u v)) 5)
 in CT0
@@ -350,16 +350,137 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 </div>
 
 
-<div id="outline-container-org9561e46" class="outline-3">
-<h3 id="org9561e46"><span class="section-number-3">1.3</span> Lambda calculus</h3>
+<div id="outline-container-org996e5fc" class="outline-3">
+<h3 id="org996e5fc"><span class="section-number-3">1.3</span> Lambda calculus</h3>
+<div class="outline-text-3" id="text-1-3">
+<pre class="example" id="org94bc156">
+truth table practice
+Lxy|xNM
+if x is true then N else M
+
+x y | output
+T T | F
+T F | F
+F T | F
+F F | F
+(Lxy|F)
+
+x y | output
+T T | F
+T F | F
+F T | F
+F F | T
+(Lxy|xF(NOT y)
+
+x y | output
+T T | F
+T F | F
+F T | T
+F F | F
+(Lxy|xFy)
+
+
+x y | output
+T T | F
+T F | F
+F T | T
+F F | T
+(Lxy|xFT)
+
+x y | output
+T T | F
+T F | T
+F T | F
+F F | F
+(Lxy|yFx)
+
+x y | output
+T T | F
+T F | T
+F T | F
+F F | T
+(Lxy|yFT)
+
+x y | output
+T T | F
+T F | T
+F T | T
+F F | F
+(Lxy|x(NOT y)y)
+
+x y | output
+T T | F
+T F | T
+F T | T
+F F | T
+(Lxy|y(NOT x)T)
+(*Lxy|x(NOT y)T)
+
+x y | output
+T T | T
+T F | F
+F T | F
+F F | F
+(Lxy|xyF)
+
+x y | output
+T T | T
+T F | F
+F T | F
+F F | T
+(Lxy|xy(NOT y)
+
+x y | output
+T T | T
+T F | F
+F T | T
+F F | F
+(Lxy|y)
+
+x y | output
+T T | T
+T F | F
+F T | T
+F F | T
+(Lxy|xyT)
+
+x y | output
+T T | T
+T F | T
+F T | F
+F F | F
+(Lxy|x)
+
+x y | output
+T T | T
+T F | T
+F T | F
+F F | T
+(Lxy|xT(NOT y))
+
+x y | output
+T T | T
+T F | T
+F T | T
+F F | F
+(Lxy|xTy)
+
+x y | output
+T T | T
+T F | T
+F T | T
+F F | T
+(Lxy|T)
+</pre>
+</div>
 </div>
 
-<div id="outline-container-orgedb8269" class="outline-3">
-<h3 id="orgedb8269"><span class="section-number-3">1.4</span> Lisp</h3>
+<div id="outline-container-orgac76aa0" class="outline-3">
+<h3 id="orgac76aa0"><span class="section-number-3">1.4</span> Lisp</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-orga3a2ec8" class="outline-4">
-<h4 id="orga3a2ec8"><span class="section-number-4">1.4.1</span> Useful functions</h4>
+<div id="outline-container-orgd023a30" class="outline-4">
+<h4 id="orgd023a30"><span class="section-number-4">1.4.1</span> Useful functions</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">useful functions</span>
@@ -732,16 +853,16 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 </div>
 </div>
 
-<div id="outline-container-org7d251f1" class="outline-2">
-<h2 id="org7d251f1"><span class="section-number-2">2</span> Post midterm stuff</h2>
+<div id="outline-container-org1e079b0" class="outline-2">
+<h2 id="org1e079b0"><span class="section-number-2">2</span> Post midterm stuff</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org1099e09" class="outline-3">
-<h3 id="org1099e09"><span class="section-number-3">2.1</span> Prolog</h3>
+<div id="outline-container-org979966b" class="outline-3">
+<h3 id="org979966b"><span class="section-number-3">2.1</span> Prolog</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orga420580" class="outline-4">
-<h4 id="orga420580"><span class="section-number-4">2.1.1</span> Code examples</h4>
+<div id="outline-container-org9055bef" class="outline-4">
+<h4 id="org9055bef"><span class="section-number-4">2.1.1</span> Code examples</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <div class="org-src-container">
 <pre class="src src-prolog"><span style="color: #5B6268;">% </span><span style="color: #5B6268;">append(L1,L2,L3): append L1 and L2 to get L3</span>
@@ -784,6 +905,561 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 <span style="color: #c678dd;">x</span> :- p, <span style="color: #51afef;">!</span>, q.
 <span style="color: #c678dd;">x</span> :-r.
 <span style="color: #5B6268;">% </span><span style="color: #5B6268;">same as if p then q else r</span>
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">setIntersect(+S1,+S2,-S3)</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">this takes in 2 lists of atoms, S1 and S2.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">S3 is a list of atoms that are in both S1 and S2</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">S1 is always a list of distinct atoms.</span>
+<span style="color: #c678dd;">setIntersect</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[]</span>). <span style="color: #5B6268;">% </span><span style="color: #5B6268;">if first list is empty return empty list</span>
+<span style="color: #c678dd;">setIntersect</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">First</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Rest</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">S2</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">First</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>) :-
+  xmember(<span style="color: #dcaeea;">First</span>, <span style="color: #dcaeea;">S2</span>), setIntersect(<span style="color: #dcaeea;">Rest</span>, <span style="color: #dcaeea;">S2</span>, <span style="color: #dcaeea;">Output</span>). <span style="color: #5B6268;">% </span><span style="color: #5B6268;">if First element of S1 is in S2 then add it to the output list, and check the rest of S1 against S2</span>
+<span style="color: #c678dd;">setIntersect</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">S2</span>, <span style="color: #dcaeea;">A</span>) :-
+  setIntersect(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">S2</span>, <span style="color: #dcaeea;">A</span>).
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;"> swap(+L, -R)</span>
+<span style="color: #5B6268;"> this takes in a list L, and makes it so that R</span>
+<span style="color: #5B6268;"> has every 2 elements swapped with each other</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(question2).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(swap1) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">swap([a,1,b,2], W),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">W = [1,a,2,b].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(swap2) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">swap([a,1,b], W),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">W = [1,a,b].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(question2).</span>
+<span style="color: #c678dd;">swap</span>(<span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">swap</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span><span style="color: #51afef;">]</span>).
+<span style="color: #c678dd;">swap</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span>, <span style="color: #dcaeea;">B</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R1</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">B</span>, <span style="color: #dcaeea;">A</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R2</span><span style="color: #51afef;">]</span>) :-
+  swap(<span style="color: #dcaeea;">R1</span>, <span style="color: #dcaeea;">R2</span>). 
+
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;"> filter(+L,+OP,+N,-L1)</span>
+<span style="color: #5B6268;"> this takes in L, a possibly nested list of numbers, and outputs L1,</span>
+<span style="color: #5B6268;"> which has all of the numbers in L that meet certain criteria.</span>
+<span style="color: #5B6268;"> The criteria is defined by OP and N, where OP is "greaterThan", "equal",</span>
+<span style="color: #5B6268;"> or "lessThan", and N is a number.</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(question3).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(filtergreater) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">filter([3,4,[5,2],[1,7,3]],greaterThan,3,W),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">W = [4,5,7].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(filterequal) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">filter([3,4,[5,2],[1,7,3]],equal,3,W),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">W = [3,3].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(filterless) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">filter([3,4,[5,2],[1,7,3]],lessThan,3,W),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">W = [2,1].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(question3).</span>
+
+<span style="color: #c678dd;">filter</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">filter</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">F</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">F</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>) :-
+  number(<span style="color: #dcaeea;">F</span>),
+  doOP(<span style="color: #dcaeea;">F</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>),
+  filter(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Output</span>).
+
+<span style="color: #c678dd;">filter</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">F</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Output</span>) :-
+  \+ number(<span style="color: #dcaeea;">F</span>),
+  filter(<span style="color: #dcaeea;">F</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Out1</span>),
+  filter(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Out2</span>),
+  append(<span style="color: #dcaeea;">Out1</span>, <span style="color: #dcaeea;">Out2</span>, <span style="color: #dcaeea;">Output</span>).
+
+<span style="color: #c678dd;">filter</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">_</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Output</span>) :-
+  filter(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">OP</span>, <span style="color: #dcaeea;">N</span>, <span style="color: #dcaeea;">Output</span>).
+
+<span style="color: #c678dd;">doOP</span>(<span style="color: #dcaeea;">X</span>, greaterThan, <span style="color: #dcaeea;">Y</span>) :- <span style="color: #dcaeea;">X</span> &gt; <span style="color: #dcaeea;">Y</span>.
+<span style="color: #c678dd;">doOP</span>(<span style="color: #dcaeea;">X</span>, lessThan, <span style="color: #dcaeea;">Y</span>) :- <span style="color: #dcaeea;">X</span> &lt; <span style="color: #dcaeea;">Y</span>.
+<span style="color: #c678dd;">doOP</span>(<span style="color: #dcaeea;">X</span>, equal, <span style="color: #dcaeea;">Y</span>) :- <span style="color: #dcaeea;">X</span> =:= <span style="color: #dcaeea;">Y</span>.
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;"> countAll(+L,-N)</span>
+<span style="color: #5B6268;"> given L, a flat list of atoms, the number of occurences of each atom is counted</span>
+<span style="color: #5B6268;"> N is a list of pairs of the form [a,n], where a is the atom and n is the</span>
+<span style="color: #5B6268;"> number of occurences. N is sorted in increasing order by n. If n is tied,</span>
+<span style="color: #5B6268;"> there is no tie breaking functionality based on what a is.</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(question4).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(countall) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">countAll([a,b,e,c,c,b],N),(</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">N = [[a,1],[e,1],[b,2],[c,2]];</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">N = [[e,1],[a,1],[b,2],[c,2]]</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">).% other permutations are possible, mine seems to return the second permutation</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(question4).</span>
+
+<span style="color: #c678dd;">countAll</span>(<span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">countAll</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">F</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">SortedOutput</span>) :-
+  countAll(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">IntermediateOutput</span>),
+  incrementCount(<span style="color: #dcaeea;">F</span>, <span style="color: #dcaeea;">IntermediateOutput</span>, <span style="color: #dcaeea;">Output</span>),
+  bubble_sort(<span style="color: #dcaeea;">Output</span>, <span style="color: #dcaeea;">SortedOutput</span>).
+
+<span style="color: #c678dd;">incrementCount</span>(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">X</span>,<span style="color: #da8548; font-weight: bold;">1</span><span style="color: #51afef;">]]</span>).
+<span style="color: #c678dd;">incrementCount</span>(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">CountX</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">CountXPlusOne</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>) :-
+  <span style="color: #dcaeea;">CountXPlusOne</span> is <span style="color: #dcaeea;">CountX</span> + <span style="color: #da8548; font-weight: bold;">1</span>.
+<span style="color: #c678dd;">incrementCount</span>(<span style="color: #dcaeea;">Y</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">CountX</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">CountX</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">T</span><span style="color: #51afef;">]</span>) :-
+  <span style="color: #dcaeea;">X</span> \= <span style="color: #dcaeea;">Y</span>,
+  incrementCount(<span style="color: #dcaeea;">Y</span>, <span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">T</span>).
+
+<span style="color: #c678dd;">bubble_sort</span>(<span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">L</span>) :- is_sorted(<span style="color: #dcaeea;">L</span>).
+<span style="color: #c678dd;">bubble_sort</span>(<span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">Output</span>) :-
+  xappend(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">A</span>, <span style="color: #dcaeea;">Acount</span><span style="color: #51afef;">]</span>,<span style="color: #51afef;">[</span><span style="color: #dcaeea;">B</span>, <span style="color: #dcaeea;">Bcount</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Y</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">L</span>),
+  <span style="color: #dcaeea;">Acount</span> &gt; <span style="color: #dcaeea;">Bcount</span>,
+  xappend(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">B</span>, <span style="color: #dcaeea;">Bcount</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">A</span>, <span style="color: #dcaeea;">Acount</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Y</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">R</span>),
+  bubble_sort(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>).
+
+<span style="color: #c678dd;">is_sorted</span>(<span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">is_sorted</span>(<span style="color: #51afef;">[[</span><span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span><span style="color: #51afef;">]]</span>).
+<span style="color: #c678dd;">is_sorted</span>(<span style="color: #51afef;">[[</span><span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">Acount</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">B</span>,<span style="color: #dcaeea;">Bcount</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>) :-
+  <span style="color: #dcaeea;">Acount</span> =&lt; <span style="color: #dcaeea;">Bcount</span>,
+  is_sorted(<span style="color: #51afef;">[[</span><span style="color: #dcaeea;">B</span>, <span style="color: #dcaeea;">Bcount</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>).
+
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;"> sub(+L,+S,-L1)</span>
+<span style="color: #5B6268;"> this takes in a possibly nested list of atoms L, and a list of pairs S</span>
+<span style="color: #5B6268;"> of the form [[x1, e1], ...].</span>
+<span style="color: #5B6268;"> L1 is the same as L, except that any occurences of xi is replaced by ei.</span>
+<span style="color: #5B6268;"> xi is always an atom</span>
+<span style="color: #5B6268;"> ei is an arbitrary expression</span>
+
+<span style="color: #5B6268;"> every xi is assumed to be distinct, and xi will never occur in ei</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(question5).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(sub) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">sub([a,[a,d],[e,a]],[[a,2]],L),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">L= [2,[2,d],[e,2]].</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(sub2) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">sub([a,b,c], [[a,d], [b, c]], [d, c, c]).</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(sub3) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">sub([a,[b, [c, [d]]]], [[a,z], [z, v], [c, g], [d, p]] , [z,[b, [g, [p]]]]).</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(subexpression) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">sub([a, b, c], [[b, 4 &lt; 1]], [a, 4&lt;1, c]).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(question5).</span>
+
+<span style="color: #c678dd;">sub</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">sub</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">Y</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>) :- <span style="color: #5B6268;">% </span><span style="color: #5B6268;">is an atom</span>
+  atom(<span style="color: #dcaeea;">X</span>),
+  find_substitution(<span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">Y</span>),
+  sub(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">Output</span>).
+<span style="color: #c678dd;">sub</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">L</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">Output</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">ROutput</span><span style="color: #51afef;">]</span>) :- <span style="color: #5B6268;">% </span><span style="color: #5B6268;">not an atom</span>
+  sub(<span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">Output</span>),
+  sub(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">ROutput</span>).
+
+<span style="color: #c678dd;">find_substitution</span>(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">X</span>).
+<span style="color: #c678dd;">find_substitution</span>(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">E</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">E</span>).
+<span style="color: #c678dd;">find_substitution</span>(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[[</span><span style="color: #dcaeea;">Xi</span>, <span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">S</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Output</span>) :-
+  <span style="color: #dcaeea;">X</span> \= <span style="color: #dcaeea;">Xi</span>,
+  find_substitution(<span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">Output</span>).
+
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;"> allConnected(+L)</span>
+<span style="color: #5B6268;"> this takes in a list, and it returns true if every node in L can reach every</span>
+<span style="color: #5B6268;"> other node in L</span>
+
+<span style="color: #5B6268;"> How it works:</span>
+<span style="color: #5B6268;"> first, an empty list is all connected (base case)</span>
+
+<span style="color: #5B6268;"> then, we check every element in L, and see if it is connected using the</span>
+<span style="color: #5B6268;"> allConnected helper predicate defned below</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(question6).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(allconnected) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">allConnected([a,b,c]).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(question6).</span>
+
+<span style="color: #c678dd;">allConnected</span>(<span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">allConnected</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">F</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>) :-
+  allConnectedHelper(<span style="color: #dcaeea;">F</span>, <span style="color: #dcaeea;">R</span>),
+  allConnected(<span style="color: #dcaeea;">R</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">allConnectedHelper(-X, -L)</span>
+<span style="color: #5B6268;"> this checks if node X is connected to all elements in L</span>
+
+<span style="color: #5B6268;"> How it works:</span>
+<span style="color: #5B6268;"> if L is empty, then it is all connected (base case)</span>
+<span style="color: #5B6268;"> else we check if X is connected to the first element in L,</span>
+<span style="color: #5B6268;"> and also every other element in L by recursing on the tail of L</span>
+
+<span style="color: #5B6268;"> the connected predicate is defined below</span>
+<span style="color: #5B6268;"> */</span>
+<span style="color: #c678dd;">allConnectedHelper</span>(<span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[]</span>).
+<span style="color: #c678dd;">allConnectedHelper</span>(<span style="color: #dcaeea;">X</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">F</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>) :-
+  connected(<span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">F</span>),
+  allConnectedHelper(<span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">R</span>).
+
+<span style="color: #c678dd;">connected</span>(<span style="color: #dcaeea;">X</span>,<span style="color: #dcaeea;">Y</span>) :-
+  edge(<span style="color: #dcaeea;">X</span>,<span style="color: #dcaeea;">Y</span>)<span style="color: #51afef;">;</span>
+  edge(<span style="color: #dcaeea;">Y</span>,<span style="color: #dcaeea;">X</span>).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">clique(+L)</span>
+<span style="color: #5B6268;"> The clique problem is a graph-theoretic problem of finding a subset of nodes</span>
+<span style="color: #5B6268;"> where each is connected to every other node in the subset. </span>
+
+<span style="color: #5B6268;"> This code is given to us in the assignment</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">for the node example defined in eclass</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(clique).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(clique) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">clique([a,b,c]).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(clique).</span>
+<span style="color: #c678dd;">clique</span>(<span style="color: #dcaeea;">L</span>) :- 
+  findall(<span style="color: #dcaeea;">X</span>,node(<span style="color: #dcaeea;">X</span>),<span style="color: #dcaeea;">Nodes</span>),
+  subset(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">Nodes</span>), allConnected(<span style="color: #dcaeea;">L</span>).
+
+<span style="color: #c678dd;">subset</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>).
+<span style="color: #c678dd;">subset</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Xs</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Set</span>) :-
+  append(<span style="color: #dcaeea;">_</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">Set1</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Set</span>),
+  subset(<span style="color: #dcaeea;">Xs</span>, <span style="color: #dcaeea;">Set1</span>).
+
+<span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;"> convert(+Term,-Result)</span>
+<span style="color: #5B6268;"> this takes in a Term, which is a list of atoms</span>
+<span style="color: #5B6268;"> anything between two q atoms are kept as-is,</span>
+<span style="color: #5B6268;"> while any 'e' outside of two q atoms are dropped,</span>
+<span style="color: #5B6268;"> and anything else outside of two q atoms are changed to c</span>
+
+<span style="color: #5B6268;"> for an unmatched q, anything after is considered outside of a q pair, so</span>
+<span style="color: #5B6268;"> 'e' will be dropped, and anything else changed to c. This happens when there</span>
+<span style="color: #5B6268;"> is an odd number of q atoms</span>
+
+<span style="color: #5B6268;"> How it works:</span>
+<span style="color: #5B6268;"> we call the convertHelper predicate defined below, which takes in the same</span>
+<span style="color: #5B6268;"> 2 arguments as convert. It also takes in a third argument, which is a boolean</span>
+<span style="color: #5B6268;"> to help with keeping track of matching q atoms</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(question7).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(convert1) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">convert([e,e,a,e,b,e],R),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">R = [c,c].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(convert2) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">convert([e,q,a,b,e,e],R),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">R = [q,c,c].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(convert3) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">convert([e,a,e,e],R),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">R = [c].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(convert4) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">convert([e,q,a,e,b,q,e,a,e],R),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">R = [q,a,e,b,q,c].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(convert5) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">convert([a,q,e,l,q,r,e,q,b,e],R),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">R = [c,q,e,l,q,c,q,c].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(convert6) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">convert([q,e,q,b,q,e,l,q,a,e],R),</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">R = [q,e,q,c,q,e,l,q,c].</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- end_tests(question7).</span>
+
+<span style="color: #c678dd;">convert</span>(<span style="color: #dcaeea;">Term</span>, <span style="color: #dcaeea;">Result</span>) :-
+  convertHelper(<span style="color: #dcaeea;">Term</span>, <span style="color: #dcaeea;">Result</span>, false).
+
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">convertHelper(+Term, -Result, +Qfound)</span>
+<span style="color: #5B6268;"> this is the main logic for convert.</span>
+<span style="color: #5B6268;"> this takes in a Term, which is a list of atoms</span>
+<span style="color: #5B6268;"> anything between two q atoms are kept as-is,</span>
+<span style="color: #5B6268;"> while any 'e' outside of two q atoms are dropped,</span>
+<span style="color: #5B6268;"> and anything else outside of two q atoms are changed to c</span>
+
+<span style="color: #5B6268;"> for an unmatched q, anything after is considered outside of a q pair, so</span>
+<span style="color: #5B6268;"> 'e' will be dropped, and anything else changed to c. This happens when there</span>
+<span style="color: #5B6268;"> is an odd number of q atoms</span>
+<span style="color: #5B6268;"> Read the comments for the convert predicate above to see what this does.</span>
+
+<span style="color: #5B6268;"> This has the same input and output arguments as convert. It also takes in a</span>
+<span style="color: #5B6268;"> third argument, which is a boolean to help with keeping track of matching q</span>
+<span style="color: #5B6268;"> atoms</span>
+
+<span style="color: #5B6268;"> How it works:</span>
+<span style="color: #5B6268;"> if Term is empty, then so is the result (base case)</span>
+<span style="color: #5B6268;"> </span>
+<span style="color: #5B6268;"> next, we check the head of Term. if it is a q, then a quote is starting.</span>
+<span style="color: #5B6268;"> we check if there is a matching q using the end_q_exists predicate defined below.</span>
+<span style="color: #5B6268;"> we then recurse on the tail of Term, and also Qfound, the third argument is now</span>
+<span style="color: #5B6268;"> true. We also add q to the output.</span>
+
+<span style="color: #5B6268;"> if a q is found, but no end q exists, everything after it is subject to the</span>
+<span style="color: #5B6268;"> substitution rules we defined, so we recurse on the rest of Term</span>
+<span style="color: #5B6268;"> We also add q to the output</span>
+
+<span style="color: #5B6268;"> if a q is found, and Qfound is true, then we found the end of a quote</span>
+<span style="color: #5B6268;"> we recurse on the tail of Term, and also Qfound is now false</span>
+<span style="color: #5B6268;"> We also add q to the output</span>
+
+<span style="color: #5B6268;"> if an e is found, and Qfound is false, then we are not in a quote and should</span>
+<span style="color: #5B6268;"> drop the e. We recurse on the tail of Term without adding e to the output.</span>
+
+<span style="color: #5B6268;"> if we find any character that is not q inside a quote, we leave it untouched</span>
+<span style="color: #5B6268;"> and recurse on the tail of Term. That atom is added to the output.</span>
+
+<span style="color: #5B6268;"> if we find any character that is not q or e outside a quote, we change it to c</span>
+<span style="color: #5B6268;"> and recurse on the tail of Term. c is added to the output.</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[]</span>, <span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">_</span>).
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>, false) :-
+  end_q_exists(<span style="color: #dcaeea;">R</span>),
+  convertHelper(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>, true).
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>, false) :-
+  \+ end_q_exists(<span style="color: #dcaeea;">R</span>),
+  convertHelper(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>, false).
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>, true) :-
+  convertHelper(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>, false).
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[</span>e <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Output</span>, false) :-
+  convertHelper(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>, false).
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>, true) :-
+  <span style="color: #dcaeea;">X</span> \= q,
+  convertHelper(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>, true).
+<span style="color: #c678dd;">convertHelper</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>, <span style="color: #51afef;">[</span>c <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Output</span><span style="color: #51afef;">]</span>, false) :-
+  <span style="color: #dcaeea;">X</span> \= q,
+  <span style="color: #dcaeea;">X</span> \= e,
+  convertHelper(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">Output</span>, false).
+
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">end_q_exists(+L)</span>
+<span style="color: #5B6268;"> this takes in a list of atoms, and is true if there is a q atom in the list</span>
+<span style="color: #5B6268;"> it assumes that the first q in the list is already removed</span>
+<span style="color: #5B6268;"> (otherwise it would always return true!)</span>
+
+<span style="color: #5B6268;"> How it works:</span>
+<span style="color: #5B6268;"> if q is found, true is returned, else, we recurse on the tail of L</span>
+<span style="color: #5B6268;"> */</span>
+<span style="color: #c678dd;">end_q_exists</span>(<span style="color: #51afef;">[</span>q <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span>).
+<span style="color: #c678dd;">end_q_exists</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">X</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">R</span><span style="color: #51afef;">]</span>) :-
+  <span style="color: #dcaeea;">X</span> \= q,
+  end_q_exists(<span style="color: #dcaeea;">R</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">SEND + MORE = MONEY problem</span>
+<span style="color: #c678dd;">encrypt</span>(<span style="color: #dcaeea;">W1</span>,<span style="color: #dcaeea;">W2</span>,<span style="color: #dcaeea;">W3</span>) :- 
+   length(<span style="color: #dcaeea;">W1</span>,<span style="color: #dcaeea;">N</span>),           <span style="color: #5B6268;">% </span><span style="color: #5B6268;">if you need to know the lengths of words</span>
+   length(<span style="color: #dcaeea;">W3</span>,<span style="color: #dcaeea;">N1</span>),   
+   append(<span style="color: #dcaeea;">W1</span>,<span style="color: #dcaeea;">W2</span>,<span style="color: #dcaeea;">W</span>),
+   append(<span style="color: #dcaeea;">W</span>,<span style="color: #dcaeea;">W3</span>,<span style="color: #dcaeea;">L</span>),
+   list_to_set(<span style="color: #dcaeea;">L</span>,<span style="color: #dcaeea;">Letters</span>), <span style="color: #5B6268;">% </span><span style="color: #5B6268;">remove duplicates, a predicate in list library</span>
+   <span style="color: #51afef;">[</span><span style="color: #dcaeea;">LeadLetter1</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span> = <span style="color: #dcaeea;">W1</span>,   <span style="color: #5B6268;">% </span><span style="color: #5B6268;">identify the leading letter to be set to non-zero</span>
+   <span style="color: #51afef;">[</span><span style="color: #dcaeea;">LeadLetter2</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span> = <span style="color: #dcaeea;">W2</span>,
+   <span style="color: #51afef;">[</span><span style="color: #dcaeea;">LeadLetter3</span><span style="color: #51afef;">|</span><span style="color: #dcaeea;">_</span><span style="color: #51afef;">]</span> = <span style="color: #dcaeea;">W3</span>,
+   <span style="color: #51afef;">!</span>,                      <span style="color: #5B6268;">% </span><span style="color: #5B6268;">never need to redo the above</span>
+   <span style="color: #dcaeea;">Letters</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #da8548; font-weight: bold;">9</span>,
+   all_distinct(<span style="color: #dcaeea;">Letters</span>),
+   <span style="color: #dcaeea;">LeadLetter1</span> #\= <span style="color: #da8548; font-weight: bold;">0</span>,
+   <span style="color: #dcaeea;">LeadLetter2</span> #\= <span style="color: #da8548; font-weight: bold;">0</span>,
+   <span style="color: #dcaeea;">LeadLetter3</span> #\= <span style="color: #da8548; font-weight: bold;">0</span>,
+   digits_to_number(<span style="color: #dcaeea;">W1</span>, <span style="color: #dcaeea;">Sum1</span>),
+   digits_to_number(<span style="color: #dcaeea;">W2</span>, <span style="color: #dcaeea;">Sum2</span>),
+   digits_to_number(<span style="color: #dcaeea;">W3</span>, <span style="color: #dcaeea;">Sum3</span>),
+   <span style="color: #dcaeea;">Sum1</span> + <span style="color: #dcaeea;">Sum2</span> #=  <span style="color: #dcaeea;">Sum3</span>,
+   label(<span style="color: #dcaeea;">Letters</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate converts a list of numbers to an</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">actual number, assuming base10. We sum up</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">each number, and multiply by 10 based on its</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">position in the list</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:- begin_tests(digits).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">test(digits) :-</span>
+<span style="color: #5B6268;">%  </span><span style="color: #5B6268;">digits_to_number([1,2,3,4,5,6,7,8,9,0], 1234567890).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:-end_tests(digits).</span>
+<span style="color: #c678dd;">digits_to_number</span>(<span style="color: #dcaeea;">Digits</span>, <span style="color: #dcaeea;">Number</span>) :-
+  digits_to_number(<span style="color: #dcaeea;">Digits</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">Number</span>).
+<span style="color: #c678dd;">digits_to_number</span>(<span style="color: #51afef;">[]</span>, <span style="color: #dcaeea;">Sum</span>, <span style="color: #dcaeea;">Sum</span>).
+<span style="color: #c678dd;">digits_to_number</span>(<span style="color: #51afef;">[</span><span style="color: #dcaeea;">Digit</span> <span style="color: #51afef;">|</span> <span style="color: #dcaeea;">Rest</span><span style="color: #51afef;">]</span>, <span style="color: #dcaeea;">Sum</span>, <span style="color: #dcaeea;">Number</span>) :-
+  <span style="color: #dcaeea;">PartialSum</span> #= <span style="color: #dcaeea;">Sum</span>*<span style="color: #da8548; font-weight: bold;">10</span> + <span style="color: #dcaeea;">Digit</span>,
+  digits_to_number(<span style="color: #dcaeea;">Rest</span>, <span style="color: #dcaeea;">PartialSum</span>, <span style="color: #dcaeea;">Number</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">subsetsum(L, N)</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate takes in a list L, and an integer N,</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">and it determines if there exists a subset of the list such that </span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">the sum is equal to N</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">:-end_tests(subsetsum).</span>
+<span style="color: #c678dd;">subsetsum</span>(<span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">N</span>) :-
+  same_length(<span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">Coefficients</span>),
+  <span style="color: #dcaeea;">Coefficients</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #da8548; font-weight: bold;">1</span>,
+  maplist(applyCoeff, <span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">Coefficients</span>, <span style="color: #dcaeea;">Output</span>),
+  sum(<span style="color: #dcaeea;">Output</span>, #=, <span style="color: #dcaeea;">N</span>),
+  label(<span style="color: #dcaeea;">Coefficients</span>).
+
+<span style="color: #c678dd;">applyCoeff</span>(<span style="color: #dcaeea;">Coeff</span>, <span style="color: #dcaeea;">X</span>, <span style="color: #dcaeea;">Y</span>) :- <span style="color: #dcaeea;">Y</span> #= <span style="color: #dcaeea;">Coeff</span> * <span style="color: #dcaeea;">X</span>.
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">assign(W1, W2)</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">given facts about papers and reviewers as defined in the question,</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">(They are of the form): </span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">paper(ID, Co-author1, Co-author2, Subject)</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">reviewer(Name, Subject1, Subject2)</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">this predicate assigns reviewers to the lists W1 and W2,</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">such that  no one reviews their own paper,</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">and also each reviewer must have the subject in their fact</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">No reviewer is assigned more than workLoadAtMost papers,</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">and each paper is assigned to 2 reviewers. </span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">The paper index corresponds to the indices in W1 and W2.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">For example, The names that appear at index 1 review paper 1.</span>
+<span style="color: #5B6268;">% </span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">How it works:</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Because this is a quite complex problem, we want to restrict the</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">domain as much as possible as soon as possible. </span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Each reviewer is assigned a number between 0 and the total number of reviewers</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">multiplied by workLoadAtMost times minus one. We do this so that we can use</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">modulo arithmetic and the all_distinct predicate. My initial solution</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">instead generated two lists of numbers and then made sure that no</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">number appeared more than workLoadAtMost times in either, but that</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">was way too slow, which is why we're using the modulo solution here.</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">The domains are generated in the gen_domain predicate defined below</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Then, we make sure that once we have 2 lists of numbers,</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">that these reviewers satisfy the constraints above using the</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">constrain_paper predicate defined below</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Finally, we convert the reviewer numbers to the reviewer</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">name using modulo arithmetic. We use maplist with</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">the reviewer_to_int predicate defined below.</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Test cases:</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This smaller example works almost instantly on my machine</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(1,lily,xxx,ai).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(2,peter,john,database).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(3,ann,xxx,theory).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(4,ken,lily,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(5,kris,xxx,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(lily,theory,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(john,ai,theory).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(peter,database,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(ann,theory,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(kris,theory,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(ken,database,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(bill,database,ai).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(jim,theory,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">workLoadAtMost(2).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">?- assign(W1, W2).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">W1 = [john, ken, lily, peter, ken],</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">W2 = [bill, bill, john, ann, jim].</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This larger example takes about a minute to run on my</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">quad core laptop (i7-7700hq)</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(1,lily,xxx,ai).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(2,peter,john,database).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(3,ann,xxx,theory).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(4,ken,lily,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(5,kris,xxx,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(6,jim,xxx,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(7,bill,xxx,theory).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(8,bill,lily,ai).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">paper(9,peter,ann,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(lily,theory,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(john,ai,theory).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(peter,database,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(ann,theory,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(kris,theory,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(ken,database,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(bill,database,ai).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(jim,theory,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(kevin,theory,games).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">reviewer(paul,ai,network).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">workLoadAtMost(2).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">?- assign(W1, W2).</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">W1 = [john, ken, lily, peter, ken, kris, lily, john, jim],</span>
+<span style="color: #5B6268;">%</span><span style="color: #5B6268;">W2 = [bill, bill, kris, ann, jim, kevin, ann, paul, kevin].</span>
+<span style="color: #c678dd;">assign</span>(<span style="color: #dcaeea;">W1</span>, <span style="color: #dcaeea;">W2</span>) :-
+  papers(<span style="color: #dcaeea;">PaperIDs</span>),
+  gen_domain(<span style="color: #dcaeea;">W1</span>, <span style="color: #dcaeea;">W2</span>, <span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">N2</span>),
+  append(<span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">N2</span>, <span style="color: #dcaeea;">N</span>),
+  all_distinct(<span style="color: #dcaeea;">N</span>),
+  maplist(constrain_paper, <span style="color: #dcaeea;">PaperIDs</span>, <span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">N2</span>),
+  label(<span style="color: #dcaeea;">N</span>),
+  maplist(reviewer_to_int, <span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">W1</span>),
+  maplist(reviewer_to_int, <span style="color: #dcaeea;">N2</span>, <span style="color: #dcaeea;">W2</span>).
+
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate does a couple things:</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">It makes sure that W1 and W2 are the same length as the number of papers</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">It also makes N1, and N2 which are lists of numbers</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">which will then be converted into reviewer names for W1 and W2.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">These are also of the same length as the number of papers.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">The domain for each entry in N1 and N2 is restricted so that</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">it is between 0 and the number of reviewers times workLoadAtMost - 1 times.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">That way, we can do modulo arithmetic, and all_distinct to assign</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">reviewers to papers. </span>
+<span style="color: #c678dd;">gen_domain</span>(<span style="color: #dcaeea;">W1</span>, <span style="color: #dcaeea;">W2</span>, <span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">N2</span>) :-
+  count_papers(<span style="color: #dcaeea;">NumPapers</span>),
+  count_reviewers(<span style="color: #dcaeea;">NumReviewers</span>),
+  workLoadAtMost(<span style="color: #dcaeea;">Max</span>),
+  length(<span style="color: #dcaeea;">W1</span>, <span style="color: #dcaeea;">NumPapers</span>),
+  length(<span style="color: #dcaeea;">W2</span>, <span style="color: #dcaeea;">NumPapers</span>),
+  length(<span style="color: #dcaeea;">N1</span>, <span style="color: #dcaeea;">NumPapers</span>),
+  length(<span style="color: #dcaeea;">N2</span>, <span style="color: #dcaeea;">NumPapers</span>),
+  <span style="color: #dcaeea;">R</span> is <span style="color: #dcaeea;">NumReviewers</span> * <span style="color: #dcaeea;">Max</span>,
+  <span style="color: #dcaeea;">Range</span> is <span style="color: #dcaeea;">R</span> - <span style="color: #da8548; font-weight: bold;">1</span>,
+  <span style="color: #dcaeea;">N1</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #dcaeea;">Range</span>,
+  <span style="color: #dcaeea;">N2</span> ins <span style="color: #da8548; font-weight: bold;">0</span>..<span style="color: #dcaeea;">Range</span>.
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate takes in 2 numbers, each corresponding to one reviewers,</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">and it ensures that the constraints defined in the assignment question are</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">satisfied.</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">We check that the first number is less than the second number because it</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">reduces the search space, even though the overall answer would not change.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Then, we convert the reviewer numbers to the reviewer names, and make sure</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">that no author is reviewing their own paper, and that the reviewers</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">assigned have that subject area in their definitions</span>
+<span style="color: #5B6268;">%</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate is used with maplist in the assignPaper predicate, so</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">that the papers at each index is checked with this predicate.</span>
+<span style="color: #c678dd;">constrain_paper</span>(<span style="color: #dcaeea;">Index</span>, <span style="color: #dcaeea;">Rev1Num</span>, <span style="color: #dcaeea;">Rev2Num</span>) :-
+  <span style="color: #dcaeea;">Rev1Num</span> #&lt; <span style="color: #dcaeea;">Rev2Num</span>,
+  count_reviewers(<span style="color: #dcaeea;">NumReviewers</span>),
+  <span style="color: #dcaeea;">Rev1Mod</span> #= <span style="color: #dcaeea;">Rev1Num</span> mod <span style="color: #dcaeea;">NumReviewers</span>,
+  <span style="color: #dcaeea;">Rev2Mod</span> #= <span style="color: #dcaeea;">Rev2Num</span> mod <span style="color: #dcaeea;">NumReviewers</span>,
+  <span style="color: #dcaeea;">Rev1Mod</span> #&lt; <span style="color: #dcaeea;">Rev2Mod</span>,
+  <span style="color: #dcaeea;">Rev1Mod</span> #\= <span style="color: #dcaeea;">Rev2Mod</span>,
+  paper(<span style="color: #dcaeea;">Index</span>, <span style="color: #dcaeea;">Author1</span>, <span style="color: #dcaeea;">Author2</span>, <span style="color: #dcaeea;">Subject</span>),
+  reviewer_to_int(<span style="color: #dcaeea;">Rev1Num</span>, <span style="color: #dcaeea;">Rev1Name</span>),
+  reviewer_to_int(<span style="color: #dcaeea;">Rev2Num</span>, <span style="color: #dcaeea;">Rev2Name</span>),
+  reviewer(<span style="color: #dcaeea;">Rev1Name</span>, <span style="color: #dcaeea;">Sub1</span>, <span style="color: #dcaeea;">Sub2</span>),
+  reviewer(<span style="color: #dcaeea;">Rev2Name</span>, <span style="color: #dcaeea;">Sub3</span>, <span style="color: #dcaeea;">Sub4</span>),
+  <span style="color: #dcaeea;">Author1</span> \= <span style="color: #dcaeea;">Rev1Name</span>, 
+  <span style="color: #dcaeea;">Author1</span> \= <span style="color: #dcaeea;">Rev2Name</span>, 
+  <span style="color: #dcaeea;">Author2</span> \= <span style="color: #dcaeea;">Rev1Name</span>, 
+  <span style="color: #dcaeea;">Author2</span> \= <span style="color: #dcaeea;">Rev2Name</span>,
+  one_of_subject(<span style="color: #dcaeea;">Subject</span>, <span style="color: #dcaeea;">Sub1</span>, <span style="color: #dcaeea;">Sub2</span>, <span style="color: #dcaeea;">Sub3</span>, <span style="color: #dcaeea;">Sub4</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate takes a reviewer number, and converts it to a reviewer name</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">Modulo arithmetic is done, because we expanded the range of numbers for</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">reviewers, and multiple numbers need to map to a single reviewer.</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">For example, if there were 10 reviewers, the numbers 1 and 11 would map to the </span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">second reviewer in the list.</span>
+<span style="color: #c678dd;">reviewer_to_int</span>(<span style="color: #dcaeea;">Int</span>, <span style="color: #dcaeea;">Name</span>) :-
+  reviewers(<span style="color: #dcaeea;">L</span>),
+  count_reviewers(<span style="color: #dcaeea;">NumReviewers</span>),
+  <span style="color: #dcaeea;">Index</span> #= <span style="color: #dcaeea;">Int</span> mod <span style="color: #dcaeea;">NumReviewers</span>,
+  nth0(<span style="color: #dcaeea;">Index</span>, <span style="color: #dcaeea;">L</span>, <span style="color: #dcaeea;">Name</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate counts how many papers there are</span>
+<span style="color: #c678dd;">count_papers</span>(<span style="color: #dcaeea;">Count</span>) :-
+  aggregate_all(count, paper(<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>,<span style="color: #dcaeea;">_</span>), <span style="color: #dcaeea;">Count</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate counts how many reviewers there are</span>
+<span style="color: #c678dd;">count_reviewers</span>(<span style="color: #dcaeea;">Count</span>) :-
+  aggregate_all(count, reviewer(<span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>), <span style="color: #dcaeea;">Count</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate makes L a list of all of the paper IDs</span>
+<span style="color: #c678dd;">papers</span>(<span style="color: #dcaeea;">L</span>) :-
+  findall(<span style="color: #dcaeea;">ID</span>, paper(<span style="color: #dcaeea;">ID</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>), <span style="color: #dcaeea;">L</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate makes L a list of all the reviewer names</span>
+<span style="color: #c678dd;">reviewers</span>(<span style="color: #dcaeea;">L</span>) :-
+  findall(<span style="color: #dcaeea;">R</span>, reviewer(<span style="color: #dcaeea;">R</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>), <span style="color: #dcaeea;">L</span>).
+
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">This predicate makes sure that both reviewers have the subject in one of</span>
+<span style="color: #5B6268;">% </span><span style="color: #5B6268;">their subject fields</span>
+<span style="color: #c678dd;">one_of_subject</span>(<span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">S1</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">S3</span>, <span style="color: #dcaeea;">_</span>) :-
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S1</span>,
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S3</span>.
+<span style="color: #c678dd;">one_of_subject</span>(<span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">S2</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">S4</span>) :-
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S2</span>,
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S4</span>.
+<span style="color: #c678dd;">one_of_subject</span>(<span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">S2</span>, <span style="color: #dcaeea;">S3</span>, <span style="color: #dcaeea;">_</span>) :-
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S2</span>,
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S3</span>.
+<span style="color: #c678dd;">one_of_subject</span>(<span style="color: #dcaeea;">S</span>, <span style="color: #dcaeea;">S1</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">S4</span>) :-
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S1</span>,
+  <span style="color: #dcaeea;">S</span> = <span style="color: #dcaeea;">S4</span>.
 
 <span style="color: #5B6268;">/*</span>
 <span style="color: #5B6268;">The four square problem:</span>
@@ -1240,8 +1916,8 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 </div>
 </div>
 </div>
-<div id="outline-container-org6e44933" class="outline-4">
-<h4 id="org6e44933"><span class="section-number-4">2.1.2</span> True/False</h4>
+<div id="outline-container-org90b8392" class="outline-4">
+<h4 id="org90b8392"><span class="section-number-4">2.1.2</span> True/False</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>(true ) prolog&rsquo;s backtracking is useful for a CLP solver</li>
@@ -1259,15 +1935,15 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 </div>
 </div>
 
-<div id="outline-container-org20f88de" class="outline-3">
-<h3 id="org20f88de"><span class="section-number-3">2.2</span> Foundations of logic programming</h3>
+<div id="outline-container-org252c03d" class="outline-3">
+<h3 id="org252c03d"><span class="section-number-3">2.2</span> Foundations of logic programming</h3>
 <div class="outline-text-3" id="text-2-2">
 <dl class="org-dl">
 <dt>Herbrand universe</dt><dd>The set of all ground terms</dd>
 </dl>
 </div>
-<div id="outline-container-org57899c3" class="outline-4">
-<h4 id="org57899c3"><span class="section-number-4">2.2.1</span> True/false</h4>
+<div id="outline-container-orgf13d3cb" class="outline-4">
+<h4 id="orgf13d3cb"><span class="section-number-4">2.2.1</span> True/false</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Let P be a program consisting of Horn clauses,
@@ -1291,11 +1967,11 @@ Let the minus sign ‘-’ stand for logical negation
 </div>
 
 
-<div id="outline-container-org0bd401d" class="outline-3">
-<h3 id="org0bd401d"><span class="section-number-3">2.3</span> Constraint logic programming</h3>
+<div id="outline-container-org7de94a9" class="outline-3">
+<h3 id="org7de94a9"><span class="section-number-3">2.3</span> Constraint logic programming</h3>
 </div>
-<div id="outline-container-orgea79d78" class="outline-3">
-<h3 id="orgea79d78"><span class="section-number-3">2.4</span> Constraint satisfaction problem</h3>
+<div id="outline-container-org9a9ae8c" class="outline-3">
+<h3 id="org9a9ae8c"><span class="section-number-3">2.4</span> Constraint satisfaction problem</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>3 ingredients
@@ -1311,12 +1987,12 @@ it is checked at runtime for consistency whenever the state of these constraints
 </div>
 </div>
 
-<div id="outline-container-org606d526" class="outline-3">
-<h3 id="org606d526"><span class="section-number-3">2.5</span> Answer set Programming</h3>
+<div id="outline-container-org73a91af" class="outline-3">
+<h3 id="org73a91af"><span class="section-number-3">2.5</span> Answer set Programming</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-org122de2b" class="outline-4">
-<h4 id="org122de2b"><span class="section-number-4">2.5.1</span> Ground vs not ground</h4>
+<div id="outline-container-orge3b1d6a" class="outline-4">
+<h4 id="orge3b1d6a"><span class="section-number-4">2.5.1</span> Ground vs not ground</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <dl class="org-dl">
 <dt>grounding</dt><dd>the process of translating a non-groud program to a ground one</dd>
@@ -1326,12 +2002,12 @@ it is checked at runtime for consistency whenever the state of these constraints
 </div>
 </div>
 
-<div id="outline-container-orgf74e37a" class="outline-4">
-<h4 id="orgf74e37a"><span class="section-number-4">2.5.2</span> Problems</h4>
+<div id="outline-container-org4ad7baf" class="outline-4">
+<h4 id="org4ad7baf"><span class="section-number-4">2.5.2</span> Problems</h4>
 <div class="outline-text-4" id="text-2-5-2">
 </div>
 <ol class="org-ol">
-<li><a id="org1edbeb1"></a>Elevator problem<br />
+<li><a id="org99431f6"></a>Elevator problem<br />
 <div class="outline-text-5" id="text-2-5-2-1">
 <ul class="org-ul">
 <li>elevator transports passengers from initial floors to goal floors</li>
@@ -1340,7 +2016,7 @@ it is checked at runtime for consistency whenever the state of these constraints
 </ul>
 </div>
 </li>
-<li><a id="org73d2e7a"></a>Gripper problem<br />
+<li><a id="org3977cc6"></a>Gripper problem<br />
 <div class="outline-text-5" id="text-2-5-2-2">
 <ul class="org-ul">
 <li>transport all the balls from one room to another</li>
@@ -1348,7 +2024,7 @@ it is checked at runtime for consistency whenever the state of these constraints
 </ul>
 </div>
 </li>
-<li><a id="org7a94478"></a>Blocks world<br />
+<li><a id="org3ef7ccd"></a>Blocks world<br />
 <div class="outline-text-5" id="text-2-5-2-3">
 <ul class="org-ul">
 <li>build one or more vertical stacks of blocks</li>
@@ -1358,7 +2034,7 @@ it is checked at runtime for consistency whenever the state of these constraints
 </ul>
 </div>
 </li>
-<li><a id="orgdcf609f"></a>N queens problem<br />
+<li><a id="orge0ca974"></a>N queens problem<br />
 <div class="outline-text-5" id="text-2-5-2-4">
 <p>
 n<sub>queens</sub> problem
@@ -1380,8 +2056,8 @@ hasq(Y) :-d(X), d(Y), q(X,Y).
 </li>
 </ol>
 </div>
-<div id="outline-container-orgdaa8f94" class="outline-4">
-<h4 id="orgdaa8f94"><span class="section-number-4">2.5.3</span> Ferry problem</h4>
+<div id="outline-container-org0b2e6bd" class="outline-4">
+<h4 id="org0b2e6bd"><span class="section-number-4">2.5.3</span> Ferry problem</h4>
 <div class="outline-text-4" id="text-2-5-3">
 <div class="org-src-container">
 <pre class="src src-asp">move(ferry, From, To, Time)
@@ -1402,6 +2078,162 @@ affected(Object, T) % Object is affected by some action at Time
 :- board(Car1, Loc, T), board(Car2, Loc, T), Car1 != Car2.
 </pre>
 </div>
+
+<div class="org-src-container">
+<pre class="src src-clingo">%Name: Arun Woosaree
+%Student Number: 1514457
+%Course: CMPUT 325
+%Section: B1
+%Assignment 4
+
+% Initially, there are cars at various locations, and there is a
+% ferry at some location. The ferry can only transport one car at
+% a time and the goal is to transport all cars to their
+% destinations. No paralell actions are allowed.
+
+#show board/3.
+#show move/4.
+#show unboard/3.
+%#show at/3.
+%#show in/3.
+%#show moving/3.
+
+
+time(0..steps).
+
+% Clingo processes "safe programs": any variable occuring in a
+% negative literal of rule r must appear in a positive atom in the body of r.
+%
+% There is nothing wrong to use domains predicates. One may first write
+% these predicates and then comment the unnessary ones out (as shown).
+% Nothing wrong to leave them there.
+% Not all of them can be removed, specially when there is a possibility
+% a variable can be instantiated (during grounding) to something unintended.
+% You may discover this during debugging using the "#show" diretive.
+
+
+% actions
+{board(Car,Loc,T)} :-
+        car(Car),
+%       location(Loc), time(T),
+        empty(ferry,T),
+        at(Car,Loc,T),
+        at(ferry,Loc,T),
+        not moving(ferry,Loc,T),
+        not goal(T).
+
+{unboard(Car,Loc,T)} :-
+        car(Car),
+%       location(Loc), time(T),
+        in(ferry,Car,T),
+        at(ferry,Loc,T),
+        not moving(ferry,Loc,T),
+        not goal(T).
+
+{move(ferry,From,To,T)} :-
+%       car(Car),location(From), time(T),
+        location(To),
+        at(ferry,From,T),
+        From != To,
+        not goal(T).
+
+moving(ferry,From,T):-     % irrelevant of where ferry moves to
+%       location(From),location(Loc), time(T),
+        at(ferry,From,T),
+        move(ferry,From,Loc,T).
+
+% Below is the wrong code to define empty: it says if there exists
+% a Car not in ferry, then ferry is empty.
+%
+% empty(ferry,T):-
+%       car(Car), time(T),
+%       not in(ferry,Car,T).
+
+empty(ferry,T):- time(T), not occupied(ferry,T).
+occupied(ferry,T) :- in(_,_,T).
+
+
+%fluents
+in(ferry,Car,T+1):-   %an action causes a property to hold
+%       car(Car), location(Loc), time(T),
+        at(ferry,Loc,T),
+        board(Car,Loc,T).
+
+in(ferry,Car,T+1):-
+%       car(Car),
+        time(T),
+        in(ferry,Car,T),
+        not affected0(Car,T).
+
+affected0(Car,T) :-
+%       time(T), car(Car), location(Loc),
+        unboard(Car,Loc,T).
+
+% !!! Cannot replace the above by below - it says that
+% Car is in ferry at T+1 if at T there is a location Loc
+% s.t. Car is not unboarded - not intended!
+%
+% in(ferry,Car,T+1):-
+%        car(Car), time(T),
+%        in(ferry,Car,T),
+%        not unboard(Car,Loc,T).
+
+at(ferry,Loc,T+1):-
+%       car(Car), location(Loc), time(T),
+        at(ferry,Loc,T),
+        board(Car,Loc,T).
+
+at(ferry,Loc,T+1):-
+%       car(Car), location(Loc), time(T),
+        at(ferry,Loc,T),
+        unboard(Car,Loc,T).
+
+at(ferry,Loc,T+1):-
+%       location(Loc),
+        time(T),
+        at(ferry,Loc,T), %if we don't have tis line, what could happen?
+                         %A: ferry can be everywhere
+        not moving(ferry,Loc,T).
+
+at(ferry,To,T+1):-
+%       location(To),location(From),
+        time(T),
+        at(ferry,From,T),
+        move(ferry,From,To,T).
+
+at(Car,Loc,T+1):-
+        car(Car),  % not commented out - don't want Car instantied to ferry
+%       location(Loc), time(T),
+        unboard(Car,Loc,T).
+
+at(Car,Loc,T+1):-    %frame axiom
+        car(Car), location(Loc), time(T),
+        at(Car,Loc,T),
+        not board(Car,Loc,T).
+
+goal(T+1):-  time(T), goal(T).
+     %once goal is achieved, goal(T) is true for all T &gt; k.
+
+goal :- time(T), goal(T).
+:- not goal.
+
+
+% The code above works for the input file, ferryIn0.lp and ferryIn1.lp,
+% but not ferryIn2.lp.
+%
+% Discover what is wrong. Consider adding the following constraints:
+%
+% 1. ferry cannot be moved to two different locations at the same time
+% 2. it's not possible to board different cars at the same time and same location.
+
+% I think this code is pretty self explanatory
+% we add constraints that are exactly as described above
+
+:- at(ferry, Loc, T), at(ferry, Loc1, T), Loc != Loc1.
+:- board(Car1, Loc, T), board(Car2, Loc, T), Car1 != Car2.
+
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1409,7 +2241,7 @@ affected(Object, T) % Object is affected by some action at Time
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Arun Woosaree</p>
-<p class="date">Created: 2021-04-19 Mon 16:59</p>
+<p class="date">Created: 2021-04-19 Mon 18:24</p>
 </div>
 </body>
 </html>
