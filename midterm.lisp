@@ -361,3 +361,39 @@
     (t (cons (if (atom (cdr L)) (cdr L) (swap (cdr L))) (if (atom (car L)) (car L) (swap (car L)))))))
 (swap '(((a . b) . (c . d)) (e . f)))
 (swap '(((a . b) . c) (e . f)))
+
+
+(defun exam0 (L)
+  (let (maxsum (reduce ->)))
+  (filter (lambda x (= (+ (car x) (cdr x)) maxsum))))
+
+(defun maxsum (L)
+   (reduce (lambda (x y) (if (> (sum x)(sum y)) x y)) L))
+
+(maxsum '((2 3) (1) (8 9) (4 6 5)))
+(defun exam1 (L))
+  ;; can either use a set
+  ;; or just use xmember to determine if it's in the list
+
+
+(defun sum (L)
+  (if (null L) 0
+      (+ (car L) (sum (cdr L)))))
+(sum '(1 2 3))
+
+
+(member 'a '(b c d))
+
+(defun remove-duplicate (X)
+  (cond
+   ((not X) nil)
+   ((xmember (car X) (cdr X)) (remove-duplicates (cdr X)))
+   (t (cons (car X) (remove-duplicates (cdr X))))))
+
+(defun exam1 (L)
+  (remove-duplicate (reduce (lambda (x y) (append x y)) L)))
+
+
+(b a), {}, or (a c b)
+
+(exam1 '((b a) nil (a c b)))

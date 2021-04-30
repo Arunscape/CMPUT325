@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-04-19 Mon 18:24 -->
+<!-- 2021-04-20 Tue 13:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -228,38 +228,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga481aba">1. Pre midterm stuff</a>
+<li><a href="#org2cc105e">1. Pre midterm stuff</a>
 <ul>
-<li><a href="#orga47f076">1.1. SECD virtual machine</a></li>
-<li><a href="#org0e8e58d">1.2. Context based interpreter</a></li>
-<li><a href="#org996e5fc">1.3. Lambda calculus</a></li>
-<li><a href="#orgac76aa0">1.4. Lisp</a>
+<li><a href="#org6193624">1.1. SECD virtual machine</a></li>
+<li><a href="#org5c083f6">1.2. Context based interpreter</a></li>
+<li><a href="#org990d4b4">1.3. Lambda calculus</a>
 <ul>
-<li><a href="#orgd023a30">1.4.1. Useful functions</a></li>
+<li><a href="#org430c384">1.3.1. Orders of reduction</a></li>
+<li><a href="#org32a32f1">1.3.2. Truth table</a></li>
+</ul>
+</li>
+<li><a href="#orge817c3f">1.4. Lisp</a>
+<ul>
+<li><a href="#org3430c60">1.4.1. Useful functions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1e079b0">2. Post midterm stuff</a>
+<li><a href="#org6b253b5">2. Post midterm stuff</a>
 <ul>
-<li><a href="#org979966b">2.1. Prolog</a>
+<li><a href="#orgb19aca4">2.1. Prolog</a>
 <ul>
-<li><a href="#org9055bef">2.1.1. Code examples</a></li>
-<li><a href="#org90b8392">2.1.2. True/False</a></li>
+<li><a href="#orgf2a7e10">2.1.1. Code examples</a></li>
+<li><a href="#orgce308f6">2.1.2. True/False</a></li>
 </ul>
 </li>
-<li><a href="#org252c03d">2.2. Foundations of logic programming</a>
+<li><a href="#org12cf9e9">2.2. Foundations of logic programming</a>
 <ul>
-<li><a href="#orgf13d3cb">2.2.1. True/false</a></li>
+<li><a href="#org62505d4">2.2.1. True/false</a></li>
 </ul>
 </li>
-<li><a href="#org7de94a9">2.3. Constraint logic programming</a></li>
-<li><a href="#org9a9ae8c">2.4. Constraint satisfaction problem</a></li>
-<li><a href="#org73a91af">2.5. Answer set Programming</a>
+<li><a href="#orgb0beefc">2.3. Constraint logic programming</a></li>
+<li><a href="#orgad591da">2.4. Constraint satisfaction problem</a></li>
+<li><a href="#orgf8349f6">2.5. Answer set Programming</a>
 <ul>
-<li><a href="#orge3b1d6a">2.5.1. Ground vs not ground</a></li>
-<li><a href="#org4ad7baf">2.5.2. Problems</a></li>
-<li><a href="#org0b2e6bd">2.5.3. Ferry problem</a></li>
+<li><a href="#org53a4c67">2.5.1. Syntax</a></li>
+<li><a href="#org63bc296">2.5.2. Ground vs not ground</a></li>
+<li><a href="#org480e4b1">2.5.3. Problems</a></li>
+<li><a href="#orgf231af3">2.5.4. Ferry problem</a></li>
 </ul>
 </li>
 </ul>
@@ -267,12 +273,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orga481aba" class="outline-2">
-<h2 id="orga481aba"><span class="section-number-2">1</span> Pre midterm stuff</h2>
+<div id="outline-container-org2cc105e" class="outline-2">
+<h2 id="org2cc105e"><span class="section-number-2">1</span> Pre midterm stuff</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga47f076" class="outline-3">
-<h3 id="orga47f076"><span class="section-number-3">1.1</span> SECD virtual machine</h3>
+<div id="outline-container-org6193624" class="outline-3">
+<h3 id="org6193624"><span class="section-number-3">1.1</span> SECD virtual machine</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><a href="https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830027">https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830027</a></li>
@@ -280,7 +286,7 @@
 </ul>
 
 
-<pre class="example" id="org9d40956">
+<pre class="example" id="org802662e">
 (lambda (x y) (if (eq x y) x (+ 1 y)))
 (LDF
   ( LD (1.2) LD (1.1) EQ SEL (LD (1.1)) (LD (1.2) LDC 1 ADD)
@@ -289,7 +295,7 @@
              RTN) )
 </pre>
 
-<pre class="example" id="orgfa94a11">
+<pre class="example" id="org6a8e260">
 (lambda (x y) ((lambda (z) (+ x y z)) 6))
 Note that the body of the outside lambda function is an application ((lambda (z) (+ x y z)) 6)),
 where the operator + is generic, just like the same operator in lisp.
@@ -299,7 +305,7 @@ Answer: e’ = (NIL LDC 6 CONS LDF (LD (2.1) LD (1.2) LD (1.1) ADD RTN) AP)
 Then, the full solution is:(LDF e’ || (RTN))
 </pre>
 
-<pre class="example" id="org6413cef">
+<pre class="example" id="org36ba7e2">
 (lambda (x) ((lambda (z) (+ x x z)) 4))
 Note that the body of the outside lambda function is an application((lambda (z) (+ x x z)) 4)).
 To decompose the overall task, you should first show the SECD code for this expression anddenote it by, e.g.,e’.
@@ -309,10 +315,15 @@ e = (NIL LDC 4 CONS (LDF (LD (2.1) LD (1.1) LD (1.1) ADD RTN) ) AP
 </pre>
 </div>
 </div>
-<div id="outline-container-org0e8e58d" class="outline-3">
-<h3 id="org0e8e58d"><span class="section-number-3">1.2</span> Context based interpreter</h3>
+<div id="outline-container-org5c083f6" class="outline-3">
+<h3 id="org5c083f6"><span class="section-number-3">1.2</span> Context based interpreter</h3>
 <div class="outline-text-3" id="text-1-2">
-<pre class="example" id="orga7e3822">
+<ul class="org-ul">
+<li><a href="https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem3_V1.pdf">https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem3_V1.pdf</a></li>
+<li><a href="https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem%203%20Version%202.pdf">https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem%203%20Version%202.pdf</a></li>
+<li><a href="https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem%203%20Version%203.pdf">https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem%203%20Version%203.pdf</a></li>
+</ul>
+<pre class="example" id="org3ce8994">
 ((lambda (f) (f 2 3)) (lambda (x y) (* x (+ y 1))))
 
 context when (f 2 3) is evaluated (initial context is CT0)
@@ -322,7 +333,7 @@ context when (* x (+ y 1)) is evaluated
 {x -&gt; 2, y -&gt; 3} U CT0
 </pre>
 
-<pre class="example" id="org1fa8ef1">
+<pre class="example" id="org1d4d150">
 eval
     ((lambda (f x) (cons z (f x x))) (lambda (u v) (cons u v)) 5)
 in CT0
@@ -350,13 +361,52 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 </div>
 
 
-<div id="outline-container-org996e5fc" class="outline-3">
-<h3 id="org996e5fc"><span class="section-number-3">1.3</span> Lambda calculus</h3>
+<div id="outline-container-org990d4b4" class="outline-3">
+<h3 id="org990d4b4"><span class="section-number-3">1.3</span> Lambda calculus</h3>
 <div class="outline-text-3" id="text-1-3">
-<pre class="example" id="org94bc156">
+</div>
+<div id="outline-container-org430c384" class="outline-4">
+<h4 id="org430c384"><span class="section-number-4">1.3.1</span> Orders of reduction</h4>
+<div class="outline-text-4" id="text-1-3-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgfd86272"></a>Applicative order<br />
+<div class="outline-text-5" id="text-1-3-1-1">
+<p>
+arguments are evaluated before a function is applied
+</p>
+
+<p>
+the innermost leftmost function is applied first
+</p>
+</div>
+</li>
+<li><a id="org130c659"></a>Normal order<br />
+<div class="outline-text-5" id="text-1-3-1-2">
+<p>
+the outermost leftmost function is evaluated first&rsquo;
+</p>
+
+<p>
+normal order has better termination
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org32a32f1" class="outline-4">
+<h4 id="org32a32f1"><span class="section-number-4">1.3.2</span> Truth table</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<pre class="example" id="org2701237">
 truth table practice
 Lxy|xNM
 if x is true then N else M
+
+NOT = (λ B : B F T)
+AND = (λ A B : A B F)
+OR = (λ A B : A T B)
+
+(λ x : x)(λ x : x) does not reduce to a(λ x : x). It is in normal form.
 
 x y | output
 T T | F
@@ -474,13 +524,14 @@ F F | T
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-orgac76aa0" class="outline-3">
-<h3 id="orgac76aa0"><span class="section-number-3">1.4</span> Lisp</h3>
+<div id="outline-container-orge817c3f" class="outline-3">
+<h3 id="orge817c3f"><span class="section-number-3">1.4</span> Lisp</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-orgd023a30" class="outline-4">
-<h4 id="orgd023a30"><span class="section-number-4">1.4.1</span> Useful functions</h4>
+<div id="outline-container-org3430c60" class="outline-4">
+<h4 id="org3430c60"><span class="section-number-4">1.4.1</span> Useful functions</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">useful functions</span>
@@ -853,16 +904,16 @@ F F | T
 </div>
 </div>
 
-<div id="outline-container-org1e079b0" class="outline-2">
-<h2 id="org1e079b0"><span class="section-number-2">2</span> Post midterm stuff</h2>
+<div id="outline-container-org6b253b5" class="outline-2">
+<h2 id="org6b253b5"><span class="section-number-2">2</span> Post midterm stuff</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org979966b" class="outline-3">
-<h3 id="org979966b"><span class="section-number-3">2.1</span> Prolog</h3>
+<div id="outline-container-orgb19aca4" class="outline-3">
+<h3 id="orgb19aca4"><span class="section-number-3">2.1</span> Prolog</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org9055bef" class="outline-4">
-<h4 id="org9055bef"><span class="section-number-4">2.1.1</span> Code examples</h4>
+<div id="outline-container-orgf2a7e10" class="outline-4">
+<h4 id="orgf2a7e10"><span class="section-number-4">2.1.1</span> Code examples</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <div class="org-src-container">
 <pre class="src src-prolog"><span style="color: #5B6268;">% </span><span style="color: #5B6268;">append(L1,L2,L3): append L1 and L2 to get L3</span>
@@ -1916,34 +1967,49 @@ F F | T
 </div>
 </div>
 </div>
-<div id="outline-container-org90b8392" class="outline-4">
-<h4 id="org90b8392"><span class="section-number-4">2.1.2</span> True/False</h4>
+<div id="outline-container-orgce308f6" class="outline-4">
+<h4 id="orgce308f6"><span class="section-number-4">2.1.2</span> True/False</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>(true ) prolog&rsquo;s backtracking is useful for a CLP solver</li>
 <li>(false) CLP is more general than logic programming</li>
 <li>(false) all variable sin a constraint problem have the same domain</li>
-<li>(true ) a variable domain in CLPFD must be a range of consecutive integers</li>
 <li>(true ) a constraint problem can be solved with C or Java</li>
 <li>(true ) current CLP systems are useful for industrial applications</li>
 <li>(false) a problem with 2 contradictory constraints can still have a solution</li>
 <li>(false) CLP is designed to replace all previous forms of logic programming</li>
 <li>(true ) CLP can be 1 million times more efficient than prolog backtracking</li>
 <li>(false) CLPFD contains one fixed strategy for assigning values to variables</li>
+<li>(true ) Using Prolog&rsquo;s negation operator can lead to non-logical results, especially when the query has free variables</li>
+<li>(false) In logic programming, function symbols are used only for creating data structures, not for expressing computation.</li>
+<li>(true ) Constraint programming can solve more problems in a declarative way than pure Prolog</li>
+<li>(false) The handling of inequalities is the same in pure Prolog and in constraint programming</li>
+<li>(true ) Node consistency reduces the domain of a single variable.</li>
+<li>(true ) Arc consistency can reduce the domains of two variables by considering constraints between them.</li>
+<li>(true ) Sometimes, node and arc consistency can be applied repeatedly to different sets of variables to reduce the domains even further.</li>
+<li>(false)  In SWI Prolog with CLP(FD), the domains of variables have to be consecutive integers.
+must be integer, but no need to be consecutive</li>
+<li>(true ) Some problems can be solved by pure constraint propagation, with no search.</li>
+<li>(false) When writing a CLP(FD) program, the order of specifying the constraints vs calling labeling does not matter.
+constraints need to be applied first</li>
+<li>(false) CLP(FD) is a nice formalism, but there is always a Prolog program of similar length that is just as efficent</li>
+<li>(true ) In SWI Prolog&rsquo;s CLP(FD), a constraint can contain an arithmetic expression on the left hand side, as in 2 * X + 3 #&gt; 5.</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org252c03d" class="outline-3">
-<h3 id="org252c03d"><span class="section-number-3">2.2</span> Foundations of logic programming</h3>
+
+<div id="outline-container-org12cf9e9" class="outline-3">
+<h3 id="org12cf9e9"><span class="section-number-3">2.2</span> Foundations of logic programming</h3>
 <div class="outline-text-3" id="text-2-2">
-<dl class="org-dl">
-<dt>Herbrand universe</dt><dd>The set of all ground terms</dd>
-</dl>
+<ul class="org-ul">
+<li><a href="https://eclass.srv.ualberta.ca/pluginfile.php/6714438/mod_resource/content/9/logic-foundations.pdf">https://eclass.srv.ualberta.ca/pluginfile.php/6714438/mod_resource/content/9/logic-foundations.pdf</a></li>
+<li id="Herbrand universe">The set of all ground terms</li>
+</ul>
 </div>
-<div id="outline-container-orgf13d3cb" class="outline-4">
-<h4 id="orgf13d3cb"><span class="section-number-4">2.2.1</span> True/false</h4>
+<div id="outline-container-org62505d4" class="outline-4">
+<h4 id="org62505d4"><span class="section-number-4">2.2.1</span> True/false</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Let P be a program consisting of Horn clauses,
@@ -1961,19 +2027,52 @@ Let the minus sign ‘-’ stand for logical negation
 <li>(true ) B is a model of P</li>
 <li>(false) the empty set is always a model of P</li>
 <li>(true ) -∀x p(x)  is logically equivalent to ∃x -p(x)</li>
+<li>(true ) In propositional logic, we can always check whether a formula is a logical consequence of other formulas by building a truth table.</li>
+<li>(false) The size of a truth table grows exponentially with the number of formulas.
+it grows exponentially with the number of variables</li>
+<li>(false) In a Horn clause, the head of a clause can be a list of predicates.
+the head can only be a single predicate</li>
+<li>(false) A ground atom can contain variables, but only those from the Herbrand Universe.
+<ul class="org-ul">
+<li>A ground atom cannot contain variables</li>
+<li>The herbrand universe does not contain any variables</li>
+</ul></li>
+<li>(false) The Herbrand Universe of a program is always infinite
+Only infinite if there are no functions</li>
+<li>(false) The Herbrand Universe is a subset of the Herbrand Base
+<ul class="org-ul">
+<li>the base consists of ground atoms (predicates with ground arguments)</li>
+<li>the usiverse consists of ground terms (build from constraints and functions)</li>
+</ul></li>
+<li>(true ) A model of a program P contains all the atoms from the least model of P.
+<ul class="org-ul">
+<li>A model is consistent with the program, so it must contain all the logical consequences of P.</li>
+<li>The least model consists exactly of those consequences</li>
+</ul></li>
+<li>(true ) The iterative algorithm for computing the least model will terminate if and only if the least model is finite</li>
+<li>(true ) A Prolog program can only prove those facts which are in the least model.</li>
+<li>(false ) A depth-first Prolog search is always more efficient than the breadth-first style iterative computation of the least model
+It is usually much more efficient, but prolog could get stuck in an infinite loop while the least model would
+find all paths in finite time</li>
 </ul>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org7de94a9" class="outline-3">
-<h3 id="org7de94a9"><span class="section-number-3">2.3</span> Constraint logic programming</h3>
+<div id="outline-container-orgb0beefc" class="outline-3">
+<h3 id="orgb0beefc"><span class="section-number-3">2.3</span> Constraint logic programming</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li><a href="https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830070">https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830070</a></li>
+</ul>
 </div>
-<div id="outline-container-org9a9ae8c" class="outline-3">
-<h3 id="org9a9ae8c"><span class="section-number-3">2.4</span> Constraint satisfaction problem</h3>
+</div>
+<div id="outline-container-orgad591da" class="outline-3">
+<h3 id="orgad591da"><span class="section-number-3">2.4</span> Constraint satisfaction problem</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
+<li><a href="https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830065">https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830065</a></li>
 <li>3 ingredients
 <ol class="org-ol">
 <li>Variables</li>
@@ -1987,28 +2086,44 @@ it is checked at runtime for consistency whenever the state of these constraints
 </div>
 </div>
 
-<div id="outline-container-org73a91af" class="outline-3">
-<h3 id="org73a91af"><span class="section-number-3">2.5</span> Answer set Programming</h3>
+<div id="outline-container-orgf8349f6" class="outline-3">
+<h3 id="orgf8349f6"><span class="section-number-3">2.5</span> Answer set Programming</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-orge3b1d6a" class="outline-4">
-<h4 id="orge3b1d6a"><span class="section-number-4">2.5.1</span> Ground vs not ground</h4>
+<div id="outline-container-org53a4c67" class="outline-4">
+<h4 id="org53a4c67"><span class="section-number-4">2.5.1</span> Syntax</h4>
 <div class="outline-text-4" id="text-2-5-1">
+<pre class="example" id="org8274dad">
+:- is a constraint
+you apply things you do NOT want to happen here
+i.e. if the thing after :- is true, it cannot happen
+
+a ferry cannot be at 2 different locations at the same time
+:- at(ferry, Loc, T), at(ferry, Loc1, T), Loc != Loc1.
+
+two different cars cannot board the same location at the same time
+:- board(Car1, Loc, T), board(Car2, Loc, T), Car1 != Car2.
+</pre>
+</div>
+</div>
+<div id="outline-container-org63bc296" class="outline-4">
+<h4 id="org63bc296"><span class="section-number-4">2.5.2</span> Ground vs not ground</h4>
+<div class="outline-text-4" id="text-2-5-2">
 <dl class="org-dl">
-<dt>grounding</dt><dd>the process of translating a non-groud program to a ground one</dd>
+<dt>grounding</dt><dd>the process of translating a non-ground program to a ground one</dd>
 <dt>(no term)</dt><dd>if you have variables, it&rsquo;s ground</dd>
 <dt>(no term)</dt><dd>if it&rsquo;s the same function, but with concrete numbers/atoms in place of a variable, it&rsquo;s grounded</dd>
 </dl>
 </div>
 </div>
 
-<div id="outline-container-org4ad7baf" class="outline-4">
-<h4 id="org4ad7baf"><span class="section-number-4">2.5.2</span> Problems</h4>
-<div class="outline-text-4" id="text-2-5-2">
+<div id="outline-container-org480e4b1" class="outline-4">
+<h4 id="org480e4b1"><span class="section-number-4">2.5.3</span> Problems</h4>
+<div class="outline-text-4" id="text-2-5-3">
 </div>
 <ol class="org-ol">
-<li><a id="org99431f6"></a>Elevator problem<br />
-<div class="outline-text-5" id="text-2-5-2-1">
+<li><a id="org2f01250"></a>Elevator problem<br />
+<div class="outline-text-5" id="text-2-5-3-1">
 <ul class="org-ul">
 <li>elevator transports passengers from initial floors to goal floors</li>
 <li>when it stops at a floor, any passenger can board or unboard</li>
@@ -2016,16 +2131,16 @@ it is checked at runtime for consistency whenever the state of these constraints
 </ul>
 </div>
 </li>
-<li><a id="org3977cc6"></a>Gripper problem<br />
-<div class="outline-text-5" id="text-2-5-2-2">
+<li><a id="org412f40d"></a>Gripper problem<br />
+<div class="outline-text-5" id="text-2-5-3-2">
 <ul class="org-ul">
 <li>transport all the balls from one room to another</li>
 <li>robot is allowed to move form one room to the other and use its 2 grippers to pick up and put down balls</li>
 </ul>
 </div>
 </li>
-<li><a id="org3ef7ccd"></a>Blocks world<br />
-<div class="outline-text-5" id="text-2-5-2-3">
+<li><a id="org0206c0a"></a>Blocks world<br />
+<div class="outline-text-5" id="text-2-5-3-3">
 <ul class="org-ul">
 <li>build one or more vertical stacks of blocks</li>
 <li>only one block moved at a time</li>
@@ -2034,8 +2149,8 @@ it is checked at runtime for consistency whenever the state of these constraints
 </ul>
 </div>
 </li>
-<li><a id="orge0ca974"></a>N queens problem<br />
-<div class="outline-text-5" id="text-2-5-2-4">
+<li><a id="orgfaeb88f"></a>N queens problem<br />
+<div class="outline-text-5" id="text-2-5-3-4">
 <p>
 n<sub>queens</sub> problem
 </p>
@@ -2056,9 +2171,9 @@ hasq(Y) :-d(X), d(Y), q(X,Y).
 </li>
 </ol>
 </div>
-<div id="outline-container-org0b2e6bd" class="outline-4">
-<h4 id="org0b2e6bd"><span class="section-number-4">2.5.3</span> Ferry problem</h4>
-<div class="outline-text-4" id="text-2-5-3">
+<div id="outline-container-orgf231af3" class="outline-4">
+<h4 id="orgf231af3"><span class="section-number-4">2.5.4</span> Ferry problem</h4>
+<div class="outline-text-4" id="text-2-5-4">
 <div class="org-src-container">
 <pre class="src src-asp">move(ferry, From, To, Time)
 board(Car, Location, Time)
@@ -2241,7 +2356,7 @@ goal :- time(T), goal(T).
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Arun Woosaree</p>
-<p class="date">Created: 2021-04-19 Mon 18:24</p>
+<p class="date">Created: 2021-04-20 Tue 13:11</p>
 </div>
 </body>
 </html>

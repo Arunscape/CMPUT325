@@ -34,6 +34,10 @@ Answer:(LDF)  (e’ || (RTN)), where e’is
 e = (NIL LDC 4 CONS (LDF (LD (2.1) LD (1.1) LD (1.1) ADD RTN) ) AP
 #+end_example
 ** Context based interpreter
+
+- https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem3_V1.pdf
+- https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem%203%20Version%202.pdf
+- https://eclass.srv.ualberta.ca/pluginfile.php/7064969/mod_page/content/3/Problem%203%20Version%203.pdf
 #+begin_example lisp
 ((lambda (f) (f 2 3)) (lambda (x y) (* x (+ y 1))))
 
@@ -71,10 +75,27 @@ Two applications of cons gives us (2 . (5 . 5)), or you can simplify it to (2 5 
 
 
 ** Lambda calculus
+
+*** Orders of reduction
+**** Applicative order
+arguments are evaluated before a function is applied
+
+the innermost leftmost function is applied first
+**** Normal order
+the outermost leftmost function is evaluated first'
+
+normal order has better termination
+*** Truth table
 #+begin_example
 truth table practice
 Lxy|xNM
 if x is true then N else M
+
+NOT = (λ B : B F T)
+AND = (λ A B : A B F)
+OR = (λ A B : A T B)
+
+(λ x : x)(λ x : x) does not reduce to a(λ x : x). It is in normal form.
 
 x y | output
 T T | F
@@ -1224,13 +1245,27 @@ curl -Lo tasks.pl https://raw.githubusercontent.com/triska/clpfd/master/tasks.pl
 - (true ) prolog's backtracking is useful for a CLP solver
 - (false) CLP is more general than logic programming
 - (false) all variable sin a constraint problem have the same domain
-- (true ) a variable domain in CLPFD must be a range of consecutive integers
 - (true ) a constraint problem can be solved with C or Java
 - (true ) current CLP systems are useful for industrial applications
 - (false) a problem with 2 contradictory constraints can still have a solution
 - (false) CLP is designed to replace all previous forms of logic programming
 - (true ) CLP can be 1 million times more efficient than prolog backtracking
 - (false) CLPFD contains one fixed strategy for assigning values to variables
+- (true ) Using Prolog's negation operator can lead to non-logical results, especially when the query has free variables
+- (false) In logic programming, function symbols are used only for creating data structures, not for expressing computation.
+- (true ) Constraint programming can solve more problems in a declarative way than pure Prolog
+- (false) The handling of inequalities is the same in pure Prolog and in constraint programming
+- (true ) Node consistency reduces the domain of a single variable.
+- (true ) Arc consistency can reduce the domains of two variables by considering constraints between them.
+- (true ) Sometimes, node and arc consistency can be applied repeatedly to different sets of variables to reduce the domains even further.
+- (false)  In SWI Prolog with CLP(FD), the domains of variables have to be consecutive integers.
+  must be integer, but no need to be consecutive
+- (true ) Some problems can be solved by pure constraint propagation, with no search.
+- (false) When writing a CLP(FD) program, the order of specifying the constraints vs calling labeling does not matter.
+  constraints need to be applied first
+- (false) CLP(FD) is a nice formalism, but there is always a Prolog program of similar length that is just as efficent
+- (true ) In SWI Prolog's CLP(FD), a constraint can contain an arithmetic expression on the left hand side, as in 2 * X + 3 #> 5.
+
    
 ** Foundations of logic programming
 - https://eclass.srv.ualberta.ca/pluginfile.php/6714438/mod_resource/content/9/logic-foundations.pdf
@@ -1249,10 +1284,33 @@ Let the minus sign ‘-’ stand for logical negation
 - (true ) B is a model of P
 - (false) the empty set is always a model of P
 - (true ) -∀x p(x)  is logically equivalent to ∃x -p(x)
+- (true ) In propositional logic, we can always check whether a formula is a logical consequence of other formulas by building a truth table.
+- (false) The size of a truth table grows exponentially with the number of formulas.
+  it grows exponentially with the number of variables
+- (false) In a Horn clause, the head of a clause can be a list of predicates.
+  the head can only be a single predicate
+- (false) A ground atom can contain variables, but only those from the Herbrand Universe.
+  + A ground atom cannot contain variables
+  + The herbrand universe does not contain any variables
+- (false) The Herbrand Universe of a program is always infinite
+  Only infinite if there are no functions
+- (false) The Herbrand Universe is a subset of the Herbrand Base
+  + the base consists of ground atoms (predicates with ground arguments)
+  + the usiverse consists of ground terms (build from constraints and functions)
+- (true ) A model of a program P contains all the atoms from the least model of P.
+  + A model is consistent with the program, so it must contain all the logical consequences of P.
+  + The least model consists exactly of those consequences
+- (true ) The iterative algorithm for computing the least model will terminate if and only if the least model is finite
+- (true ) A Prolog program can only prove those facts which are in the least model.
+- (false ) A depth-first Prolog search is always more efficient than the breadth-first style iterative computation of the least model
+  It is usually much more efficient, but prolog could get stuck in an infinite loop while the least model would
+  find all paths in finite time
   
   
 ** Constraint logic programming
+- https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830070
 ** Constraint satisfaction problem
+- https://eclass.srv.ualberta.ca/mod/page/view.php?id=4830065
 - 3 ingredients
   1. Variables
   2. domains
